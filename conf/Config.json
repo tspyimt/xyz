@@ -1,0 +1,74 @@
+{
+    "common": {
+        "socketEndpointURI": "/socket/stream",
+        "maxCountForListingApi": 100,
+        "oauth": {
+            "bearer": {
+                "generatorSecret": "3khjb4k3h4k3jh42kjh43k2h5kj5h3k6jg5j4df6hd456t45gf67j5gh7k6j7k56hfj5tfruygjg6iy456gf5j5jdt3uf645jhy45gy6i746iuyg4u5ft3ud5u34ft5jy",
+                "generatorAlgorithm": "AES192"
+            }
+        },
+        "jwtSecret": "pqfofegjoafejnmka1i0l4u03v02idkblwhpor",
+        "statelessCookieName": "_alsess",
+        "sessionTimeMills": 1800000,
+        "authFailRedirectUrl": "/",
+        "email": {
+            "service": "Mailgun",
+            "auth": {
+                "user": "postmaster@artlock.co",
+                "pass": "1471403597b0d30f54c586680ccf7a2c"
+            },
+            "copyTo": {
+                "ON_USER_CREATED": []
+            },
+            "paypalemail": "test@artplus.com"
+        },
+        "paypal": {
+            "url": "https://svcs.sandbox.paypal.com/AdaptivePayments/Pay",
+            "X-PAYPAL-SECURITY-USERID": "suroor-facilitator_api1.intelligrape.com",
+            "X-PAYPAL-SECURITY-PASSWORD": "1397535982",
+            "X-PAYPAL-SECURITY-SIGNATURE": "Ay3OVeTUyWlcw.pHn7mfKIOnXTQYAwtyi8vkWiV.-zxTrunpR9CWjknW",
+            "X-PAYPAL-APPLICATION-ID": "APP-80W284485P519543T",
+            "senderEmail": "test@artplus.com"
+        },
+        "streamMediaFromBuffer": false,
+        "mediaStorage": {
+            "storageBaseDir": "/artplus-temp/"
+        }
+    },
+    "development": {
+        "email": {
+            "copyTo": {
+                "ON_USER_CREATED": ["kushal@intelligrape.com", "dhiraj.sharma@intelligrape.com"]
+            },
+            "paypalemail": "test@artplus.com"
+        }
+    },
+    "production": {
+        "mediaStorage": {
+            "storageBaseDir": "/root/artplus/work-store/"
+        },
+        "email": {
+            "copyTo": {
+                "ON_USER_CREATED": ["ddehaeck@artplus.com", "nhaveman@artplus.com"]
+            },
+            "paypalemail": "test@artplus.com"
+        }
+    },
+    "test": {
+        "mediaStorage": {
+            "storageBaseDir": "/artplus-temp/"
+        }
+    },
+    "qa": {
+        "email": {
+            "copyTo": {
+                "ON_USER_CREATED": ["kushal@intelligrape.com", "dhiraj.sharma@intelligrape.com"]
+            },
+            "paypalemail": "test@artplus.com"
+        },
+        "mediaStorage": {
+            "storageBaseDir": "/artplus-temp/"
+        }
+    }
+}

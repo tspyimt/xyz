@@ -1,0 +1,307 @@
+<!-- PROFILE -->
+<div class="profile-page change-div">
+<div class="hidden-title">Profile</div>
+<div class="row">
+<div class="col-sm-12">
+<div class="profile-box" ng-cloak>
+<div class="profile-box-main">
+    <div class="fisrt_box col-md-2">Name</div>
+    <div class="second_box col-md-8 viewProfile" data-ng-bind="'{{currentUser.firstName}} {{currentUser.lastName}}'">
+    </div>
+    <div class="second_box col-md-8 editProfile">
+        <div class="profileRow mBr20">
+            <input type="text" data-label="Name" class="chngprof editname required" ng-model='user.name'
+                   value="'{{currentUser.firstName}} {{currentUser.lastName}}'"/>
+        </div>
+    </div>
+    <div class="third_box col-md-2">
+        <span style="color: lightslategray; float: none;" ng-if="currentUser.userState == 'pending complete profile'">
+            (Pending Approval)
+        </span>
+        <span style="color: lightslategray; float: none;" ng-if="currentUser.userState != 'pending complete profile'"
+              data-ng-bind="(currentUser.userState)">
+
+        </span>
+        <input type="button" value="Change" class="chng-change btn-change-update" data-ng-hide="true"
+               ng-click='updateUserFields("name")'/>
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="profile-box-main">
+    <div class="fisrt_box col-md-2">Email</div>
+    <div class="second_box col-md-8 viewProfile">
+        <div class="profileRow mBr20">
+            <label class="viewEmail" data-ng-bind="currentUser.email.primary"></label>
+            <span>(Primary)</span></div>
+        <div class="profileRow mBr20" data-ng-show="{{currentUser.email.paypal}}">
+            <label class="viewEmail" data-ng-bind="currentUser.email.paypal"></label>
+            <span>(Paypal)</span>
+        </div>
+    </div>
+    <div class="second_box col-md-8 editProfile">
+        <div class="profileRow mBr20">
+            <input type="text" data-label="Email(primary)" class="chngprof editemail email"
+                   data-ng-model="user.email.temp" value="{{currentUser.email.primary}}"/>
+
+            <span>(Primary)</span></div>
+        <div class="profileRow mBr20">
+            <input type="text" data-label="paypal" class="chngprof editemail "
+                   ng-model="user.email.paypal" value=""/>
+            <span>(Paypal)</span></div>
+        <div class="profileRow mBr20" ng-show='currentUser.email.secondary'>
+            <input type="text" data-label="Email(Secondary)" class=""
+                   ng-model="user.email.secondary" value=""/>
+            <span>(Secondary)</span></div>
+    </div>
+    <div class="third_box col-md-2">
+        <input type="button" value="Change" class="chng-change btn-change-update"
+               ng-click='updateUserFields("email")'/>
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="profile-box-main">
+    <div class="fisrt_box col-md-2">Address</div>
+    <div class="second_box  col-md-8 viewProfile"><p data-ng-show="currentUser.address||currentUser.streetNumber ">{{currentUser.address }} - {{currentUser.streetNumber}}
+    </p>
+        <div style="float: left" data-ng-show="currentUser.city" data-ng-bind="currentUser.city"></div><div>,{{currentUser.country}}
+            {{currentUser.zip}}</div >
+    </div>
+    <div class="second_box col-md-8 editProfile">
+
+        <div class="profileRow">
+            <div style="width: 77.4%;float: left;">
+                Street Address<br/>
+                <input type="text" data-label="Address" class="chngprof editadr required"
+                       value="{{currentUser.address || ''}}" data-ng-model="user.address"
+                       placeholder="Street Name" style="width: 98%"/>
+            </div>
+            <div>
+                Street Number
+                <input type="text" data-label="Street Number" id="streetNumber"
+                       data-ng-keypress="checkDigit($event,'streetNumber')"
+                       data-ng-model="user.streetNumber"
+                       value="{{currentUser.streetNumber || ''}}" placeholder="Street number"
+                       class="chngprof editezip"/>
+            </div>
+        </div>
+
+
+        <div class="profileRow addDrop">
+            <div style="width: 25%;float: left;">
+                ZIP<br/>
+                <input type="text" data-label="ZIP Code" data-ng-model="user.zip" id="ZIP"
+                       class="chngprof editezip required"
+                       style="margin-right: 73px; width: 90%;" value="{{currentUser.zip || 'N/A'}}"
+                       placeholder="ZIP Code" maxlength="10"/>
+            </div>
+            <div style="width: 30%;float: left;">
+                City<br/>
+                <input type="text" class="chngprof required;" data-label="City" class="required"
+                       style="margin-right: 70px;width: 90%;"
+                       data-ng-model="user.city"
+                       ng-value="currentUser.city || ''" placeholder="City"/>
+            </div>
+            <div style="width: 43.5%;float: left;">
+                Country<br/>
+                <select data-label="Country" class="required" data-ng-model="currentUser.country"
+                        data-ng-change="changeCountry()"
+                        value="currentUser.country || 'Country' " id="country" name="country"
+                        data-placeholder="Country" style="width: 98%">
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="third_box col-md-2">
+        <input ng-show="currentUser.country && currentUser.city && currentUser.zip && currentUser.address"
+               type="button" value="Change" class="chng-change btn-change-update"
+               ng-click="updateUserFields('address')"/>
+        <input ng-hide="currentUser.country && currentUser.city && currentUser.zip && currentUser.address" type="button"
+               value="Complete" class="chng-change btn-change-update" style="background: red; color: white"
+               ng-click="updateUserFields('address')"/>
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="profile-box-main">
+    <div class="fisrt_box col-md-2">Phone</div>
+    <div class="second_box col-md-8 viewProfile">
+        <div style="float: left" class="phOpt" data-ng-bind="currentUser.phone.business || 'N/A'"></div>&nbsp; &nbsp; &nbsp; &nbsp;<span>(Business)</span>
+        <br>
+        <div style="float: left" class="phOpt" data-ng-bind="currentUser.phone.mobile || 'N/A'"></div>&nbsp; &nbsp; &nbsp; &nbsp;<span>(Mobile)</span></div>
+    <div class="second_box col-md-8 editProfile">
+        <div class="profileRow mBr20">
+            <input type="text" data-label="Phone(Business)" data-ng-model="user.phone.business"
+                   class="chngprof editemail numeric"
+                   id="businessPhone"
+                   data-ng-keypress="checkDigit($event,'businessPhone')"
+                   value="{{currentUser.phone.business || 'N/A' }}"/>
+            <span>(Business)</span></div>
+        <div class="profileRow mBr20">
+            <input type="text" data-label="Phone(Mobile)" class="chngprof editemail numeric"
+                   data-ng-model="user.phone.mobile"
+                   value="{{currentUser.phone.mobile || 'N/A' }}"/>
+            <span>(Mobile)</span></div>
+    </div>
+    <div class="third_box col-md-2">
+        <input data-ng-show="currentUser.phone.mobile || currentUser.phone.business" type="button" value="Change"
+               class="chng-change btn-change-update"
+               data-ng-click="updateUserFields('phone')"/>
+        <input data-ng-hide="currentUser.phone.mobile || currentUser.phone.business" type="button" value="Complete"
+               class="chng-change btn-change-update" style="background: red; color: white;"
+               data-ng-click="updateUserFields('phone')"/>
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="profile-box-main">
+    <div class="fisrt_box col-md-2">Password<br>
+        <!--<span class="resSec-title1">Security questions</span>--></div>
+    <div class="second_box col-md-8 viewProfile">
+        <label class="pass-resp" data-ng-hide="passwordStatus">********</label>
+
+
+    </div>
+    <div class="second_box col-md-8 editProfile">
+        <label class="pass-resp" data-ng-show="passwordStatus"><p>Change password email will be send at <b
+                style="color: lightcoral" data-ng-bind="currentUser.email.primary"></b></p>
+
+            <p>Email send <b style="color: lightcoral">Successfully</b>.</p></label>
+
+    </div>
+    <div class="third_box col-md-2">
+        <input type="button" value="Change" class=" chng-change btn-change-update"
+               data-ng-click="updateUserFields('password')" data-ng-hide="passwordStatus"/>
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="profile-box-main">
+    <div class="fisrt_box col-md-2">Business information</div>
+    <div class="second_box col-md-8 viewProfile">
+        <div data-ng-bind="currentUser.businessInfo.company || 'Company Name'"></div>
+        <div data-ng-bind="currentUser.businessInfo.companyNumber || 'EIN/VAT OR Company Number'"></div>
+    </div>
+    <div class="second_box col-md-8 editProfile">
+        <div class="profileRow mBr20">
+            <input type="text" data-label="Business Title" class="chngprof editinfo required"
+                   data-ng-model="user.businessInfo.company" placeholder="Company Name"
+                   value="{{ currentUser.businessInfo.company || '' }}"/>
+        </div>
+        <div class="profileRow mBr20">
+            <input type="text" data-label="EIN/VAT OR Company Number" class="chngprof editinfo edit required"
+                   data-ng-model="user.businessInfo.companyNumber" placeholder="EIN/VAT OR Company Number"
+                   value="{{currentUser.businessInfo.companyNumber || ''}}"/>
+        </div>
+    </div>
+    <div class="third_box col-md-2">
+        <input data-ng-show="userRoleArtist == 'artist' && currentUser.businessInfo.company && currentUser.businessInfo.companyNumber"
+               type="button" value="Change" class="chng-change btn-change-update"
+               data-ng-click="updateUserFields('businessInfo')"/>
+        <input data-ng-show="userRoleArtist == 'artist' && (!currentUser.businessInfo.company || !currentUser.businessInfo.companyNumber)"
+               type="button" value="Complete" class="chng-change btn-change-update"
+               style="background: red; color: #ffffff;"
+               data-ng-click="updateUserFields('businessInfo')"/>
+        <input data-ng-show="userRoleArtist != 'artist'" type="button" value="Change"
+               class="chng-change btn-change-update"
+               data-ng-click="updateUserFields('businessInfo')"/>
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="profile-box-main" data-ng-show="userRoleCollector">
+    <div class="fisrt_box col-md-2">Hide Name</div>
+    <div class="second_box col-md-8 viewProfile">{{currentUser.firstName}} {{currentUser.lastName}}
+    </div>
+    <div class="second_box col-md-8 editProfile">
+        <div class="profileRow mBr20">
+            Yes <input type="radio" name="hideName" ng-model='user.hideName'
+                       value=false style="margin-right:50px"/>
+
+            No <input type="radio" name="hideName" ng-model='user.hideName'
+                      value=true/>
+        </div>
+    </div>
+    <div class="third_box col-md-2">
+        <input type="button" value="Change" class="chng-change btn-change-update"
+               ng-click='updateUserFields("hideName")'/>
+    </div>
+    <div class="clearfix"></div>
+
+</div>
+<div class="profile-box-main" ng-hide="createKeyError">
+    <p class="has-error">* Please complete your profile above before creating the keys. We require a complete profile
+        for issuing keys.</p>
+</div>
+
+<div class="profile-box-main">
+    <div class="fisrt_box col-md-2">Private Key</div>
+    <div class="second_box col-md-5 viewProfile" data-ng-hide="keyGenerated"> ************
+
+        <br/></div>
+    <div class="second_box col-md-5 viewProfile" data-ng-show="keyGenerated"> New <b
+            style="color: lightcoral"> Key PDF</b> has been Generated.
+
+    </div>
+    <div class="third_box col-md-5">
+        <input type="button" value="{{currentUser.privateKey && 'Change' || 'Create'}}" class="btn-change-update"
+               data-ng-click="updateUserFields('privateKey')"/>
+        <input ng-show="currentUser.privateKey" type="button" value="View" class="btn-change-update"
+               style="margin-right: 5px"
+               data-ng-click="viewPrivateKeyPDF()"/>
+    </div>
+    <div class="clearfix"></div>
+
+</div>
+<div class="profile-box-main">
+    <div class="fisrt_box col-md-2">Trade Key</div>
+    <div class="second_box col-md-5 viewProfile" data-ng-hide="TradeKeyGenerated"> ************
+        <br/></div>
+    <div class="second_box col-md-5 viewProfile" data-ng-show="TradeKeyGenerated"> New <b
+            style="color: lightcoral"> Key PDF</b> has been Generated.
+
+    </div>
+    <div class="third_box col-md-5">
+        <input type="button" value="{{currentUser.tradeKey && 'Change' || 'Create'}}" class="btn-change-update"
+               data-ng-click="updateUserFields('tradeKey')"/>
+        <input ng-show="currentUser.tradeKey" type="button" value="View" class="btn-change-update"
+               style="margin-right: 5px"
+               data-ng-click="viewTradeKeyPDF()"/>
+    </div>
+    <div class="clearfix"></div>
+
+</div>
+<div class="profile-box-main dashed-bottom" data-ng-show="userRoleArtist=='artist' ">
+    <div class="fisrt_box col-md-2">Creator Key</div>
+    <div class="second_box col-md-5 viewProfile" data-ng-hide="creatorKeyGenerated"> ************
+        <br/></div>
+    <div class="second_box col-md-5 viewProfile" data-ng-show="creatorKeyGenerated"> New <b
+            style="color: lightcoral">Key PDF</b> has been Generated.
+    </div>
+
+    <div class="third_box col-md-5">
+        <input type="button" value="{{currentUser.creatorKey && 'Change' || 'Create'}}" class="btn-change-update"
+               data-ng-click="updateUserFields('creatorKey')"/>
+        <input ng-show="currentUser.creatorKey" type="button" value="View" class="btn-change-update"
+               style="margin-right: 5px"
+               data-ng-click="viewCreatorKeyPDF()"/>
+    </div>
+    <div class="clearfix"></div>
+
+</div>
+<h4 ng-hide="userRoleArtist=='artist' && (currentUser.creatorKey && currentUser.privateKey) || currentUser.privateKey"
+    style="color: #787878;">Kindly generate your keys by clicking on "Create" button.</h4>
+</div>
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+<script src="/js/country.js"></script>
+<script language="javascript">
+    populateCountries("country");
+</script>
+<!-- PROFILE -->

@@ -1,0 +1,6 @@
+{
+    "name":"Storage-Interface",
+    "description":"This module helps to save media files and return id corresponding to the saved media file.",
+    "main":"./lib/storage.js",
+    "version":"0.1.0"
+}

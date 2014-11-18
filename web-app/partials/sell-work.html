@@ -1,0 +1,71 @@
+<!-- Sell a Work -->
+<div class="sell-work-page change-div">
+
+    <div class="hidden-title">Sell a Work</div>
+    <div class="filterNav">
+        <div class="row">
+            <div class="col-sm-12 filters">
+                <select data-ng-model="mediaObject"
+                        ng-options="media.value as media.category for media in mediaCategory"
+                        data-ng-change="changeCategory(mediaObject)">
+                </select>
+                <a class="viewaudit transfer-work-page3" style="float: right; border: 0" href='#/works/unclaimed'>UNCLAIMED</a>
+                <a class="viewaudit transfer-work-page3" style="float: right; border: 0" href='#/works/reserved'>RESERVED</a>
+            </div>
+        </div>
+    </div>
+    <div class="auditMain">
+        <div class="row">
+            <div class="audit-row-head">
+                <div class="col-md-2">&nbsp;</div>
+                <div class="col-sm-10">
+                    <label>EDITION</label>
+                    <label>AVAILABLE</label>
+                    <label>SOLD</label>
+                    <label>DISKS IN LFP</label>
+                    <label>&nbsp;</label>
+                </div>
+            </div>
+
+            <div class="audit-row media1" data-ng-repeat="work in works">
+
+                <div class="col-sm-2 auditThumb"><img ng-src="/api/media/thumbnail/{{work._id}}" alt=""/></div>
+                <div class="col-sm-10">
+                    <div class="audit-rt-block">
+                        <div class="auditTypeBox">
+                            <label>EDITION</label>
+                            <span class="audit-cloud">{{ work.edition || '0' }}+{{(work.copyForArtRent + work.copyForExhibition) || '0'}}</span>
+                        </div>
+                        <div class="auditTypeBox">
+                            <label>AVAILABLE</label>
+                            <span class="copisold sblue">{{ work.availableWithOwner || '0' }}</span></div>
+                        <div class="auditTypeBox">
+                            <label>SOLD</label>
+                            <span class="copisold sblue">{{ work.counts.copiesSoldInTotal || '0' }}</span></div>
+
+
+                        <div class="auditTypeBox">
+                            <label>LAST AUDIT</label>
+                            <span ng-class="{'last-audit':work.offerIn,'last-audit-red':!work.offerIn}">&nbsp;</span>
+
+                        </div>
+                        <div class="auditTypeBox">
+                            <label>&nbsp;</label>
+                            <a class="viewaudit transfer-work-page3  inner-page-change respnavi {{(work.availableWithOwner > 0) && ' ' || 'disabled-anchor'}}"
+                               href='#/transfer-work-init/{{work._id}}'>TRANSFER OWNERSHIP</a></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="clearfix text-center" data-ng-show="count>25">
+        <button ng-click='previousPage()' ng-disabled="offSet <= 0" class="paginationButton">Previous</button>
+        <button ng-click='nextPage()' ng-disabled="(check >= count)" class="paginationButton">Next</button>
+    </div>
+</div>
+<!-- Sell a Work -->
+<div class="fcoll"><a ng-href="{{learnMoreURL}}" class="learnmore">Learn more ></a></div>
+

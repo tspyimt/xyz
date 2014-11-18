@@ -1,0 +1,112 @@
+<div class="transfer-work-page1 change-div">
+    <div class="alert alert-error" id="alert1" style="margin-right: 10px; margin-top:5px;"
+         ng-show="errorAddingWork">
+        <button type="button" class="close" ng-click="closeErrorDiv()">×</button>
+        Error occurred adding work. Please try again.
+    </div>
+    <div class="filterNav">
+        <div class="row">
+            <div class="col-sm-12 filters">
+                <input type="button" class="addWork sellFromBtn1" value="ALL WORKS" data-ng-click="toLink('/sell-work/all/0/25')"/>
+            </div>
+        </div>
+    </div>
+    <div class="transferMain">
+        <div class="row">
+            <div class="col-sm-4 transDtl-info">
+                <div class="usethumbs"><img ng-src="/api/media/thumbnail/{{currentWork._id}}" alt=""/></div>
+                <h3>{{currentWork.artistName || 'Unknown'}}</h3>
+
+                <h3>{{currentWork.title || 'N/A'}}</h3>
+                <h4>{{currentWork.material || 'N/A'}}</h4>
+
+                <div style="float: left;">
+                    <p>
+          <span>
+           <a ng-if="getCoaUrl()" class="viewaudit" ng-href="{{getCoaUrl()}}"
+              style="margin-right:12px;margin-left:12px; width:135px; padding:0 20px;"
+              target="_blank"> CERTIFICATE </a>
+         </span>
+
+         <span>
+                 <a ng-if="getContractUrl()" class="viewaudit" ng-href="{{getContractUrl()}}" target="_blank"> CONTRACT </a>
+         </span>
+                    </p>
+                </div>
+                <br>
+                <div style="clear: both"><br/>
+                    <p ng-bind-html="currentWork.description"></p>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="transferTypes-Main">
+                    <div class="transferTypes">
+                        <div class="typesBlock">
+                            <label>EDITION</label>
+                            <span class="edition">{{currentWork.edition || '0' }}+{{(currentWork.copyForArtRent + currentWork.copyForExhibition) || '0'}}</span>
+                        </div>
+                        <div class="typesBlock">
+                            <label>NUMBER</label>
+                            <span class="copy">{{currentWork.targetWorkCopyNumber}}</span></div>
+                        <div class="typesBlock">
+                            <label>AVAILABLE</label>
+                            <span class="copy">{{currentWork.totalAvailable || '0'}}</span></div>
+                        <div class="typesBlock">
+                            <label>RENTAL</label>
+                            <span class="artent">{{currentWork.copyForArtRent || 0}}</span></div>
+                        <div class="typesBlock">
+                            <label>EXHIBITION</label>
+                            <span class="artent">{{currentWork.copyForExhibition || 0}}</span></div>
+                        <div class="typesBlock">
+                            <label>DISK LFP</label>
+                            <span class="lfp">{{currentWork.totalLFPAvailable || 0}}</span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                        <br/>
+                    <div class="clearfix"></div>
+                    <div class="trade-agree">
+                        <p>OFFERED UNDER THE FAIR ART TRADE AGREEMENT
+                            <img src="/img/check-green-icon.png" alt="" ng-show="artFairAgreement"/>
+                            <img  src="/img/red-cross-icon.png" alt="" ng-hide="artFairAgreement"/></p>
+
+                        <p>OFFERED ON DISK FROM THE LFP
+                            <img src="/img/check-green-icon.png" alt="" ng-show="offeredFromLFP"/>
+                            <img  src="/img/red-cross-icon.png" alt="" ng-hide="offeredFromLFP"/></p>
+
+                        <p ng-show="currentWork.workCopy.transferTo.active">PAYMENT {{currentWork.workCopy.transferTo.currency}} {{currentWork.workCopy.transferTo.price || 0.00}} <img
+                                src="/img/user/check-green-icon.png" alt=""/></p>
+                        <p ng-hide="currentWork.workCopy.transferTo.active">No payment request <img
+                                src="/img/user/check-green-icon.png" alt=""/></p>
+                    </div>
+                    <div class="sellForm">
+                        <div class="private-key">
+                            <div id="tradeIcon"></div>
+                            <input type="text" id="tradekey"
+                                   placeholder="ENTER YOUR TRADE KEY      (XXXX XXXX XXXX XXXX)"
+                                   class="addworkInpt" trade-key/>
+                        </div>
+                        <div class="private-key">
+                            <input type="text" class="addworkInpt email" id="privatekeyemail"
+                                   placeholder="ENTER THE BUYERS EMAIL ADDRESS" required="true"
+                                   data-ng-model="buyerEmail"/>
+                        </div>
+                        <div class="private-key">
+                            <input type="text" class="addworkInpt email" id="privatekeyreemail"
+                                   data-ng-model="reBuyerEmail"
+                                   placeholder="RE-ENTER THE BUYERS EMAIL ADDRESS" required="true"/>
+                        </div>
+                        <button style="background:rgb(107, 186, 223); height: 40px; line-height: 40px; border: 0;float: right;color: white;font-size: 16px;
+padding: 0 10px;"
+                             id="transfer-work-page41"
+                             data-ng-click="transferWork($event)"
+                             data-ng-disabled="(!keyMatch || !(isEmail(buyerEmail)&& (reBuyerEmail==buyerEmail)))"
+                             data-ng-class="{'buttonDisabled': (!keyMatch || !(isEmail(buyerEmail)&& (reBuyerEmail==buyerEmail)))}"
+                                >TRANSFER THIS WORK TO THE NEW OWNER</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="fcoll"><a ng-href="{{learnMoreURL}}" class="learnmore">Learn more ></a></div>

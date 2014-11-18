@@ -1,0 +1,101 @@
+<!-- Inventory -->
+<div class="collection-page change-div">
+    <div class="hidden-title">Inventory</div>
+    <div class="col-sm-12 filters" style="padding-left: 50px!important">
+        <select data-ng-model="mediaObject" ng-options="media.value as media.category for media in mediaCategory"
+                data-ng-change="changeCategory(mediaObject)" class="ng-pristine ng-valid">
+            <option value="0" selected="selected">ALL WORKS</option>
+            <option value="1">Still Image</option>
+            <option value="2">Moving Image</option>
+            <option value="3">Sound Art</option>
+        </select>
+    </div>
+    <br>
+
+    <div class="auditMain">
+        <div class="row">
+            <div class="audit-row-head">
+                <div class="col-md-2">&nbsp;</div>
+                <div class="col-sm-10">
+                    <label>EDITION</label>
+                    <label>NUMBER</label>
+                    <label>DAYS</label>
+                    <label>LFP</label>
+                    <label>&nbsp;</label>
+                </div>
+            </div>
+            <div class="audit-row media1" data-ng-show="works.length<1"
+                 style="text-align:center"><br/><br/><br/><br/><br/>
+                <h4 style=" color:#787878;"> You currently do not have any unclaimed works. Once you make a transfer then the works are listed here until collector collects it.. </h4></div>
+            <div class="audit-row media1" data-ng-repeat="work in works">
+                <div>
+                    <div class="col-sm-2 auditThumb"><img ng-src="/api/media/thumbnail/{{work.workId}}" alt=""/></div>
+                    <div class="col-sm-10">
+                        <div class="audit-rt-block">
+                            <div class="auditTypeBox">
+                                <label>EDITION</label>
+                                <span class="audit-cloud">{{ work.edition || '0' }}+{{(work.copyForArtRent || 0) + (work.copyForExhibition || 0)}}</span>
+                            </div>
+                            <div class="auditTypeBox">
+                                <label>&nbsp</label>
+                                <span class="copisold sblue">{{work.copyNumber}}</span>
+                            </div>
+                            <div class="auditTypeBox">
+                                <label>LAST AUDIT</label>
+                                <span class="copisold sblue">{{work.transferTo.transferInitiationTimeStamp | elapsedDays}}</span>
+                            </div>
+                            <div class="auditTypeBox">
+                                <label>&nbsp;</label>
+                                <span ng-class="{'last-audit':work.copyTypeLFP,'last-audit-red':!work.copyTypeLFP}">&nbsp;</span>
+                            </div>
+
+                            <div class="auditTypeBox">
+                                <label>&nbsp;</label>
+                                <a class="viewaudit view-audit-report show-next-panel"
+                                   href="javascript:void(0)" ng-click="editDetails(work._id)" data-ng-hide="flagDiv == work._id">DETAILS</a>
+                                <a class="viewaudit view-audit-report show-next-panel" data-ng-show="flagDiv == work._id"
+                                   href="javascript:void(0)" ng-click="editDetails(null)">DONE</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-2">&nbsp;</div>
+                    <div class="col-sm-10"
+                         data-ng-show="flagDiv==work._id">
+                        <div data-ng-show="processingRequest" class="audit-rt-block mTB20 audit-rt"><span style="display: block;float:right">Processing...</span></div>
+                        <div data-ng-hide="processingRequest" class="row" style="padding: 10px">
+                            <div class="audit-rt-block mTB20 audit-rt">
+                            <div class="col-sm-4">
+                                <label class="addworkInpt ng-pristine  text"
+                                       style="padding-top: 10px;text-align: center">{{work.currentOwnership.transferKey}}</label>
+                            </div>
+                            <div class="col-sm-4 inventory-act">
+                                <div class="audit-report-act">
+                                    <a class="viewaudit view-audit-report delete-playlist media-viewer delet-from-playlist"
+                                       href="javascript:void(0)" ng-click="removeFromSalesTransaction(work._id)">
+                                        CANCEL TRANSACTION</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 inventory-act">
+                                <div class="audit-report-act">
+                                    <a class="viewaudit view-audit-report media-viewer "
+                                       href="javascript:void(0)"
+                                       data-ng-click="resendTransferKey(work._id)">
+                                        RESEND KEY
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Inventory -->
+<div class="fcoll"><a ng-href="{{learnMoreURL}}" class="learnmore">Learn more ></a></div>

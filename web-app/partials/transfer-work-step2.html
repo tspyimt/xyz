@@ -1,0 +1,88 @@
+<div class="transfer-work-page2 change-div">
+    <div class="filterNav">
+        <div class="row">
+            <div class="col-sm-12 filters">
+                <input type="button" class="addWork sellFromBtn1" value="ALL WORKS" data-ng-click="toLink('/sell-work/all/0/25')">
+            </div>
+        </div>
+    </div>
+    <div class="transferMain">
+        <div class="row">
+            <div class="col-sm-4 transDtl-info">
+                <div class="usethumbs"><img src="/api/media/thumbnail/{{currentWork._id}}" alt=""/></div>
+                <h3>{{currentWork.artistName || 'Unknown'}}</h3>
+
+                <h3>{{currentWork.title || 'N/A'}}</h3>
+                <h4>{{currentWork.material || 'N/A'}}</h4>
+
+                <div style="float: left;">
+                    <p>
+                    <span>
+            <a class="viewaudit" ng-href="{{coaURL}}" data-ng-class="{false:'buttonDisabled'}[disableFlag]"
+               style="margin-right:12px;margin-left:12px; width:135px; padding:0 20px;"
+               target="_blank"> CERTIFICATE </a>
+                     </span>
+
+         <span>
+                 <a class="viewaudit" ng-href="{{contractURL}}" target="_blank"> CONTRACT </a>
+         </span>
+                    </p>
+                </div>
+                <br>
+
+                <div style="clear: both"><br/>
+
+                    <p ng-bind-html="currentWork.description"></p>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="transferTypes-Main">
+                    <div class="transferTypes">
+                        <div class="typesBlock">
+                            <label>EDITION</label>
+                            <span class="edition">{{currentWork.edition || '0' }}+{{(currentWork.copyForArtRent + currentWork.copyForExhibition) || '0'}}</span>
+                        </div>
+                        <div class="typesBlock" ng-show="copyCurrentlyViewed">
+                            <label>NUMBER</label>
+                            <span class="copy">{{copyCurrentlyViewed.copyNumber}}</span></div>
+                        <div class="typesBlock" ng-hide="copyCurrentlyViewed">
+                            <label>COPY</label>
+                            <span class="copy">{{currentWork.edition || 0}}</span></div>
+                        <div class="typesBlock">
+                            <label>RENTAL</label>
+                            <span class="artent">{{currentWork.copyForArtRent || 0}}</span></div>
+                        <div class="typesBlock">
+                            <label>EXHIBITION</label>
+                            <span class="artent">{{currentWork.copyForExhibition || 0}}</span></div>
+                        <div class="typesBlock">
+                            <label>DISK IN LFP</label>
+                            <span class="lfp" ng-show="copyCurrentlyViewed">{{(copyCurrentlyViewed.copyTypeLFP == true) && 1 || 0}}</span>
+                            <span class="lfp" ng-hide="copyCurrentlyViewed">{{currentWork.copiesOnMDisk || 0}}</span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="trade-agree">
+                        <p>OFFERED UNDER THE ARTFAIR ART TRADE AGREEMENT <img
+                                src="/img/check-green-icon.png" alt="" ng-show="artFairAgreement"/>
+                            <img src="/img/red-cross-icon.png" alt="" ng-hide="artFairAgreement"/></p>
+
+                        <p>OFFERED ON DISK FROM THE LFP <img src="/img/check-green-icon.png" alt="" ng-show="offeredFromLFP"/>
+                            <img src="/img/red-cross-icon.png" alt="" ng-hide="offeredFromLFP"/></p>
+
+                        <p>PENDING {{currentWork.currency}} {{currentPrice || 0.00}} PAYMENT REQUESTED BY PAYPAL ON
+                            {{date}}.</p>
+                    </div>
+                    <div class="sellForm">
+                        <input type="text" class="addworkInpt" placeholder="RE-SEND PAYPAL PAYMENT REQUEST"/>
+                        <input type="button" class="addWork sellFromBtn2 continue inner-page-change respText"
+                               id="transfer-work-page1" value="CONTINUE" data-ng-click="continue()"/>
+                        <input type="button" class="addWork sellFromBtn1 continue inner-page-change respText"
+                               id="transfer-work-page1" value="RESEND PAYMENT REQUEST"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="fcoll"><a ng-href="{{learnMoreURL}}" class="learnmore">Learn more ></a></div>

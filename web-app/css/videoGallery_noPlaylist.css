@@ -1,0 +1,513 @@
+*{
+	margin:0;
+	padding:0;
+	border:0;
+	outline:none;
+}
+
+a{ 
+	text-decoration: none; 
+}
+
+body {
+	background-color:#222;
+}
+
+
+
+/* wrapper for component (outer resizer!) */
+#componentWrapper{
+	position:absolute;
+	width:100%;
+	height:100%;
+	left:0px;
+	top:0px;
+}
+
+/* inner wrapper for whole player (includes height of the player and playlist!) */
+#componentWrapper .componentInnerWrapper{
+	position:absolute;
+	width:500px;
+	height:280px;
+	left:50%;
+	top:50%;
+	margin-left:-250px;
+	margin-top:-140px;
+	/*background:red;*/
+}
+
+/***** PLAYER *****/
+
+/* player holder */	
+#componentWrapper .playerHolder{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:500px;
+	height:280px;
+	background:#111;
+	overflow:hidden;
+}	
+
+/* player holder fullscreen */
+#componentWrapper .playerHolder_fs{
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	margin:0px;
+	padding:0px;
+	background:#111;
+}
+
+/* holders for video */	
+#componentWrapper .mediaHolder, 
+#componentWrapper .youtubeHolder, 
+#componentWrapper .vimeoHolder, 
+#componentWrapper .mediaPreview, 
+#componentWrapper #flashPreview{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	display:none;
+	outline:none;
+}
+
+
+
+
+/* player holder */
+#componentWrapper .playerControls{
+	position:absolute;
+	bottom:10px;
+	left:10px;
+	width:480px;
+	height:33px;
+	background-image: url('../img/data/icons/bg.png');
+	background-repeat: repeat-x; 
+	display:none;
+}
+
+/* pause / play */
+#componentWrapper .player_playControl{
+	position:absolute;
+	top:3px;
+	left:3px;
+	width:28px;
+	height:26px;
+	/*background:red;*/
+}
+
+#componentWrapper .player_playControl img{
+	position:absolute;
+	display:block;
+	width:12px;
+	height:14px;
+	top:6px;
+	left:10px;
+}
+
+/* player progress, serves as hit as well */
+#componentWrapper .player_progress{
+	position:absolute;
+	top:3px;
+	left:38px;
+	/* for hit */
+	width:220px;
+	height:26px;
+	/*background:green;*/
+}
+
+#componentWrapper .progress_bg{
+	position:absolute;
+	top:10px;
+	left:10px;
+	width:200px;
+	height:5px;
+	background:#333333;
+}
+
+#componentWrapper .load_level{
+	position:absolute;
+	top:10px;
+	left:10px;
+	width:0px;
+	height:5px;
+	background:#ffffff;
+}
+
+#componentWrapper .progress_level{
+	position:absolute;
+	top:10px;
+	left:10px;
+	width:0px;
+	height:5px;
+	background:#999;
+}
+
+/* progress tooltip */
+#componentWrapper .player_progress_tooltip{
+	position:absolute;
+	top:-15px;
+	/* left is set in code (centered)*/
+	width:70px;
+	height:18px;
+	background:#333;
+	display:none;
+	
+	-moz-box-shadow: 1px 1px 1px #222;
+	-webkit-box-shadow: 1px 1px 1px #222;
+	box-shadow: 1px 1px 1px #222;
+}
+
+#componentWrapper .player_progress_tooltip_value{
+	position:absolute;
+	top:2px;
+	/* left is set in code (centered)*/
+	color:#ffffff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10px;
+}
+
+/* media time */
+#componentWrapper .player_mediaTime{
+	position:absolute;
+	top:9px;
+	right:143px;
+	
+	color:#e5e5e5;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+}
+
+/* volume */
+#componentWrapper .player_volume{
+	position:absolute;
+	top:3px;
+	right:107px;
+	width:25px;
+	height:26px;
+	/*background:red;*/
+}
+
+#componentWrapper .player_volume img{
+	position:absolute;
+	display:block;
+	width:13px;
+	height:14px;
+	top:6px;
+	left:5px;
+}
+
+/* player volume, serves as hit as well */
+#componentWrapper .volume_seekbar{
+	position:absolute;
+	top:3px;
+	right:40px;
+	/* for hit */
+	width:60px;
+	height:26px;
+	/*background:green;*/
+}
+
+#componentWrapper .volume_bg{
+	position:absolute;
+	top:10px;
+	left:5px;
+	width:50px;
+	height:5px;
+	background:#ffffff;
+}
+
+#componentWrapper .volume_level{
+	position:absolute;
+	top:10px;
+	left:5px;
+	width:0px;
+	height:5px;
+	background:#999;
+}
+
+/* volume tooltip */
+#componentWrapper .player_volume_tooltip{
+	position:absolute;
+	top:-15px;
+	/* left is set in code (centered)*/
+	width:35px;
+	height:18px;
+	background:#333;
+	display:none;
+	
+	-moz-box-shadow: 1px 1px 1px #222;
+	-webkit-box-shadow: 1px 1px 1px #222;
+	box-shadow: 1px 1px 1px #222;
+}
+
+#componentWrapper .player_volume_tooltip_value{
+	position:absolute;
+	top:2px;
+	/* left is set in code (centered)*/
+	color:#ffffff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10px;
+}
+
+/* fullscreen */
+#componentWrapper .player_fullscreen{
+	position:absolute;
+	top:4px;
+	right:5px;
+	width:24px;
+	height:26px;
+	/*background:red;*/
+}
+
+#componentWrapper .player_fullscreen img{
+	position:absolute;
+	display:block;
+	width:12px;
+	height:12px;
+	top:6px;
+	left:5px;
+}
+
+
+
+
+
+/***** PLAYLIST *****/
+
+/* playlist holder */	
+#componentWrapper .playlistHolder{
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	width:0px;
+	height:0px;
+	/*background:#111;*/
+	background:#333;
+	overflow:hidden;
+	display:none;
+}
+
+#componentWrapper .componentPlaylist{
+	position:absolute;
+	top:5px;
+	left:5px;
+	width:490px;
+	height:90px;
+	/*background:green;*/
+	overflow:hidden;
+}
+
+/* playlist holder for playlist items */	
+#componentWrapper .playlist_inner{
+	position:relative;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:80px;
+}
+
+/* hide all playlists on beginning, IMPORTANT! */
+#componentWrapper .playlist_inner ul{
+	display:none;
+}
+/* hide playlist li items, IMPORTANT! */
+#componentWrapper .playlist_inner ul li{
+	display:none;
+}
+
+/* playlist items */	
+#componentWrapper .componentPlaylist .playlistNonSelected{
+	position:relative;
+	top:0px;
+	left:0px;
+	width:250px;
+	height:62px;
+	background:#181818;
+	/*background:#777;*/
+	margin-right:5px;
+	list-style:none;
+	overflow:hidden;
+	float:left;
+}
+
+#componentWrapper .componentPlaylist .playlistSelected{
+	position:relative;
+	top:0px;
+	left:0px;
+	width:250px;
+	height:62px;
+	background:#ccc;
+	margin-right:5px;
+	list-style:none;
+	overflow:hidden;
+	float:left;
+}
+
+/* playlist items */	
+#componentWrapper .componentPlaylist .playlistNonSelected_mob{
+	position:relative;
+	top:0px;
+	left:0px;
+	width:82px;
+	height:62px;
+	background:#181818;
+	/*background:#777;*/
+	margin-right:5px;
+	list-style:none;
+	overflow:hidden;
+	float:left;
+}
+
+#componentWrapper .componentPlaylist .playlistSelected_mob{
+	position:relative;
+	top:0px;
+	left:0px;
+	width:82px;
+	height:62px;
+	background:#ccc;
+	margin-right:5px;
+	list-style:none;
+	overflow:hidden;
+	float:left;
+}
+
+/* playlist thumb */
+#componentWrapper .playlistThumb {
+	position:absolute;
+	top:4px;
+	left:4px;
+	width:70px;
+	height:50px;
+	background:#222;
+	border: 2px solid #ddd;
+}
+
+#componentWrapper .playlistThumb .thumb{
+	position:absolute;
+	top:0px;
+	left:0px;
+	display:block;
+	width:70px;
+	height:50px;
+}
+
+
+
+#componentWrapper .playlistInfo {
+	position:absolute;
+	left:90px;
+	top:0px;
+	width:150px;
+	height:60px;
+	/*background:green;*/
+	overflow:hidden;
+}
+
+/* playlist title */
+#componentWrapper .playlistTitle {
+	color:#ffffff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	font-weight:700;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* playlist description */
+#componentWrapper .playlistContent {
+	color:#ffffff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+}
+
+
+
+#componentWrapper .player_adv{
+	position:absolute;
+	width:90px;
+	height:40px;
+	bottom:-50px;
+	right:10px;
+}
+
+#componentWrapper .player_prev{
+	position:absolute;
+	width:40px;
+	height:40px;
+	top:0px;
+	left:0px;
+	background-image: url('../img/data/bg2.png');
+	background-repeat: repeat;
+}
+
+#componentWrapper .player_next{
+	position:absolute;
+	width:40px;
+	height:40px;
+	top:0px;
+	left:50px;
+	background-image: url('../img/data/bg2.png');
+	background-repeat: repeat;
+}
+
+
+
+
+
+
+/* big play for local video */
+#componentWrapper .bigPlay{
+	display:none;
+	position:absolute;
+	width:76px;
+	height:76px;
+	top:50%;
+	left:50%;
+	margin-left:-38px;
+	margin-top:-38px;
+	z-index:999;
+}
+
+
+			  
+
+/* public functions */	
+#publicFunctions{
+	position: absolute;
+	padding: 10px 20px 10px 30px;
+	background:#933;
+	left:50px;
+	top:50px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color:#fff;
+	list-style:circle;
+	
+	-moz-box-shadow: 2px 2px 5px #222;
+	-webkit-box-shadow: 2px 2px 5px #222;
+	box-shadow: 2px 2px 5px #222;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=135, Color='#222222')";
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=135, Color='#222222');
+
+	display:none;
+}
+
+#publicFunctions li a{
+	color:#fff;
+}
+
+#publicFunctions li a:hover, #publicFunctions li .current{
+	text-decoration: underline;
+}
+
+
+
+
+
+
+

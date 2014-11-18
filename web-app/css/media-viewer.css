@@ -1,0 +1,82 @@
+@charset "utf-8";
+.playerIcons {
+    height: 70px;
+    background-color: #090909;
+    margin-bottom: 4px;
+    overflow: hidden;
+}
+
+.playerIcons ul {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+.playerIcons ul li {
+    width: 32.5%;
+    float: left;
+    display: inline-block;
+}
+
+.playerIcons ul li a {
+    display: block;
+    height: 70px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: auto 36px;
+}
+
+.playerIcons ul li a.fullscreen {
+    background-image: url(/img/new-fullscreen-icon.png);
+}
+
+.playerIcons ul li a.listmenu {
+    background-image: url(/img/new-listmenu-icon.png);
+}
+
+.playerIcons ul li a.cast {
+    background-image: url(/img/new-chromecast-icon.png);
+}
+
+.playerIcons ul li a.lockview {
+    background-image: url(/img/new-lock-icon.png);
+}
+
+label.crntvBar {
+    background-color: #1BA1E1;
+    display: none;
+    float: right;
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 4px;
+}
+
+.playlistSelected label.crntvBar {
+    display: inline-block;
+}
+
+.artistName {
+    font-size: 24px;
+}
+.mediaInfo {
+    font-family:Volkorn;
+    font-style: italic;
+}
+
+@media only screen
+and (min-width: 150px)
+and (max-width: 600px) {
+    .playerIcons ul li {
+        width: 50px;
+    }
+
+    .playerIcons ul li a {
+        height: 35px;
+        background-size: auto 17px;
+    }
+}
+

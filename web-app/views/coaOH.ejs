@@ -1,0 +1,90 @@
+<html>
+<head>
+    <style type="text/css">
+        .tg {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        .tg td {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+        }
+
+        .tg th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+        }
+    </style>
+</head>
+<body>
+<div style="overflow: auto">
+    <div style="float: left">
+        <img src="<%= logo %>" width="140"/>
+    </div>
+    <div style="float: right">
+        <h2>Certificate of Authenticity</h2>
+    </div>
+</div>
+
+<br/>
+<br/>
+<br/>
+
+<p style="text-align: justify">
+    This certifies that the work - <strong><%= work.title %></strong> - is an original <em><%= work.category %></em> work created by <%= artist.firstName %> <%= artist.lastName %>.
+    <br/>
+    <br/>
+    This work is number <strong><%= workCopy.copyNumber %></strong> of a limited numbered edition of <strong><%= (countTotalWorks || 0) %> + <%= ((countArtRent || 0) + (countExhibition || 0)) %></strong>.
+    <br/>
+    <br/>
+    The issue of all works in this edition will be audited by Deloitte.
+</p>
+<br/>
+
+<div style="text-align: center;">
+    <% if(work.category == 'Still Image' || work.category == 'Moving Image') { %>
+    <img src="<%= thumbnail %>" style="width: 320px; height: 240px">
+    <% } else { %>
+    <img src='<%= audio %>' style="width: 320px; height: 240px">
+    <% } %>
+</div>
+<br>
+
+<div style="text-align: center">
+    <%= work.title %>,  <%= work.year %> by <%= artist.firstName %> <%= artist.lastName %>.
+    <br>All rights reserved.
+
+</div>
+
+<br>
+<br>
+<hr>
+
+
+<div id="artist" style="text-align: center;float:left">
+    Artist<br/>
+    <%= artist.firstName %> <%= artist.lastName %>
+</div>
+
+<div id="ceo" style="text-align: center;float:right">
+    CEO ARTLOCK<br/>
+    David Dehaeck
+</div>
+
+<br><br>
+<h4 style="margin-top: 80px;">Electronically certified by The Artist and ARTLOCK on <%= new Date() %></h4><br>
+THIS IS A SAMPLE CERTIFICATE FOR ALPHA DEMO PURPOSE ONLY.
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="images/favicon.png">
+    <title>ARTLOCK</title>
+
+    <link href="/css/user/style.css" rel="stylesheet" type="text/css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <style type="text/css">
+        body, html {
+            height: 100%;
+        }
+    </style>
+
+<body class="bg-gradiant">
+<div class="outmain mainbg">
+    <div class="container">
+        <div class="verifiedBlock">
+            <div class="verifiedBlock-in">
+                <% user.roles.forEach(function(el, idx){
+                    if(el == 'artist'){ %>
+                        <h1>Welcome to ARTLOCK</h1>
+                        <h1>In order to add your first work to your portfolio you need to complete your profile and we need to verify your identity.
+                            This will only take few minutes</h1>
+                        <ul>
+                            <li><a href="/user/dashboard#/profile">COMPLETE PROFILE</a></li>
+                            <li><a href="/artists">HOW DOES IT WORK?</a></li>
+                            <li><a href="#">TALK TO SUPPORT</a></li>
+                        </ul>
+                    <% }
+                    if(el == 'artist representative'){%>
+                        <h1>Welcome to ARTLOCK. What would you like to do next?</h1>
+                        <ul>
+                            <li><a href="/user/dashboard#/profile">COMPLETE PROFILE</a></li>
+                            <li><a href="/user/dashboard#/add-work">ADD A WORK</a></li>
+                            <li><a href="/trade">HOW DOES IT WORK?</a></li>
+                            <li><a href="#">ENTER A TRANSFER KEY</a></li>
+                            <li><a href="#">TALK TO SUPPORT</a></li>
+                        </ul>
+                    <%}
+                    if(el == 'collector'){%>
+                        <h1>Welcome to ARTLOCK. What would you like to do next?</h1>
+                        <ul>
+                           <li><a href="/user/dashboard#/profile">COMPLETE PROFILE</a></li>
+                            <li><a href="/collectors">HOW DOES IT WORK?</a></li>
+                            <li><a href="#">TALK TO SUPPORT</a></li>
+                        </ul>
+                    <%}
+                })%>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+</body>
+</html>

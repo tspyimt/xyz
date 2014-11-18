@@ -1,0 +1,332 @@
+<div class="inventory-inner-page change-div" style="opacity: 1;">
+<div class="transferMain">
+<div class="row">
+<div class="col-sm-4 transDtl-info">
+
+    <div class="usethumbs"><img data-ng-show="isArtist" alt="" ng-src="/api/media/thumbnail/{{currentWork._id}}">
+        <img data-ng-hide="isArtist" alt="" ng-src="/api/media/thumbnail/{{currentWork.workInfo._id}}"></div>
+    <h3>{{currentWork.artistName || currentWork.workInfo.artistName || 'Unknown'}}</h3>
+
+    <h3>{{currentWork.title || currentWork.workInfo.title || 'N/A'}}</h3>
+    <h4>{{currentWork.material|| currentWork.workInfo.material || 'N/A'}}</h4>
+
+    <div style="float: left;" data-ng-hide="isArtist">
+        <p>
+         <span>
+            <a class="viewaudit" ng-href="{{coaURL}}" data-ng-class="{false:'buttonDisabled'}[disableFlag]"
+               style="margin-right:12px;margin-left:12px; width:135px; padding:0 20px;"
+               target="_blank"> CERTIFICATE </a>
+         </span>
+
+         <span>
+
+              <a class="viewaudit" ng-href="{{contractURL}}" target="_blank"> CONTRACT </a>
+         </span>
+        </p>
+
+    </div>
+
+    <br>
+
+    <div style="clear: both"><br/>
+
+        <p ng-bind-html="currentWork.description"></p>
+    </div>
+</div>
+<div class="col-sm-8">
+    <div class="transferTypes-Main inventDetails">
+        <div class="audit-rt-block mTB20">
+            <div class="col-sm-4">
+                <label class="audit-report-nm">EDITION</label>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act"><span class="audit-cloud">{{currentWork.edition || currentWorkCopy.edition || 0 }} + {{((currentWork.copyForArtRent || 0) + (currentWork.copyForExhibition || 0))  || 0}}</span>
+                </div>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act"><a class="viewaudit view-audit-report"
+                                                 href="javascript:void(0)">VIEW</a></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="audit-rt-block mTB20" ng-if="isArtist">
+            <div class="col-sm-4">
+                <label class="audit-report-nm">AVAILABLE</label>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act"><span class="audit-cloud">{{currentWork.counts.copiesAvailable}}</span>
+                </div>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act"><a class="viewaudit view-audit-report"
+                                                 href="javascript:void(0)">VIEW</a></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="audit-rt-block mTB20" ng-if="!isArtist">
+            <div class="col-sm-4">
+                <label class="audit-report-nm">NUMBER</label>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act"><span class="audit-cloud">{{currentWork.copyNumber}}</span>
+                </div>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act"><a class="viewaudit view-audit-report"
+                                                 href="javascript:void(0)">VIEW</a></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="audit-rt-block mTB20">
+            <div class="col-sm-4">
+                <label class="audit-report-nm">DISKS IN LFP</label>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act"><span class="copisold sblue" data-ng-if="isArtist">{{currentWork.copiesOnMDisk || 0}}</span>
+                    <span class="copisold sblue" data-ng-if="!isArtist">{{(currentWork.copyTypeLFP) && 1 || 0}}</span>
+                </div>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act"><a class="viewaudit view-audit-report"
+                                                 href="javascript:void(0)">VIEW</a></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="audit-rt-block mTB20">
+            <div class="col-sm-4">
+                <label class="audit-report-nm">SOLD</label>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act"><span
+                        class="copisold sblue">{{currentWork.counts && currentWork.counts.copiesSoldInTotal || currentWork.workInfo.counts.copiesSoldInTotal || 0}}</span>
+                </div>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act"><a class="viewaudit view-audit-report"
+                                                 href="javascript:void(0)">VIEW</a></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="audit-rt-block mTB20">
+            <div class="col-sm-4">
+                <label class="audit-report-nm">RESERVED</label>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act"><span
+                        class="copisold sblue">{{currentWork.counts && currentWork.counts.totalLocked || 0}}</span>
+                </div>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act"><a class="viewaudit view-audit-report"
+                                                 href="javascript:void(0)">VIEW</a></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="audit-rt-block mTB20">
+            <div class="col-sm-4">
+                <label class="audit-report-nm">RENTAL</label>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act"><span class="copisold sblue">{{currentWork.copyForArtRent || 0}}</span>
+                </div>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act"><a class="viewaudit view-audit-report"
+                                                 href="javascript:void(0)">VIEW</a></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+
+        <div class="audit-rt-block mTB20 {{showPlaylistCRUD && 'active' || ' '}}">
+            <div class="col-sm-4">
+                <label class="audit-report-nm">PLAYLIST</label>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act"><span class="copisold sblue">{{myPlaylists.length}}</span>
+                </div>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act">
+                    <a class="viewaudit view-audit-report show-next-panel" data-label="UPDATE"
+                       href="javascript:void(0)" ng-click="openPlaylistCRUD()"
+                       ng-hide="showPlaylistCRUD">ADD</a>
+                    <a class="viewaudit view-audit-report show-next-panel" data-label="UPDATE"
+                       href="javascript:void(0)"
+                       ng-click="closePlaylistCRUD()" ng-show="showPlaylistCRUD">DONE</a></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <!-- Begin main-box -->
+        <div class="main-box" ng-show="showPlaylistCRUD">
+            <div class="audit-rt-block mTB20 audit-rt" ng-show='myPlaylists.length == 0'>
+                <div class="col-sm-4">
+                    <label class="audit-report-nm text">You don't have any playlist yet. Create one in the Playlist section.</label>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="audit-rt-block mTB20 audit-rt" ng-repeat="playlist in myPlaylists">
+                <div class="col-sm-4">
+                    <label class="audit-report-nm text">{{playlist.title}}</label>
+                </div>
+                <div class="col-sm-4 inventory-act">
+                    <div class="audit-report-act"><span class="copisold sblue">{{playlist.works.length || 0}}</span>
+                    </div>
+                </div>
+                <div class="col-sm-4 inventory-act">
+                    <div class="audit-report-act"><a class="viewaudit view-audit-report"
+                                                     href="javascript:void(0)"
+                                                     ng-click="addWorkToPlaylist(playlist)"
+                                                     ng-hide="isPresentInPlayList(playlist.works)">ADD</a>
+                        <a class="viewaudit view-audit-report delete-playlist media-viewer delet-from-playlist"
+                           href="javascript:void(0)" ng-show="isPresentInPlayList(playlist.works)"
+                           ng-click="removeWorkFromPlaylist(playlist)">DELETE</a></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- End main-box -->
+
+        <div class="audit-rt-block mTB20">
+            <div class="col-sm-4">
+                <label class="audit-report-nm">EMBED CODE</label>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act"><span class="copisold sblue">0</span></div>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act"><a class="viewaudit view-audit-report show-next-panel"
+                                                 data-label="UPDATE"
+                                                 href="javascript:void(0)" ng-click="getEmbedCode()"
+                                                 ng-hide="showEmbedCode">GET</a>
+                    <a class="viewaudit view-audit-report show-next-panel" data-label="UPDATE"
+                       href="javascript:void(0)" ng-click="closeEmbedCode()"
+                       ng-show="showEmbedCode">DONE</a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <!-- Begin main-box -->
+        <div class="main-box" ng-show="showEmbedCode">
+            <textarea id="embedCode" ng-model="embedCode" style="width: 600px; height: 100px">
+
+            </textarea>
+
+            <div class="clearfix"></div>
+        </div>
+
+
+
+
+
+        <!-- Market -->
+        <div class="audit-rt-block mTB20 {{showPlaylistCRUD && 'active' || ' '}}">
+            <div class="col-sm-4">
+                <label class="audit-report-nm">MARKET</label>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act"><span class="copisold sblue">{{myMarket.length}}</span>
+                </div>
+            </div>
+            <div class="col-sm-4 inventory-act">
+                <div class="audit-report-act">
+                    <a class="viewaudit view-audit-report show-next-panel" data-label="UPDATE"
+                       href="javascript:void(0)" ng-click="openMarketCRUD()"
+                       ng-hide="showMarketCRUD">ADD</a>
+                    <a class="viewaudit view-audit-report show-next-panel" data-label="UPDATE"
+                       href="javascript:void(0)"
+                       ng-click="closeMarketCRUD()" ng-show="showMarketCRUD">DONE</a></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+
+
+        <!-- Begin main-box -->
+        <div class="main-box" ng-show="showMarketCRUD">
+            <div class="audit-rt-block mTB20 audit-rt" ng-show='myMarket.length == 0'>
+                <div class="col-sm-4">
+                    <div class="audit-report-nm text" ng-show="isShowText">
+                        You have no any website. Please add your website!!
+                        <!-- <input type="text" class="nameSite" ng-model="sites.name" placeholder="Nhap ten site" /> -->
+                    </div>
+                    <div class="audit-report-nm text" ng-hide="isShowText">
+                        Enter your site name: 
+                        <input type="text" class="nameSite" ng-model="sites.name" placeholder="Nhap ten site" style="margin-bottom: 20px;" />
+                    </div>
+                </div>
+
+                <div class="col-sm-4 col-md-offset-4 inventory-act" style="float: right; position: relative; top: 40px; right: 13px;">
+                    <div class="audit-report-act">
+                        <a class="viewaudit view-audit-report"
+                        href="javascript:void(0)"
+                        ng-show="isAddNew"
+                        ng-click="btnCreateNew()">ADD NEW SITE</a>
+
+                        <a class="viewaudit view-audit-report delete-playlist media-viewer delet-from-playlist"
+                           href="javascript:void(0)"
+                           ng-hide="isAddNew"
+                           ng-click="createNewSite()">ENTER</a>
+
+                       </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="audit-rt-block mTB20 audit-rt" ng-repeat="market in myMarket">
+                <div class="col-sm-4">
+                    <label class="audit-report-nm text">{{market.sites.name}}</label>
+                </div>
+                <div class="col-sm-4 inventory-act">
+                    <div class="audit-report-act">
+                        <span class="copisold sblue">{{market.sites.works.length || 0}}</span>
+                    </div>
+                </div>
+                <div class="col-sm-4 inventory-act">
+                    <div class="audit-report-act">
+                        <a class="viewaudit view-audit-report"
+                        href="javascript:void(0)"
+                        ng-click="addWorkToMarket(market)"
+                        ng-hide="isPresentInMarket(market.sites.works)">ADD</a>
+
+                        <a class="viewaudit view-audit-report delete-playlist media-viewer delet-from-playlist"
+                           href="javascript:void(0)" 
+                           ng-show="isPresentInMarket(market.sites.works)"
+                           ng-click="removeWorkFromMarket(market)">REMOVE</a>
+
+                       </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="audit-rt-block mTB20 audit-rt" ng-hide='myMarket.length == 0'>
+                <div class="col-sm-4">
+                    <div class="audit-report-nm text" ng-hide="isShowText">
+                        Enter your site name: <input type="text" class="nameSite" ng-model="sites.name" placeholder="Nhap ten site" /></div>
+                    </div>
+                    <div class="col-sm-4 col-md-offset-4 inventory-act" style="float: right; position: relative; top: 40px; right: 13px;">
+                        <a class="viewaudit view-audit-report"
+                        ng-show="isAddNew"
+                        ng-click="btnCreateNew()">ADD NEW SITE</a>
+
+                        <a class="viewaudit view-audit-report delete-playlist media-viewer delet-from-playlist"
+                        style="background: red;" 
+                        ng-hide="isAddNew"
+                        ng-click="createNewSite()">ENTER</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                   
+        </div>
+        <!-- End main-box -->
+
+    </div>
+    <!-- End main-box -->
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fcoll"><a href="/" class="learnmore">Learn more ></a></div>

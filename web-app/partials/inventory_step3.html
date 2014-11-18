@@ -1,0 +1,97 @@
+<div class="inventory-step3-page change-div">
+    <div class="filterNav">
+        <div class="row">
+            <div class="col-sm-12 filters">
+                <input type="button" data-ng-click="allWork()" value="ALL WORKS" class="addWork sellFromBtn1">
+            </div>
+        </div>
+    </div>
+    <div class="transferMain">
+        <div class="row">
+            <div class="col-sm-4 transDtl-info">
+                <div class="usethumbs"><img alt="" ng-src="/api/media/thumbnail/{{currentWork._id}}"></div>
+                <h3>{{currentWork.title}}</h3>
+                <h4>{{currentWork.material}}</h4>
+
+                <p ng-bind-html="currentWork.description"></p>
+            </div>
+            <form onSubmit="return inventoryValidate(this)" id="frm_inventory">
+                <div class="col-sm-8">
+                    <div class="audit-row-head">
+                        <div class="col-sm-10 header-icons">
+                            <label>EDITION</label>
+                            <label>RENT</label>
+                            <label>EXHIBITION</label>
+                            <label>DISK IN LFP</label>
+                        </div>
+                    </div>
+                    <div class="audit-row media2">
+                        <div class="col-sm-10 header-icons">
+                            <div class="audit-rt-block row">
+                                <div class="auditTypeBox icon">
+                                    <label>EDITION</label>
+                                    <span class="audit-cloud">{{updatedWork.edition}} + {{(updatedWork.copyForArtRent + updatedWork.copyForExhibition) || '0'}}</span>
+                                </div>
+
+                                <div class="auditTypeBox icon">
+                                    <label>RENT</label>
+                                    <span ng-class="{'last-audit':(updatedWork.copies == 1 || updatedWork.copies == 3) ,'last-audit-red': (updatedWork.copies == 2)}">&nbsp;</span>
+                                </div>
+                                <div class="auditTypeBox icon">
+                                    <label>EXHIBITION</label>
+                                    <span ng-class="{'last-audit':(updatedWork.copies == 2 || updatedWork.copies == 3) ,'last-audit-red': (updatedWork.copies == 1)}">&nbsp;</span>
+                                </div>
+                                <div class="auditTypeBox icon">
+                                    <label>DISK IN LFP</label>
+                                    <span class="copisold sblue">{{updatedWork.copiesOnMDisk || 0}}</span></div>
+                                <div class="res-clear"></div>
+
+
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="transferTypes-Main">
+
+                        <div class="manage-inventory-form">
+                            <p>Enter the Still Image location and optionally add the text for the watermark protection displayed only on the LD promo conversion copy. The conversion will start the moment you click on Update.</p>
+
+                            <div class="row" ng-show="currentWork.category == 'Moving Image'">
+                                <div class="col-sm-6">
+                                    <input type="text" placeholder="LOCATION FOR THE STILL (hour-min-sec): .._.._.."
+                                           class="addworkInpt" id="stillLocation" data-ng-model="clipTime" data-ng-change="updateButtonClass()"
+                                           still-location-timestamp>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" placeholder="WATERMARK TEXT FOR PROMO COPY " class="addworkInpt"
+                                           data-ng-model="watermarkText" data-ng-change="updateButtonClass()">
+                                </div>
+                            </div>
+                            <div class="row" ng-show="currentWork.category == 'Still Image'">
+                                <div class="col-sm-6">
+                                    <input type="text" placeholder="WATERMARK TEXT FOR PROMO COPY " class="addworkInpt"
+                                           data-ng-model="watermarkText" data-ng-change="updateButtonClass()">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input type="button" value="UPDATE THIS WORK"
+                                           class="inventory-step3-page addWork sellFromBtn1 inner-page-change "
+                                           id="inventory-step3-page"
+                                           ng-class="{'buttonDisabled': disableButton}"
+                                           ng-click="updateWork()"
+                                           data-ng-hide="!loader"
+                                           data-ng-disabled="disableButton">
+                                           <img src='/img/data/icons/ajax-loader.gif' class="ajax-loader inventory-step3-page addWork sellFromBtn1 inner-page-change" ng-show='ajaxCallInProgress'>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="fcoll"><a ng-href="{{learnMoreURL}}" class="learnmore">Learn more ></a></div>
+

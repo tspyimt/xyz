@@ -1,0 +1,5 @@
+{
+    "name":"Media-processor",
+    "main":"./lib/processor.js",
+    "version":"0.1.0"
+}

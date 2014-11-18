@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= work._id %>.mp4</title>
+    <link href="/css/embed.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<% if(work && work.category == 'Still Image'){ %>
+<img src="/api/media/stream/embed/<%= work._id %>" height="100%" style="height: 100%" alt="<%= work.title %>"/>
+<% } else if(work) { %>
+<video src="/api/media/stream/embed/<%= work._id %>" autoplay="autoplay" controls=""></video>
+<% } else { %>
+<h4><%= error %></h4>
+<% } %>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{
+    "common": {
+        "port": 8080,
+        "appName": "Art Plus",
+
+        "dataSource": {
+            "mongo": {
+                "url": "mongodb://localhost:27017/art-lock",
+                "poolSize": "100",
+                "ignoreConnectionError": false
+            },
+            "redis": {
+                "url": "localhost",
+                "port": 6379
+            }
+
+        },
+        "hashKeySecret":"124@24%$(*)dehdiwyglvhbwhrgweyr734yto78243tgt2384o2gto34yg3i4fgho9gy34f384f",
+        "logger": {
+            "fullFormat": "[%level][%name-%pid][%file:%line][%time] - %message",
+            "minimalFormat": "[%name-%pid][%file:%line] - %message",
+            "level": "trace",
+            "appNameToDisplayInLog": "ART",
+            "showHidden": false,
+            "stdout": {
+                "enabled": true
+            }
+        }
+    },
+    "development": {
+        "port": 9091,
+        "showHidden": true,
+        "serverUrl": "http://localhost:9091"
+    },
+    "production": {
+        "port": 10098,
+        "serverUrl": "http://artlock.co"
+    },
+    "test": {
+        "port": 9093,
+        "serverUrl": "http://localhost:9093",
+        "dataSource": {
+            "mongo": {
+                "url": "mongodb://localhost:27017/art-test",
+                "poolSize": "100",
+                "ignoreConnectionError": false
+            }
+        }
+    },
+    "qa": {
+        "port": 10095,
+        "serverUrl": "http://dev.alpha.artplus.com"
+    }
+}
+
+
+

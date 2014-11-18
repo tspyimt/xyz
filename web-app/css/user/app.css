@@ -1,0 +1,37 @@
+.ajax-loader {
+    height: 16px;
+    position: absolute;
+    right: 80px;
+    top: 10px;
+}
+
+.ajax-disabled {
+    opacity: 0.1;
+}
+
+#errmsg {
+    color: red;
+}
+
+.buttonDisabled {
+    opacity: 0.5;
+}
+
+.placeHolderM{
+    padding: 0 15px !important;
+}
+
+.paginationButton{
+  margin-bottom: 30px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  background-color: #60c3c1;
+  min-height: 39px;
+  font-size: 16px;
+  padding: 0 10px;
+}
+p.has-error {
+    color: #a94442;
+}

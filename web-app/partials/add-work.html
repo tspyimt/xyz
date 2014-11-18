@@ -1,0 +1,117 @@
+<div data-ng-show="collector" class="reset_01-page change-div" style="opacity: 1; display: block;">
+    <div class="hidden-title">Reset Screen 1</div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="profile-box">
+                <div class="profile-box-main dashed-none">
+                    <div ng-show="transferError" style="color: red">{{transferError}}</div>
+                    <div class="account">Enter Your Transfer Key .<br>
+                        We can help you get your work. First enter your ARTLOCK login password and the
+                        characters of your transfer key.
+                    </div>
+                    <div class="margin-top">&nbsp;</div>
+                    <div class="account"> ARTLOCK Password <br>
+                        <input name="password" type="password" data-ng-model="loginPassword" placeholder="Password"
+                               class="addworkInpt placeHolderM">
+                    </div>
+                    <div class="margin-top">&nbsp;</div>
+                    <div class="account"> Enter the Transfer Key<br>
+
+                        <div id="transferIcon"></div>
+                        <input name="key" type="text" id='transferKey' data-ng-model="transferKey" transfer-key
+                               class="addworkInpt">
+                    </div>
+                    <div class="next-reset">
+                        <div class="next-box">
+                            <input name="transfer" value="Complete The  Transfer" id="transfer"
+                                   class="transfer" type="button"
+                                   data-ng-click="transfer($event)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+    </div>
+</div>
+<!-- ADD A Work -->
+<div data-ng-hide="collector" class="add-work-page change-div">
+    <div class="hidden-title">ADD A WORK</div>
+    <div class="alert alert-error" id="alert1" style="margin-right: 10px; margin-top:5px;"
+         ng-show="errorAddingWork">
+        <button type="button" class="close" ng-click="closeErrorDiv()">×</button>
+        Error occurred adding work. Please try again.
+    </div>
+    <div class="row addworkForm">
+        <form id="frm_signup">
+            <div class="col-sm-6">
+                <div class="private-key">
+                    <div id="privateIcon"></div>
+                    <input type="text" id="creatorkey" placeholder="ENTER YOUR CREATOR KEY   (XXXX XXXX XXXX XXXX)"
+                           class="addworkInpt" creator-key/>
+                </div>
+                <div id="creatorkeyhide">
+                    <input type="text" id="artistname" placeholder="ARTIST NAME" class="addworkInpt"
+                           value="{{artist.firstName}} {{artist.lastName}}" disabled/>
+                    <input type="text" id="title" placeholder="TITLE" class="addworkInpt" ng-model="title"/>
+                    <input type="text" id="material" placeholder="MATERIALS" class="addworkInpt" ng-model="material"/>
+                    <textarea class="addworkInpt" id="description" placeholder="DESCRIPTION"
+                              ng-model="description"></textarea>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <p class="addwork-info">Obtain your Creator Key in your Profile. </p>
+
+                <p class="addwork-info">All fields are mandatory.</p>
+
+                <div class="row">
+                    <div class="col-sm-5">
+                        <select id="artyear" ng-model="artYear"
+                                ng-options="n for n in [] | range:startYear:endYear:false">
+                        </select>
+                    </div>
+                    <div class="col-sm-7">
+                        <select id="artcategory" ng-model="artCategory" ng-options="n for n in categoryArray">
+                        </select>
+                    </div>
+                </div>
+                <div class="row mBot30r">
+                    <div class="col-sm-12">
+                        <div class="uploadFile"><a href="javascript:void(0)" id="fileupload_view">
+                            <span>SELECT FILE</span>
+                            <label>{{fileChosen.name}}</label>
+                        </a>
+                            <input type="file" name="file" id="file" file-model="workFile"/>
+
+                            <div class="mspacer"></div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="fileBox" ng-show="mediaSelected">
+                    <a href="javascript:void(0)" class="file-remove" ng-click="removeMedia()">Remove</a>
+
+                    <div class="fileItem"><img src="/img/user/mp4-icon.png" alt=""/> <span>{{fileChosen.name}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="progress-wrap" data-ng-show="ajaxCallInProgress">
+                            <div class="progress-bar" style="width: {{uploadProgressPercentage || 0}}%"></div>
+                            <div class="progress-text">{{(uploadProgressPercentage || 0) | number : 0}}%</div>
+                        </div>
+                        <img src='/img/data/icons/ajax-loader.gif' class="ajax-loader" ng-show='ajaxCallInProgress'>
+                        <input type="submit" value="ADD THIS WORK" ng-class="{'ajax-disabled': ajaxCallInProgress}"
+                               class="addWork" ng-click="addWork($event)"/>
+                        <!--<input type="button" value="ADD THIS WORK" class="addWork" />-->
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+<!-- ADD A Work -->
+<div class="fcoll"><a ng-href="{{learnMoreURL}}" class="learnmore">Learn more ></a></div>
+
+

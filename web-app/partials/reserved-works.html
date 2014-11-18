@@ -1,0 +1,109 @@
+<!-- Inventory -->
+<div class="collection-page change-div">
+    <div class="hidden-title">Reserved Works</div>
+    <div class="filterNav">
+        <div class="row">
+            <div class="col-sm-2 filters">
+                <select data-ng-model="mediaObject"
+                        ng-options="media.value as media.category for media in mediaCategory"
+                        data-ng-change="changeCategory(mediaObject)">
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="auditMain">
+        <div class="row">
+            <div class="audit-row-head">
+                <div class="col-md-2">&nbsp;</div>
+                <div class="col-sm-10">
+                    <label>EDITION</label>
+                    <label>COPY</label>
+                    <label>DAYS</label>
+                    <label>LFP</label>
+                    <label>&nbsp;</label>
+                </div>
+            </div>
+            <div class="audit-row media1" data-ng-show="works.length<1"
+                 style="text-align:center"><br/><br/><br/><br/><br/>
+                <h4 style=" color:#787878;"> You currently do not have any reserved works. Initiate a transfer and then
+                    manage those pre-payment transfers here. </h4></div>
+            <div class="audit-row media1" data-ng-repeat="work in works">
+
+                <div>
+                    <div class="col-sm-2 auditThumb"><img ng-src="/api/media/thumbnail/{{work.workId || work._id}}"
+                                                          alt=""/></div>
+                    <div class="col-sm-10">
+                        <div class="audit-rt-block {{(showPlaylistCRUD && $index==currentIndex)&& 'active' || ' '}}">
+                            <div class="auditTypeBox">
+                                <label>EDITION</label>
+                                <span class="audit-cloud">{{ work.edition || '0' }}+{{(work.copyForArtRent || 0) + (work.copyForExhibition || 0)}}</span>
+                            </div>
+                            <div class="auditTypeBox">
+                                <label>&nbsp</label>
+                                <span class="copisold sblue">{{work.copyNumber}}</span>
+                            </div>
+                            <div class="auditTypeBox">
+                                <label>LAST AUDIT</label>
+                                <span class="copisold sblue">{{work.transferTo.transferInitiationTimeStamp | elapsedDays}}</span>
+                            </div>
+                            <div class="auditTypeBox">
+                                <label>&nbsp;</label>
+                                <span ng-class="{'last-audit':work.copyTypeLFP,'last-audit-red':!work.copyTypeLFP}">&nbsp;</span>
+                            </div>
+                            <div class="auditTypeBox">
+                                <a class="viewaudit view-audit-report show-next-panel"
+                                   href="javascript:void(0)" ng-click="openDetailsBox(work._id)"
+                                   ng-hide="(openDivId==work._id)">DETAILS</a>
+                                <a class="viewaudit view-audit-report show-next-panel"
+                                   href="javascript:void(0)"
+                                   ng-click="closeDetailsBox(work._id)"
+                                   ng-show="(openDivId==work._id)">DONE</a>
+
+                                <a class="viewaudit view-audit-report show-next-panel"
+                                   href="#/work/transfer/confirm/{{work.workId}}/{{work._id}}/0">PROCEED</a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-2">&nbsp;</div>
+                    <div class="col-sm-10"
+                         data-ng-show="openDivId==work._id">
+                        <div class="audit-rt-block mTB20 audit-rt">
+                            <div class="row" style="padding: 10px">
+                                <div class="col-sm-6">
+                                    <div>
+                                        {{work.transferTo.paymentMode}} payment request sent to {{work.transferTo.buyerEmail || 'Unknown'}} on {{work.transferTo.transferInitiationTimeStamp | humanDate}}
+                                    </div>
+                                    <div>
+                                        <div data-ng-repeat="reminder in work.transferTo.reminderMailsHistory">
+                                            Reminder sent on {{reminder.timeStamp | humanDate}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6" data-ng-hide="loaderWorkCopyId == work._id">
+                                    <a class="viewaudit view-audit-report show-next-panel" style="float: right;"
+                                       data-ng-click="resendPaymentInfo(work._id)" href="javascript:void(0)">SEND REMINDER</a>
+
+                                    <a class="viewaudit view-audit-report show-next-panel" style="float: right;margin-right: 10px;background: red"
+                                                        data-ng-click="removeReservedWork(work._id)" href="javascript:void(0)">CANCEL</a>
+                                </div>
+                                <div class="col-sm-6" data-ng-show="loaderWorkCopyId == work._id">
+                                    <div style="float:right">Processing....</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Inventory -->
+<div class="fcoll"><a ng-href="{{learnMoreURL}}" class="learnmore">Learn more ></a></div>

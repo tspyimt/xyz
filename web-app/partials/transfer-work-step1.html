@@ -1,0 +1,170 @@
+<div class="transfer-work-page3 change-div">
+    <div class="filterNav">
+        <div class="row">
+            <div class="col-sm-12 filters">
+                <input type="button" class="addWork sellFromBtn1" value="ALL WORKS" data-ng-click="toLink('/sell-work/all/0/25')">
+            </div>
+        </div>
+    </div>
+    <div class="transferMain">
+        <div class="row">
+            <div class="col-sm-4 transDtl-info">
+                <div class="usethumbs mixCollection"><a href="#"><img ng-src="/api/media/thumbnail/{{currentWork._id}}"
+                                                                      alt=""/></a>
+
+                    <div class="shadow">
+                        <h2> {{currentWork.title}} </h2>
+
+                        <div class="imgOpt">
+                            <a href="javascript:void(0)" class="edit">&nbsp;</a>
+                            <a ng-if="currentWork.category == 'Still Image'" href='#media-picture-popup'
+                               data-source="/api/media/stream/{{currentWork._id}}" class='view-picture' media-popup>
+                                &nbsp;</a>
+                            <a ng-if="currentWork.category == 'Moving Image'" href='#media-video-popup'
+                               data-source="/api/media/stream/{{currentWork._id}}" class="view-video" media-popup>
+                                &nbsp;</a>
+                            <a ng-if="currentWork.category == 'Sound Art'" href='#media-audio-popup'
+                               data-source="/api/media/stream/{{currentWork._id}}" class="view-audio" media-popup>
+                                &nbsp;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>{{currentWork.artistName || 'Unknown'}}</h3>
+
+                <h3>{{currentWork.title || 'N/A'}}</h3>
+                <h4>{{currentWork.material || 'N/A'}}</h4>
+
+                <div style="float: left;">
+                    <p>
+          <span>
+            <a ng-if="getCoaUrl()" class="viewaudit" ng-href="{{getCoaUrl()}}"
+               style="margin-right:12px;margin-left:12px; width:135px; padding:0 20px;"
+               target="_blank"> CERTIFICATE </a>
+         </span>
+
+         <span>
+                 <a ng-if="getContractUrl()" class="viewaudit" ng-href="{{getContractUrl()}}" target="_blank"> CONTRACT </a>
+         </span>
+                    </p>
+                </div>
+                <br>
+
+                <div style="clear: both"><br/>
+
+                    <p ng-bind-html="currentWork.description"></p>
+                </div>
+
+            </div>
+            <div class="col-sm-8">
+                <div class="transferTypes-Main">
+                    <div class="transferTypes">
+                        <div class="typesBlock">
+                            <label>EDITION</label>
+                            <span class="edition">{{currentWork.edition || '0' }}+{{(currentWork.copyForArtRent + currentWork.copyForExhibition) || '0'}}</span>
+                        </div>
+                        <div class="typesBlock">
+                            <label>NUMBER</label>
+                            <span class="copy">{{currentWork.targetWorkCopyNumber}}</span></div>
+                        <div class="typesBlock">
+                            <label>AVAILABLE</label>
+                            <span class="copy">{{currentWork.totalAvailable || '0'}}</span></div>
+                        <div class="typesBlock">
+                            <label>SISKS IN LFP</label>
+                            <span class="lfp">{{currentWork.totalLFPAvailable || 0}}</span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="trade-agree"  ng-hide="paymentOption == 'Reserved Works' || paymentOption == 'Unclaimed Works'">
+                        <p ng-show="artist">OFFERED UNDER THE FAIR ART TRADE AGREEMENT
+                            <img src="/img/check-green-icon.png" style="cursor: pointer" alt=""
+                                 ng-click="changeArtFairAgreement(false)" ng-show="artFairAgreement"/>
+                            <img src="/img/red-cross-icon.png" style="cursor: pointer" alt=""
+                                 ng-click="changeArtFairAgreement(true)" ng-hide="artFairAgreement"/></p>
+
+                        <p ng-hide="artist">OFFERED UNDER THE FAIR ART TRADE AGREEMENT
+                            <img src="/img/check-green-icon.png" alt=""
+                                 ng-show="copyCurrentlyViewed.artFairAgreement"/>
+                            <img src="/img/red-cross-icon.png" alt=""
+                                 ng-hide="copyCurrentlyViewed.artFairAgreement"/></p>
+
+                        <p ng-show="!currentWork.workCopyLFP && artist"> NO MORE DISKS LEFT IN THE LFP. ADD COPIES FIRST. </p>
+
+                        <p ng-hide="!currentWork.workCopyLFP && artist">OFFERED FROM WITHIN THE FREEPORT ON DISK.
+                            <img src="/img/check-green-icon.png" style="cursor: pointer" alt=""
+                                 ng-click="changeOfferedFromLFPStatus(false)" ng-show="offeredFromLFP"/>
+                            <img src="/img/red-cross-icon.png" style="cursor: pointer" alt=""
+                                 ng-click="changeOfferedFromLFPStatus(true)" ng-hide="offeredFromLFP"/></p>
+
+                        <p>REQUEST PAYMENT FOR {{currentWork.currency}} </p><input type="text"
+                                                                                   class="chngprof required;"
+                                                                                   class="required"
+                                                                                   data-ng-model="currentPrice"
+                                                                                   ng-value="currentWork.pricePerWork || 0.00"/>
+                        <p style="color: red" ng-show='ajaxSuccess'>Error: {{ajaxError}}</p>
+                    </div>
+                    <div ng-show="paymentOption == 'Reserved Works'" class="trade-agree">
+                        Click on "Continue" to see the list of active pending transfers. There you can proceed with the transfer or cancel certain transfers.
+                    </div>
+                    <div ng-show="paymentOption == 'Unclaimed Works'" class="trade-agree">
+                        Click on "Continue" to see the list of unclaimed works. There you can carry on further actions on them.
+                    </div>
+                    <div class="sellForm addworkForm">
+                        <select class="addworkInpt payment-option" data-ng-model="paymentOption"
+                                data-ng-change="updatePrice()">
+                            <option value="Paypal" selected="selected">Paypal</option>
+                            <option value="Bank transfer">Bank transfer</option>
+                            <option value="No payment request">No payment request</option>
+                            <option value="Reserved Works">Reserved Works</option>
+                            <option value="Unclaimed Works">Unclaimed Works</option>
+                        </select>
+                        <input ng-show="paymentOption == 'Paypal'" type="text" class="addworkInpt paypal-email" data-ng-model="paypalEmail"
+                               placeholder="ENTER THE BUYERS PAYPAL EMAIL ADDRESS"/>
+
+                        <div ng-show="paymentOption == 'Bank transfer'" class="sellFormBankDetails">
+                            <input type="text" class="addworkInpt " data-ng-model="email"
+                                   placeholder="ENTER THE BUYERS EMAIL ADDRESS"/>
+                            <textarea class="addworkInpt" data-ng-model="bank"
+                                      placeholder="ENTER THE BANK DETAILS"/></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <img src='/img/data/icons/ajax-loader.gif' class="ajax-loader"
+                                     ng-show='ajaxCallInProgress'>
+                                <input type="button"
+                                       class="addWork sellFromBtn1 inner-page-change btn-sell-first respText"
+                                       data-ng-class="{'ajax-disabled': ajaxCallInProgress,
+                                      'buttonDisabled': !(isEmail(paypalEmail)||(bank && isEmail(email))||(paymentOption=='No payment request')||(paymentOption=='Reserved Works')||(paymentOption=='Unclaimed Works'))}"
+
+                                       id="transfer-work-page2" value="REQUEST PAYPAL PAYMENT"
+                                       data-ng-click="requestPayment()"
+
+                                       data-ng-disabled="!(isEmail(paypalEmail)||(bank && isEmail(email))||(paymentOption=='No payment request')||(paymentOption=='Reserved Works')||(paymentOption=='Unclaimed Works'))"
+                                       data-ng-class="{'buttonDisabled': !(keyMatch)'}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="media-audio-popup" class="media-popup mfp-hide">
+    <audio controls>
+        <source src="" type="audio/ogg">
+        <source src="" type="audio/mpeg">
+        <source src="" type="audio/wav">
+        Your browser does not support the audio tag.
+    </audio>
+</div>
+<div id="media-video-popup" class="media-popup mfp-hide">
+    <video width="800" height="600" controls>
+        <source src="" type="video/mp4">
+        <source src="" type="video/ogg">
+        <source src="" type="video/webm">
+        Your browser does not support the video tag.
+    </video>
+</div>
+<div id="media-picture-popup" class="media-popup mfp-hide"><img src=""/></div>
+<div class="fcoll"><a ng-href="{{learnMoreURL}}" class="learnmore">Learn more ></a></div>

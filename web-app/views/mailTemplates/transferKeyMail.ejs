@@ -1,0 +1,67 @@
+<html>
+<head></head>
+
+<body>
+<div style="overflow: auto">
+    <div style="float: left">
+        <a href="<%= homeURL %>"><img src="<%= logoUrl %>" height="50px" width="171px"/></a><br>
+
+        <h3>Protecting Media Art™</h3>
+    </div>
+    <h3 style="float: right">artlock.co | Support </h3>
+</div>
+<br>
+
+<div>
+
+     <p>
+	  Congratulations with your new <em><%= work.category %></em> work!
+     </p>
+
+    <p>
+	<b><%=work.artistName%></b><br>
+	<i><%= work.title %></i>,<br>
+	<%= workCopy.copyNumber %> / <%= work.edition %> + <%= (work.copyForArtRent || 0) + (work.copyForExhibition || 0) %> 
+	</p>
+	 
+	 <p>In order to complete the transfer of ownership of this work via ARTLOCK you need to <a href="<%=loginURL%>">login</a> or <a href="<%=registerURL%>">register</a>
+	 on ARTLOCK. <br>Important: If you need to register you need to use the same email address as your email address in this message.
+    </p>
+
+    <p>Once you’re logged in, you'll be able to transfer this work into your account by entering the following Transfer Key for this work:<br>
+    </p>
+	<br>
+	<b><%= transferKey %></b><br>
+	<br>
+    <p>Once that's done, you'll be able to add this work to your playlist for streaming to your dedicated art screen,
+        and/or your common devices like flat-screens, pc, tablet pc or smart-phone.<br>
+    </p>
+	
+	<p>
+	<b>Tips during the alpha period on registering this work:</b> 
+    (Click the menu sign top right to open or close the menu)
+    <br>
+    1)     You need to login or register on ARTLOCK.<br>
+    2)     If you are a new member please complete your profile first. This will reflect the information mentioned in your contract when validating the Transfer Key.<br>
+    3)     Once logged in you need to enter your password in combination with the above Transfer Key.<br>
+    4)     The work will now appear in your inventory from where you can access your Certificate of Authenticity and Contract upon clicking on the button DETAILS.<br>
+    5)     In order to view or hear the work in your playlist you need to add the work to an active playlist. (make one if you are a new member)<br>
+    6)     Once the work is added to the playlist you can view and stream it at any time to your favorite screen.<br>
+    7)     In order to sell the work you must click on the button Sell a Work and proceed as indicated.<br>
+	<br>
+	</p>
+	
+    Do you have questions about your ARTLOCK Account? Visit support.artplus.com
+    <br>
+
+    </p>
+
+   © <%= (new Date()).getFullYear() %> ARTPLUS INC. ARTLOCK is a registered trademark of ARTPLUS Inc. <br>
+   1710 First Avenue New York, NY 10128. Tel. 855-739-9555 <br>
+   <br> 
+   Privacy Policy  |  Terms & Conditions
+
+</div>
+
+</body>
+</html>

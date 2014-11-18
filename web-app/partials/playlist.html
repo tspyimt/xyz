@@ -1,0 +1,75 @@
+
+<!-- PLAYLIST -->
+<div class="playlist-page change-div">
+<!-- <div class="hidden-title">PLAYLIST</div>-->
+<div class="filterNav">
+    <div class="row">
+        <div class="col-sm-12 filters">
+            <select class="playlist-page-filter-select" ng-model="playlistFilter._id" ng-change="updateListLayout()">
+                <option value="">PLAYLISTS</option>
+                <option value="{{playlist._id}}" ng-repeat="playlist in myPlaylists">{{playlist.title}}</option>
+            </select>
+            <input ng-hide="newPlaylistNameInput" class="uploadfile add-new-playlist-btn addlist" type="button" ng-click='addPlaylist()' value="ADD A NEW PLAYLIST">
+            <input data-ng-show="newPlaylistNameInput" class="addlist" ng-model="newPlaylistName" type="text" placeholder="New Playlist Name">
+            <input ng-show="newPlaylistNameInput" class="uploadfile add-new-playlist-btn addlist" type="button" ng-click='confirmPlaylistName()' value="ADD">
+            <input ng-show="newPlaylistNameInput" class="uploadfile add-new-playlist-btn addlist" type="button" ng-click='newPlaylistNameInput = false' value="CANCEL">
+        </div>
+    </div>
+</div>
+<!--Table -->
+  <div data-ng-hide="myPlaylists"><h4 style="color: #787878; text-align: left"><br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; You currently do not have playlists. Please click on ADD A NEW PLAYLIST first. </h4> </div>
+<div class="tableRow 1" ng-repeat="playlist in myPlaylists | filter:playlistFilter" collapsible>
+    <div id="row">
+        <div class="col-md-12">
+            <img src='/img/data/icons/ajax-loader.gif' class="ajax-loader" style="left: 178px" data-ng-show="ajaxCallInProgress">
+            <label class="col-sm-4 purchase">
+                <a href="javascript:void(0)" data-ng-click="getPlaylistWorks(playlist._id)">{{playlist.title}}</a></label>
+            <label class="col-sm-8">
+                <a href="javascript:void(0)" class="view media-viewer" data-ng-click="$parent.addPlaylistToMediaPlayer(playlist._id)">VIEW</a>
+
+                <a ng-hide="{{generateDynamicName('newPlaylistNameInput', playlist._id)}}" href="javascript:void(0)" class="rename-playlist media-viewer" data-ng-click="renamePlaylist(playlist)">RENAME</a>
+                <a href="javascript:void(0)" ng-show="{{generateDynamicName('newPlaylistNameInput', playlist._id)}}" class="view media-viewer" type="button" ng-click="closeUpdateField(generateDynamicName('newPlaylistNameInput', playlist._id))" value="CANCEL">CANCEL</a>
+                <a href="javascript:void(0)" ng-show="{{generateDynamicName('newPlaylistNameInput', playlist._id)}}" class="view media-viewer" type="button" ng-click='confirmNewPlaylistName(playlist, updatedPlaylistName)' value="ADD">UPDATE</a>
+                <input style="float: right" ng-show="{{generateDynamicName('newPlaylistNameInput', playlist._id)}}" class="view media-viewer" ng-model="updatedPlaylistName" type="text" placeholder="{{playlist.title}}">
+
+                <a href="javascript:void(0)" class="delete-playlist media-viewer" ng-click="removePlaylist(playlist._id, $index)">DELETE</a>
+            </label>
+            <ul class="playlist" id="Grid">
+                <li class="mix artists artist1" thumbnail-overlay data-ng-repeat="work in worksInCurrentPlaylist">
+                    <a href="#"><img ng-src="/api/media/thumbnail/{{work._id}}" alt="" />
+                    </a><a href="javascript:void(0);" class="removeItem" data-ng-click="removeWorkFromPlaylist(work._id)">&nbsp;</a>
+                    <div class="shadow">
+                        <h2>{{work.title}}</h2>
+                        <div class="imgOpt">
+                            <a href="javascript:void(0)" class="edit">&nbsp;</a>
+                            <a ng-if = "work.category == 'Still Image'" href='#media-picture-popup' data-source="/api/media/stream/{{work._id}}" class='view-picture' media-popup>&nbsp;</a>
+                            <a ng-if = "work.category == 'Moving Image'" href='#media-video-popup' data-source="/api/media/stream/{{work._id}}" class="view-video" media-popup>&nbsp;</a>
+                            <a ng-if = "work.category == 'Sound Art'" href='#media-audio-popup' data-source="/api/media/stream/{{work._id}}" class="view-audio" media-popup>&nbsp;</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--Table -->
+</div>
+
+<div id="media-audio-popup" class="media-popup mfp-hide">
+    <audio controls>
+        <source src="" type="audio/ogg">
+        <source src="" type="audio/mpeg">
+        <source src="" type="audio/wav">
+        Your browser does not support the audio tag. </audio>
+</div>
+<div id="media-video-popup" class="media-popup mfp-hide">
+    <video width="800" height="600" controls>
+        <source src="" type="video/mp4">
+        <source src="" type="video/ogg">
+        <source src="" type="video/webm">
+        Your browser does not support the video tag. </video>
+</div>
+<div id="media-picture-popup" class="media-popup mfp-hide"> <img src="" /> </div>
+<!-- PLAYLIST -->
+<div class="fcoll"><a ng-href="{{learnMoreURL}}" class="learnmore">Learn more ></a></div>

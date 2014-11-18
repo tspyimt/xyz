@@ -1,0 +1,706 @@
+<div class="page-loader"><img src="/img/loader.gif" alt="loader" title="loader"/></div>
+
+<script type="text/javascript">
+
+    $('.page-loader').show();
+
+</script>
+
+<link rel="stylesheet" type="text/css" href="/css/jquery.jscrollpane.css" media="all"/>
+
+<link rel="stylesheet" type="text/css" href="/css/videoGallery_playlist_v_right_100.css"/>
+
+<link rel="stylesheet" type="text/css" href="/css/media-viewer.css" media="all"/>
+
+<!--[if lte IE 8 ]>
+<link rel="stylesheet" type="text/css" href="/css/ie_below_9.css"/><![endif]-->
+
+<style type="text/css">
+
+    .playlistHolder {
+        overflow: hidden;
+    }
+
+</style>
+
+
+<script type="text/javascript">
+
+//var scripts = [];
+
+var scripts = ['/js/swfobject.js', '/js/jquery.dotdotdot-1.5.1.js', '/js/jquery.address.js', '/js/jquery.easing.1.3.js', '/js/jquery.mousewheel.min.js', '/js/jquery.jscrollpane.min.js', '/js/froogaloop.js'/*, 'http://www.youtube.com/player_api'*/, '/js/jquery.apPlaylistManager.min.js'/*, '/js/jquery.apYoutubePlayer.min.js'*/, '/js/jquery.apVimeoPlayer.min.js', '/js/jquery.func.js', '/js/jquery.videoGallery.min.js'];
+
+var script_count = scripts.length;
+
+var loaded = 0;
+
+var c = null;
+
+var iconInterval = null;
+
+var scrollPaneApi = null;
+
+var moved = false;
+
+
+for (var i = 0; i < scripts.length; i++) {
+
+    $.getScript(scripts[i], function () {
+
+        loaded++;
+
+        if (loaded == script_count) {
+
+
+            var flashvars = {};
+
+            var params = {};
+
+            var attributes = {};
+
+            attributes.id = "flashPreview";
+
+            params.quality = "high";
+
+            params.scale = "noscale";
+
+            params.salign = "tl";
+
+            params.wmode = "transparent";
+
+            params.bgcolor = "#111";
+
+            params.devicefont = "false";
+
+            params.allowfullscreen = "true";
+
+            params.allowscriptaccess = "always";
+
+            swfobject.embedSWF("preview.swf", "flashPreview", "100%", "100%", "9.0.0", "expressInstall.swf", flashvars, params, attributes);
+
+
+            var jsReady = false;
+
+            function flashVideoEnd() {
+                jQuery.fn.videoGallery.flashVideoEnd();
+            }
+
+            function flashVideoStart() {
+                jQuery.fn.videoGallery.flashVideoStart();
+            }
+
+            function dataUpdateFlash(bl, bt, t, d) {
+                jQuery.fn.videoGallery.dataUpdateFlash(bl, bt, t, d);
+            }
+
+            function flashVideoPause() {
+                jQuery.fn.videoGallery.flashVideoPause();
+            }
+
+            function flashVideoResume() {
+                jQuery.fn.videoGallery.flashVideoResume();
+            }
+
+            function flashMainPreviewOff() {
+                jQuery.fn.videoGallery.flashMainPreviewOff();
+            }
+
+            function flashResizeControls() {
+                jQuery.fn.videoGallery.flashResizeControls();
+            }
+
+            function isReady() {
+                return jsReady;
+            }
+
+
+            jQuery(document).ready(function ($) {
+
+                jsReady = true;
+
+                //init component
+
+                $('#componentWrapper').videoGallery({
+
+
+
+                    /* REQUIRED */
+
+
+
+                    /* DEEPLINKING SETTINGS */
+
+                    /* useDeeplink: true, false */
+
+                    useDeeplink: false,
+
+                    /* startUrl: deeplink start url, enter 'ul' data-address/'li' data-address (two levels). Or just 'ul' data-address (single level). */
+
+                    startUrl: 'mix1/local1',
+
+
+                    /* NO DEEPLINKING SETTINGS */
+
+                    /*activePlaylist: enter element 'id' attributte */
+
+                    activePlaylist: 'mix1',
+
+                    /*activeItem: video number to start with (-1 = none, 0 = first, 1 = second, 2 = third ...etc) */
+
+                    activeItem: 0,
+
+
+                    /* GENERAL */
+
+                    /*thumbOrientation: horizontal, vertical (for scrolling) */
+
+                    thumbOrientation: 'vertical',
+
+                    /*playlistPosition: bottom / right */
+
+                    playlistPosition: 'right',
+
+                    /*fullSize: true/false (dont forget to edit the css as well) */
+
+                    fullSize: true,
+
+                    /*flashHolder: id of the flash movie */
+
+                    flashHolder: '#flashPreview',
+
+
+                    /* DEFAULTS */
+
+
+
+                    /*defaultVolume: 0-1 */
+
+                    defaultVolume: 0.5,
+
+                    /*autoPlay: true/false */
+
+                    autoPlay: true,
+
+                    /* loopingOn: loop playlist on end (last item in playlist), true/false */
+
+                    loopingOn: true,
+
+                    /* randomPlay: random play in playlist, true/false */
+
+                    randomPlay: false,
+
+                    /*autoAdvanceToNextVideo: true/false */
+
+                    autoAdvanceToNextVideo: true,
+
+                    /*autoMakePlaylistThumb: true/false (valid only for youtube and vimeo, auto make thumb for each video) */
+
+                    autoMakePlaylistThumb: false,
+
+                    /*autoMakePlaylistInfo: true/false (valid only for youtube and vimeo, auto make title and description for each video) */
+
+                    autoMakePlaylistInfo: true,
+
+                    /* outputPlaylistData: console.log out playlist data */
+
+                    outputPlaylistData: false,
+
+                    /* useYoutubeHighestQuality: true/false (use highest available quality for youtube video, if false, then it set to default)  */
+
+                    useYoutubeHighestQuality: false,
+
+                    videoGallerySetupDone: function () {
+
+//						console.log('videoGallerySetupDone');
+
+                        // $('.mediaPreview').css('display', 'block');
+
+                        $('#componentWrapper').css('visibility', 'visible');
+
+                        $('.page-loader').hide();
+
+
+                        $('.popup-description').append('<span class="close" style="font-size: x-large">X</span>');
+
+
+                        scrollPaneApi = this.scrollPaneApi;
+
+                        $('.playerIcons').height(70);
+
+                        $('.playlist_inner').height($(window).height() - $('.playerIcons').height() - 10);
+
+                        scrollPaneApi.reinitialise();
+
+
+                        $(document).on('mousemove touchmove', function (e) {
+
+                            if (moved == false) {
+
+                                moved = true;
+
+                                clearTimeout(iconInterval);
+
+
+                                iconInterval = setTimeout(function () {
+
+                                    $('.playlistHolder').animate({ height: 0 }, 'slow', function () {
+
+                                        $('.playerHolder').animate({ width: $(window).width() }, 'slow', function () {
+
+                                            scrollPaneApi.reinitialise();
+
+                                            moved = false;
+
+                                        });
+
+
+                                        $('.mediaHolder video').removeAttr('style');
+
+                                    });
+
+                                    $('.playerControls').removeClass('display_block').addClass('display_none');
+
+                                }, 15000);
+
+
+                                if ($('.playlistHolder').height() == 0) {
+
+                                    $('.playerHolder').animate({ width: $(window).width() - $('.playlistHolder').width() }, 'slow', function () {
+
+                                        $('.playlistHolder').animate({ height: $(window).height() }, 'slow', function () {
+
+                                            scrollPaneApi.reinitialise();
+
+                                            moved = false;
+
+                                            $('.playerControls').removeClass('display_none').addClass('display_block');
+                                            try {
+                                                ____resizeControls.apply(____resizeControlsThis);
+                                            } catch (c) {
+
+                                            }
+                                        });
+
+                                    });
+
+                                    c._resizeControls();
+
+                                    $('.mediaHolder video').removeAttr('style');
+
+                                }
+
+                            }
+
+                        });
+
+
+                        iconInterval = setTimeout(function () {
+
+                            $('.playlistHolder').animate({ height: 0 }, 'slow', function () {
+
+                                $('.playerHolder').animate({ width: $(window).width() }, 'slow', function () {
+
+                                    scrollPaneApi.reinitialise();
+
+                                });
+
+                                $('.mediaHolder video').removeAttr('style');
+
+                            });
+
+                            $('.playerControls').removeClass('display_block').addClass('display_none');
+
+                        }, 15000);
+
+
+                        $(window).on('resize', function () {
+
+                            $('.playerIcons').height(70);
+
+                            $('.playlist_inner').height($(window).height() - $('.playerIcons').height() - 10);
+
+                            scrollPaneApi.reinitialise();
+
+                        });
+
+
+                        $(document).on('click', '.playerIcons .fullscreen', function () {
+
+                            $('.player_fullscreen').trigger('click');
+
+                        });
+
+
+                        $(document).on('click', '.lockview', function () {
+
+                            var flashvars = {};
+
+                            var params = {};
+
+                            var attributes = {};
+
+                            this.deeplinkData = [];
+
+                            var $el = $("body");
+                            var scope = angular.element($el).scope();
+                            var rootScope = scope.$root;
+                            scope.$apply(function () {
+                                rootScope.isMediaPlaying = false;
+                            });
+
+                            window.location = '/user/dashboard/#/playlist';
+
+                        });
+
+                    }
+
+                });
+
+            });
+
+        }
+
+    });
+
+}
+
+</script>
+
+
+<div style="display:block" class="chromecast-panel-hidden">
+
+    <div style="width:80%; margin:10px;">
+
+
+    </div>
+
+    <div style=" margin:10px; float:left; display:block; width:90%;">
+        <div>
+            <div style="margin:10px;">
+            </div>
+            <div style="margin:10px;">
+            </div>
+            <div style="margin:10px;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="popup-description-container">
+
+</div>
+
+
+<!-- wrapper for the whole component -->
+
+
+<div id="componentWrapper" style="visibility:hidden;">
+    <!-- inner wrapper for the whole player -->
+
+    <div class="componentInnerWrapper">
+
+
+        <!-- holds player -->
+
+        <div class="playerHolder" style="background: inherit">
+            <div class="popup-description">
+                <span class="artistName">
+                    {{currentMediaPlaying.artistName}}<br>
+                </span>
+                <span class="mediaInfo">
+                 {{currentMediaPlaying.title}}<br>
+                {{currentMediaPlaying.material}}, {{currentMediaPlaying.year}}<br></span>
+                <br>
+                </p>
+                For demo purpose only: <br>
+                This work is copy number {{currentMediaPlaying.workCopy && currentMediaPlaying.workCopy.copyNumber ||
+                'EXHIBITION' }} of a limited edition of
+                {{currentMediaPlaying.edition}} + {{currentMediaPlaying.copyForArtRent +
+                currentMediaPlaying.copyForExhibition}} Exhibition copies<br>
+                <br>
+                <br>
+
+                <br/>
+                <br>
+                ABOUT THE OWNER<br>
+
+                <div><span data-ng-hide="artist">Collection </span> {{currentUser.firstName}} {{currentUser.lastName}},
+                    {{currentUser.country}}
+                </div>
+
+                <br>
+
+                <br>
+                <br>
+                ABOUT THIS WORK<br>
+
+                <p style="color:white;background:none;border: none;font-family: 'Montserrat'">{{currentMediaPlaying.description}}</p>
+                <br>
+                Public Key on <span id="publicPageLink">{{publicPageLink}}</span><br><br>
+
+
+                <p style="color: red">ENQUIRE TO PURCHASE OR RENT A WORK IN THIS EDITION</p>
+
+                <div class='qrcode' style="background: #fff; width: 200px;height: 200px;"></div>
+                <br>
+                <br>
+            </div>
+
+            <!-- video holders -->
+
+            <div class="mediaHolder">
+
+            </div>
+            <div class="metadata-Overlay" style="width: 100%;
+height: 100%;
+background-color: #000;
+position: absolute;
+z-index: 999; display: none;">
+
+            </div>
+            <div class="metadata" style="display: none;
+position: relative;
+z-index: 1000;
+top: 60%;
+left: 5%;
+right: 0px;
+bottom: 0;
+color: #fff;
+width: 300px;
+background: inherit;
+opacity: 0.3;
+padding: 32px">
+                <div style="overflow: auto; width: 500px;">
+                    <div class='qrcode videoqr' style="background: #fff; width: 200px;height: 200px; float: left"></div>
+                    <div style="width: 20px; height: 100px; display: inline-block; float: left"></div>
+                    <div style="width: 500px;">
+                        <br/><br/><span data-ng-hide="artist" style="font-size: 1.8em;">Collection:</span> <span
+                            style="font-size: 1.8em;">{{currentUser.firstName}} {{currentUser.lastName}}</span><br>
+                        {{currentMediaPlaying.title}}, {{currentMediaPlaying.year}}
+                    </div>
+                </div>
+
+                <br>
+            </div>
+            <!-- flash embed part -->
+
+            <div id="flashPreview"><a href="http://www.adobe.com/go/getflashplayer"><img
+                    src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif"
+                    alt="Get Adobe Flash player"/></a></div>
+            <!-- preview image -->
+
+            <div class="mediaPreview">
+
+            </div>
+            <div class="playerControls">
+                <div class="player_playControl"><img src='/img/data/icons/play.png' width='12' height='14' alt=''/>
+                </div>
+                <div class="player_progress">
+                    <!-- seekbar background -->
+                    <div class="progress_bg"></div>
+                    <div class="load_level"></div>
+                    <div class="progress_level"></div>
+                </div>
+                <div class="player_mediaTime">0:00 | 0:00</div>
+                <div class="player_volume"><img src='/img/data/icons/volume.png' width='13' height='14' alt=''/></div>
+                <div class="volume_seekbar">
+                    <!-- volume background -->
+                    <div class="volume_bg"></div>
+                    <div class="volume_level"></div>
+                </div>
+                <div class="player_fullscreen"><img src='/img/data/icons/fullscreen_enter.png' width='12' height='12'
+                                                    alt=''/></div>
+                <div class="player_volume_tooltip">
+                    <div class="player_volume_tooltip_value">0</div>
+                </div>
+                <div class="player_progress_tooltip">
+                    <div class="player_progress_tooltip_value">00:00 | 00:00</div>
+                </div>
+            </div>
+            <div class="mediaPreloader"></div>
+            <div class="bigPlay"><img src='/img/data/icons/big_play.png' width='76' height='76' alt=''/></div>
+        </div>
+
+
+        <!-- holds playlist -->
+
+        <div class="playlistHolder">
+            <div class="componentPlaylist">
+                <div class="playerIcons">
+                    <ul>
+                        <li><a href="javascript:void(0)" data-ng-click="showMediaDetailsPopup()" class="listmenu"></a>
+                        </li>
+                        <!--						<li><a href="javascript:void(0)" class="cast" onclick="launchApp()"></a></li>-->
+                        <li><a href="javascript:void(0)" class="fullscreen"></a></li>
+                        <li><a href="javascript:void(0)" class="lockview"></a></li>
+                    </ul>
+                </div>
+
+                <!-- playlist_inner: container for scroll -->
+
+                <div class="playlist_inner">
+                    <!-- LIST OF PLAYLISTS -->
+                    <ul id='mix1' data-address="mix1">
+                        <li data-ng-repeat="work in currentPlaylistInMediaPlayer"
+                            data-ng-click="setCurrentPlaying(work)" data-address="local1"
+                            data-format='{{work.category}}' data-type='local' class="playlistNonSelected"
+                            data-mp4="/api/media/stream/{{work._id}}" data-ogv="/api/media/stream/{{work._id}}"
+                            data-webm="/api/media/stream/{{work._id}}"
+                            data-poster="/api/media/thumbnail/withoutWTM/{{work._id}}">
+                            <div class="playlistThumb"><img class='thumb' ng-src='/api/media/thumbnail/{{work._id}}'
+                                                            width='90' height='57' alt=''/></div>
+                            <div class='playlistInfo'>
+                                <p><span class='playlistTitle'>{{work.artistName}}</span><br>
+                                    <span class="playlistContent">{{work.title}}, {{work.year}}</span>
+                                </p>
+                            </div>
+                            <label class="crntvBar"></label>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- public function calls -->
+
+
+<div id='publicFunctions'>
+
+    <p>PUBLIC METHODS</p>
+
+    <br/>
+
+    <ul>
+
+        <!-- play active media -->
+
+        <li><a href='#' onClick="jQuery.fn.videoGallery.playMedia(); return false;">Play media</a></li>
+
+
+        <!-- pause active media -->
+
+        <li><a href='#' onClick="jQuery.fn.videoGallery.pauseMedia(); return false;">Pause media</a></li>
+
+
+        <!-- play next media -->
+
+        <li><a href='#' onClick="jQuery.fn.videoGallery.nextMedia(); return false;">Play next media</a></li>
+
+
+        <!-- play previous media -->
+
+        <li><a href='#' onClick="jQuery.fn.videoGallery.previousMedia(); return false;">Play previous media</a></li>
+
+
+        <!-- destroy media -->
+
+        <li><a href='#' onClick="jQuery.fn.videoGallery.destroyMedia(); return false;">Destroy media</a></li>
+
+
+        <!-- set volume (0-1) -->
+
+        <li><a href='#' onClick="jQuery.fn.videoGallery.setVolume(0.5); return false;">Set volume (0.5)</a></li>
+
+
+        <!-- load media/playlist:
+
+                if useDeeplink: 
+
+                    pass deeplink url as string (single or two level), just like in 'startUrl' html setting.
+
+                    load playlist example (single level): jQuery.fn.videoGallery.loadMedia('playlist1'),
+
+                    load media example (two level): jQuery.fn.videoGallery.loadMedia('playlist4/youtube_single1').
+
+                no Deeplink:
+
+                    for media pass number, counting starts from 0,
+
+                    for playlist pass element 'id' attribute. 
+
+                    load playlist example: jQuery.fn.videoGallery.loadMedia('playlist4'), 
+
+                    load media example: jQuery.fn.videoGallery.loadMedia(3) -->
+
+
+        <!--<li><a href='#' onClick="jQuery.fn.videoGallery.loadMedia('mix1'); return false;">load media 'mix1'</a></li>
+
+        <li><a href='#' onClick="jQuery.fn.videoGallery.loadMedia('mix2'); return false;">load media 'mix2'</a></li>
+
+        <li><a href='#' onClick="jQuery.fn.videoGallery.loadMedia('local_playlist1'); return false;">load media
+            'local_playlist1'</a></li>
+
+        <li><a href='#' onClick="jQuery.fn.videoGallery.loadMedia(3); return false;">load media 3</a></li>
+
+        <li><a href='#' onClick="jQuery.fn.videoGallery.loadMedia(5); return false;">load media 5</a></li>
+
+        <li><a href='#' onClick="jQuery.fn.videoGallery.loadMedia('mix1/local1'); return false;">load media
+            'mix1/local1'</a></li>
+
+        <li><a href='#'
+               onClick="jQuery.fn.videoGallery.loadMedia('youtube_playlist5/youtube_video_query1'); return false;">load
+            media 'youtube_playlist5/youtube_video_query1'</a></li>
+
+        <li><a href='#' onClick="jQuery.fn.videoGallery.loadMedia('mix2/youtube_single1'); return false;">load media
+            'mix2/youtube_single1'</a></li>
+
+        <li><a href='#' onClick="jQuery.fn.videoGallery.loadMedia('vimeo_playlist2/vimeo_user1'); return false;">load
+            media 'vimeo_playlist2/vimeo_user1'</a></li>
+
+        <li><a href='#' onClick="jQuery.fn.videoGallery.loadMedia('vimeo_playlist5/vimeo_album3'); return false;">load
+            media 'vimeo_playlist5/vimeo_album3'</a></li>-->
+
+
+        <!-- get description :
+
+                if useDeeplink: 
+
+                    pass deeplink url as string (two level), just like in 'startUrl' html setting.
+
+                    example: jQuery.fn.videoGallery.getDescription('playlist4/youtube_single1').
+
+                no Deeplink:
+
+                    pass number, counting starts from 0 (0 = first video, 1 = second video...etc),
+
+                    example: jQuery.fn.videoGallery.getDescription(3) -->
+
+        <!--<li><a href='#' onClick="jQuery.fn.videoGallery.getDescription(0); return false;">Get description from media
+            0</a></li>
+
+        <li><a href='#' onClick="jQuery.fn.videoGallery.getDescription(3); return false;">Get description from media
+            3</a></li>
+
+        <li><a href='#' onClick="jQuery.fn.videoGallery.getDescription('mix1/vimeo_single3'); return false;">Get
+            description from media 'mix1/vimeo_single3'</a></li>
+
+        <li><a href='#' onClick="jQuery.fn.videoGallery.getDescription('mix1/youtube_single2'); return false;">Get
+            description from media 'mix1/youtube_single2'</a></li>
+
+        <li><a href='#' onClick="jQuery.fn.videoGallery.getDescription('mix1/local2'); return false;">Get description
+            from media 'mix1/local2'</a></li>-->
+
+    </ul>
+
+</div>
+
+<script type="text/javascript">
+
+    var ua = navigator.userAgent.toLowerCase();
+
+    if (ua.indexOf("safari/") !== -1 && ua.indexOf("windows") !== -1) {
+
+        $('.page-loader').show();
+
+        $('#componentWrapper').css('visibility', 'visible');
+
+    }
+</script>

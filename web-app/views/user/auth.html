@@ -1,0 +1,194 @@
+<div class="outmain">
+    <div class="outinn signpage">
+        <div class="container">
+            <div class="frmContent">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <h1 class="logo"><img src="/img/user/artlock-logo.png" alt=""/></h1>
+                    </div>
+                    <div class="col-sm-7 contents">
+                        <div class="loader">&nbsp;</div>
+                        <div class="signup change-div">
+                            <h2 class="secHeading">Sign up for a new <span>ARTLOCK</span> account</h2>
+
+                            <div class="sgForm">
+                                <form id="frm_signup">
+                                    <input type="text" placeholder="E-mail address" class="emailInp email"
+                                           name="email"/>
+                                    <input type="password" placeholder="Password" class="passInp password"
+                                           name="password"/>
+                                    <input type="password" placeholder="Re-enter password" class="passInp conf_password"
+                                           name="conf_password"/>
+                                    <input type="submit" onClick="return signUpValidate(this)" value="SIGN UP"
+                                           class="singButton submit btn_submit"/>
+                                </form>
+                                <ul class="pointNav">
+                                    <li><a href="javascript:showDiv('signin',true)" class="leftPoint">Sign in</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="complete-profile change-div"><!---->
+                            <h2 class="secHeading"><span>Thank you. Your email address is now verified.<br/>
+                                    Please complete your profile and Sign In.</span></h2>
+
+                            <div class="sgForm">
+                                <form id="form_signup" onSubmit="return profileValidate(this)">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="jointer">
+                                                <label>Select membership type</label>
+                                                <select>
+                                                    <option>Artist</option>
+                                                    <option>Artist Representative</option>
+                                                    <option>Curator</option>
+                                                    <option>Collector</option>
+                                                    <option>Art Enthusiast (ArtRent)</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="text" placeholder="First Name" class="emailInp firstname sgInput"
+                                           name="firstname"/>
+                                    <input type="text" placeholder="Last Name" class="passInp lastname sgInput"
+                                           name="lastname"/>
+                                    <input type="text" placeholder="Country" class="passInp country sgInput"
+                                           name="country"/>
+                                    <input type="text" placeholder="Zip" class="passInp zip sgInput" name="zip"/>
+                                    <input type="submit" value="SIGN IN" class="singButton submit btn_submit"/>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="signin change-div">
+                            <h2 class="secHeading">Welcome to <span>ARTLOCK</span></h2>
+
+                            <div class="sgForm">
+                                <form id="frm_signin">
+                                    <input type="text" placeholder="E-mail address" class="emailInp email"
+                                           name="email"/>
+                                    <input type="password" placeholder="Password" class="passInp password"
+                                           name="password"/>
+                                    <input type="submit" onClick="return signInValidate(this);" value="SIGN IN"
+                                           class="singButton btn_submit"/>
+                                </form>
+                                <ul class="pointNav">
+                                    <li><a href="javascript:showDiv('forgot',false)" class="rightPoint">Forgot
+                                        password</a></li>
+                                    <li><a href="javascript:showDiv('signup',false)" class="rightPoint">Sign up</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="forgot change-div">
+                            <h2 class="secHeading">To reset your password, type your email address below.</h2>
+
+                            <div class="sgForm">
+                                <form id="frm_forgot" >
+                                    <input type="text" placeholder="E-mail address" class="emailInp email"
+                                           name="email" id="email_id"/>
+                                    <input type="button" value="RESET PASSWORD"
+                                           onClick="forgotValidate(this)"
+                                           class="singButton btn_forgot btn_submit"/>
+                                </form>
+                                <ul class="pointNav">
+                                    <li><a href="javascript:showDiv('signin',true)" class="leftPoint">Sign in</a></li>
+                                    <li><a href="javascript:showDiv('signup',true)" class="leftPoint">Sign up</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="dtl-block reset-message change-div">
+                            <h2 class="secHeading mBot20">Reset Password</h2>
+
+                            <div class="service-message">If <b id="service_msg"></b> is in our records,<br/>
+                                we will send a link to reset your password to that address
+                            </div>
+                            <ul class="pointNav">
+                                <li><a href="javascript:showDiv('signin',true)" class="leftPoint">Sign in</a></li>
+                            </ul>
+                        </div>
+                        <!--<div class="dtl-block agree-terms change-div">
+                            <h2 class="secHeading mBot20">Terms of Service</h2>
+
+                            <p>You need to agree to the Terms of<br/>
+                                Service before using <span class="arText">ARTLOCK</span></p>
+
+                            <p><a href="#">Get more info ></a></p>
+
+                            <p class="mTB40"><a href="javascript:showDiv('email-verification',false);" class="btNav"
+                                                onClick="return emailVerification(this);">I AGREE</a></p>
+                            <ul class="pointNav">
+                                <li><a href="javascript:showDiv('signin',true);" class="leftPoint">Log out</a></li>
+                            </ul>
+                        </div>-->
+                        <!--<div class="dtl-block email-verification change-div">
+                            <h2 class="secHeading mBot20">Email Verification</h2>
+
+                            <p>You need to verify your email<br/>
+                                ddehaeck@artplus.com<br/>
+                                before proceeding.</p>
+
+                            <p class="mTB40"><a href="javascript:showDiv('complete-profile',false)" class="btNav">RE-SEND
+                                VERIFICATION</a></p>
+                            <ul class="pointNav">
+                                <li><a href="javascript:showDiv('changeemail',false);" class="rightPoint">Change
+                                    email</a></li>
+                                <li><a href="javascript:showDiv('signin',true);" class="rightPoint">Log out</a></li>
+                            </ul>
+                        </div>-->
+                        <div class="changeemail change-div">
+                            <h2 class="secHeading">Type in your new email address below.</h2>
+
+                            <div class="sgForm">
+                                <form id="frm_changeemail">
+                                    <input type="text" placeholder="E-mail address" class="emailInp email"
+                                           name="email"/>
+                                    <input type="password" placeholder="Password" class="passInp password"
+                                           name="password"/>
+                                    <input type="submit" value="CHANGE EMAIL" onClick="return changeEmailValidate(this)"
+                                           class="singButton btn_submit btn_change_email"/>
+                                </form>
+                                <ul class="pointNav">
+                                    <li><a href="javascript:showDiv('email-verification',true)"
+                                           class="leftPoint">Back</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var hash = location.hash || null;
+        hash = hash && hash.replace('#', '');
+        console.log(">>>>>>>>>>>>>123")
+        console.log(hash)
+        if ($(window).width() > 767) {
+            $('.logo').parent().addClass('movelogo');
+            $('.logo').parent().animate({
+                left: 0
+            }, 500, function () {
+                $('.frmContent .row').css('position', 'auto');
+                $('.logo').parent().removeClass('movelogo');
+                $('.logo').parent().removeAttr('right');
+                $('.loader').hide();
+                hash ? showDiv(hash, true) : $('.contents .signin').fadeIn(500, function () {
+                });
+            });
+        } else {
+            hash ? showDiv(hash, true) : $('.contents .signin').fadeIn();
+        }
+        $(window).on("hashchange", function () {
+            console.log(">>>>>>>>>>>>>>");
+            console.log(location.hash);
+               if (location.hash){
+                   var hash = location.hash || null;
+                   hash = hash && hash.replace('#', '');
+                   showDiv(hash, true);
+               }
+        });
+    });
+</script>
+<script src="/js/app.js"></script>

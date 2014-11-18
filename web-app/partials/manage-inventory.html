@@ -1,0 +1,110 @@
+
+<!-- MANAGE INVENTORY-->
+<div class="manage-inventory change-div">
+    <div class="filterNav">
+        <div class="row">
+            <div class="col-sm-12 filters">
+                <input type="button" value="ALL WORKS" class="addWork sellFromBtn1">
+                <!--						<select>
+                                                                                                <option value="*">ALL WORKS</option>
+                                                                                                <option value=".1">ART BRUSSELS</option>
+                                                                                                <option value=".2">LIST 2</option>
+                                                                                                <option value=".3">PRIVATE VIEWING LDC</option>
+                                                                                                <option value=".4">NEW WORKS KRISTIN</option>
+                                                                                                <option value=".5">DEMO ARTHUR</option>
+                                                                                         </select>-->
+            </div>
+        </div>
+    </div>
+    <div class="transferMain">
+        <div class="row">
+            <div class="col-sm-4 transDtl-info">
+                <div class="usethumbs"> <img src="/img/user/collecton-thumb3.jpg" alt="" /> </div>
+                <h3>Agnieszka Polska</h3>
+                <h4>Medical Gymnastics, 2013<br />
+                    DV PAL animation 8 min. loop</h4>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim</p>
+            </div>
+            <form id="frm_inventory" onSubmit="return inventoryValidate(this)">
+                <div class="col-sm-8">
+                    <div class="transferTypes-Main">
+                        <div class="manage-inventory-form">
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                                sed diam nonummy nibh euismod tincidunt ut</p>
+                            <div class="private-key">
+                                <div class="chkGreen" id="creatorIcon"></div>
+                                <input type="text" class="addworkInpt" id="creatorkey" placeholder="ENTER YOUR CREATOR KEY      (XXXX XXXX XXXX XXXX)" />
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="inpt-outerBox">
+                                        <label for="editionof">EDITION OF</label>
+                                        <input type="text" id="editionof"  />
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select class="fullSelect" id="artrent">
+                                        <option value="">+ 1 COPY FOR ARTRENT</option>
+                                        <option value="1">+ 1 COPY FOR ARTRENT</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input type="text" id="priceper" class="addworkInpt" placeholder="PRICE PER WORK (NO DECIMALS)" />
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select class="fullSelect" id="offerIn">
+                                        <option value="">OFFERED FROM THE LFP</option>
+                                        <option value="1">1</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <select class="fullSelect" id="currencyIn">
+                                        <option value="">CURRENCY</option>
+                                        <option value="1">1</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select class="fullSelect" id="numOfCopies">
+                                        <option value="">NUMBER OF COPIES ON M-DISK IN LFP</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mBot30r">
+                                <div class="col-sm-12">
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,<br />
+                                        sed diam nonummy nibh euismod tincidunt ut</p>
+                                    <div class="uploadFile"> <a id="fileupload_view" href="#"> <span>SELECT FILE</span>
+                                        <label>Contract1.pdf</label>
+                                    </a>
+                                        <input type="file" id="file" name="file" />
+                                        <input type="button" class="uploadfile" value="UPLOAD" />
+                                        <div class="mspacer"></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="fileBox fileBox1"> <a class="file-remove" href="#">Remove</a>
+                                <div class="fileItem fileItem1"> <img alt="" src="/img/user/pdf-icon.png"> <span>NameFile.mp4</span> </div>
+                            </div>
+                            <input type="submit" class="addWork sellFromBtn1" value="UPDATE THIS WORK" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- MANAGE INVENTORY-->
+<div class="fcoll"><a ng-href="{{learnMoreURL}}" class="learnmore">Learn more ></a></div>

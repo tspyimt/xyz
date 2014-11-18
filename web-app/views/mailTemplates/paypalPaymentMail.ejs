@@ -1,0 +1,55 @@
+<html>
+<head></head>
+
+<body>
+<div style="overflow: auto">
+    <div style="float: left">
+        <a href="<%= homeURL %>"><img src="<%= logoUrl %>" height="50px" width="171px"/></a><br>
+
+        <h3>Protecting Media Art™</h3>
+    </div>
+    <h3 style="float: right">artlock.co | Support </h3>
+</div>
+<br>
+
+<div>
+    <p>
+
+
+    <p>Thank you for purchasing the work <%= work.title %>, edition <%= workCopy.copyNumber %> of
+        <%= work.edition %> + <%= (work.copyForArtRent || 0) + (work.copyForExhibition || 0) %>
+        by <%= work.artistName %> via ARTLOCK.</p>
+
+    <p>In order to complete this transaction you need to pay the seller <%= seller.firstName %> <%= seller.lastName %>
+        the following amount:</p> <br>
+
+    <p>Amount to be paid :<%= work.currency %> <%= invoice.priceForParticularWork %></p>
+
+    <p> Payment by PAYPAL via the following link:</p><br>
+
+    <%= paypalLink %>
+    <br>
+
+    <p>The seller will transfer this work to you by clearing the Transfer Key to you the moment your payment is
+        received,. We urge you to respond asap after receiving the Transfer Key and completing the transaction on ARTLOCK.</p><br>
+
+    <p>Once that's done, you'll be able to add this work to your playlist for streaming to your dedicated art screen,
+        and/or your common devices like flat-screens, pc, tablet pc or smart-phone.</p><br>
+		
+		<br>
+
+    <p>Do you have questions about your ARTLOCK Account? Visit support.artlock.co</p><br>
+
+    <br>
+
+    </p>
+
+   © <%= (new Date()).getFullYear() %> ARTPLUS INC. ARTLOCK is a registered trademark of ARTPLUS Inc. <br>
+   1710 First Avenue New York, NY 10128. Tel. 855-739-9555 <br>
+   <br> 
+   Privacy Policy  |  Terms & Conditions
+
+</div>
+
+</body>
+</html>

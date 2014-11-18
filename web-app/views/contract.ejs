@@ -1,0 +1,117 @@
+<html>
+<head>
+    <style type="text/css">
+        body {
+            font-family: sans-serif;
+            font-size: 0.8em;
+        }
+
+        .pad{
+            padding: 20 20 20 20 ;
+        }
+
+        h1, h2, h3, h4 {font-weight: normal;}
+
+        .sig {font-size: 16px; font-weight: bold;}
+    </style>
+</head>
+<body>
+<div id='page1' align="center" class="pad">
+
+    <br><br><br>
+    <div style="text-align: center;">
+        <img src="<%= logo %>" width="220"/>
+    </div>
+
+    <br><br><br/>
+    <h1>TERMS OF SALE</h1><br/>
+    <h2>WHEREAS: <br/><br/>
+    <%=work.artistName %><br/>
+    <%=artist.city || '' %><%if(artist.city){%> <%=', '%> <%}%><%=artist.country %>
+    <br/>
+    Hereafter called; The Artist
+    <br/> <br/>
+    FOR: <br/>
+    <%= work.title %><br/>
+    <%= work.year %><br/>
+    This work is copy
+    <%=workCopy.copyNumber %>
+    of the limited of
+    <%=work.edition%> + <%=(work.copyForArtRent || 0 )+ (work.copyForExhibition || 0)%>. <br/>
+        Hereafter called; The Work
+    <br/> <br/>
+        BY: <br/>
+           <%=seller.businessInfo.company %><% if(seller.city) { %>, <%=seller.city%> <% } %><br/>
+           <%= seller.firstName %> <%= seller.lastName %><br/>
+        Hereafter called; The Seller
+        <br/><br/>
+    TO:
+        <br/>
+        <br/>
+    <% if(buyer.firstName){ %>
+    <%= buyer.firstName %>
+    <% }else{ %>
+    -
+    <% } %>  <% if(buyer.lastName){ %>
+    <%=buyer.lastName %>
+    <% }else{ %>
+    -
+    <% } %> , <br/>
+    <% if(buyer.zip){ %>
+    <%=buyer.zip %>
+    <% }else{ %>
+    -
+    <% } %>, <% if(buyer.city){ %>
+    <%=buyer.city %>
+    <% }else{ %>
+    -
+    <% } %>, <% if(buyer.country){ %>
+    <%=buyer.country %>
+    <% }else{ %>
+    -
+    <% } %>
+    <br/>
+
+
+    Hereafter called; The Purchaser
+    <br/>
+    </h2>
+    <br/><br/><br/><br/>
+</div>
+<div id='page2'>
+    <br/><br/><br/>
+    <ol>
+        <li>The Artist retains the copyright of The Work and images thereof.</li>
+        <li>The Work cannot be broadcast or webcast outside the ARTLOCK platform by The Purchaser in any form, in its
+            entirely or in excerpt.
+        </li>
+        <li>No video stills or video excerpts can be produced from The Work by The Purchaser. One personalized video
+            still provided with the work may be reproduced by the purchaser for the purpose of representing the
+            purchaser’s collection only; this still is not to be distributed by the purchaser for publication under any
+            other circumstances.
+        </li>
+        <li>The Purchaser agrees that the only manner in which the work is viewed is from within The Purchasers’ account on the
+            ARTLOCK cloud servers or on a storage device that is connected by protection keys with the ARTLOCK servers.
+            The installation specifications require that the work is shown privately only on flat screens, monitors,
+            beamer projection and computer/tablet/mobile device screens, unless otherwise specified by The Artist.
+        </li>
+        <li>The Purchaser has the option to rent a backup disk containing the conservation code of the work. The backup disk of the
+            work will be stored in the ARTLOCK vault of the Luxembourg Freeport. The backup disks are not allowed to be
+            shipped outside the ARTLOCK vault. This service is audited by Deloitte as an additional layer of guarantee
+            to the tangible ownership of the work for the purchaser in the event that ARTLOCK should not be able to
+            stream the work anymore.
+        </li>
+        <li>The work may be exhibited in the facilities of the purchaser, or in the context of an exhibition organized
+            by or representing the collection of the purchaser with prior consent of The Artist. The Purchaser cannot
+            grant access to his/her account on ARTLOCK for streaming of the work to other individuals or institutions
+            for exhibitions. All exhibition requests must be referred to The Artist or the Artist's representative.
+        </li>
+        <li>Any publication or didactic material related to the work must be approved by The Artist.</li>
+        <li>Additional clause may come later.</li>
+    </ol>
+
+    <h4 class="sig">Electronically agreed by The Seller and The Purchaser on <%= new Date() %> </h4><br/>
+	THIS IS A SAMPLE CERTIFICATE FOR ALPHA DEMO PURPOSE ONLY.
+</div>
+</body>
+</html>

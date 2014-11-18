@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <script async="" src="//www.google-analytics.com/analytics.js"></script>
+    <script src="//www.google-analytics.com/analytics.js" async=""></script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-49330824-3', 'artplus.com');
+        ga('send', 'pageview');
+
+    </script>
+
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>ARTPLUS | Home</title>
+    <meta name="keywords"
+          content="artplus protects online digital media art, collect digitqal media art, trade digital media art, stream digital media art, collect digital video art, stream video art, trade video art, e-commerce media art, e-commerce video art, collect digital art, trade digital art">
+    <meta name="description"
+          content="ARTPLUS protects cloud-based art the online trading and collecting of media art with secure ownership.">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="/css/flexslider_new.css">
+    <link href="/css/magnific-popup_new.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/flexslider_new.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/css/font-awesome.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/css/toastr.min.css" type="text/css" media="screen">
+    <!--Google Font-->
+    <link href="http://fonts.googleapis.com/css?family=Montserat:100,300,400,700,900|Vollkorn:100italic,300italic,400italic,700italic,900italic"
+          rel="stylesheet" type="text/css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+</head>
+<body ng-app="artLockApp">
+<!--Header Section-->
+<div data-stellar-ratio="0.2" class="top" id="home">
+    <div class="container">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 logo">
+            <img alt=".Square" src="/images/header/logo.png">
+        </div>
+        <!--Navigation-->
+        <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 pull-right ">
+            <div class="nav">
+                <ul class="navi">
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="banner">
+    <div data-ride="carousel" class="carousel carousel-fade slide" id="bannerSlider">
+        <!-- Indicators -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="overlay"></div>
+                <video class="video" autoplay="" loop="" muted="" data-stellar-ratio="0.5">
+                    <source src="/video/intro.mp4" type="video/mp4"></source>
+                    <source src="/video/intro.ogg" type="video/ogg"></source>
+                    <source src="/video/intro.webm" type="video/webm"></source>
+                </video>
+
+                <div class="video-img"><img src="/images/body/video-bg-img.jpg" alt=""/></div>
+
+                <div data-stellar-ratio="0.3" class="carousel-caption">
+                    <div class="container">
+                        <div class="col-md-12">
+                            <div class="content">
+                                <h1>A totally new way</h1>
+
+                                <h2>to trade and collect digital media art</h2>
+                                <% if(!user) { %>
+                                <div class="btn-orange"><a href="/auth/signIn#signup">Sign up here for FREE</a></div>
+                                <br>
+
+                                <div class="btn-green"><a href="/auth/signIn">Members sign in here</a></div>
+                                <% } else { %>
+                                <br>
+
+                                <div class="btn-green"><a href="/user/dashboard">Enter Dashboard</a></div>
+                                <% } %>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <!-- /.carousel -->
+</section>
+
+
+<!--Opt-in Section-->
+<section id="signup" class="bluebg" ng-controller="subscribeMailController">
+
+    <div class="container msg">
+        <div style="display:none" id="message"></div>
+        <div class="col-lg-12 col-md-12 col-sm-12 opt-container">
+
+            <h1>Say goodbye to all the technical and legal issues surrounding media art collecting!</h1><br>
+
+            <h2>We are currenty testing in private alpha. <br>Sign up and participate in the ARTPLUS beta for a chance
+                to win the above work by Kristin Grey Apple.</h2>
+
+            <form id="contactform" action="" method="post">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form">
+                    <div class="col-sm-4 col-md-4 col-sm-12 col-xs-12"><input type="text" name="name" id="name"
+                                                                              placeholder="Enter Your Name"></div>
+                    <div class="col-sm-4 col-md-4 col-sm-12 col-xs-12"><input type="text" placeholder="Enter Your Email"
+                                                                              id="email" name="email"></div>
+                    <div class="col-sm-4 col-md-4 col-sm-12 col-xs-12">
+                        <div><input type="button" id="Submit" value="submit" class="btn-blue" ng-click="subscribeMe()">
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</section>
+<br><br>
+<a id="tour-scroll"></a>
+<section id="tour" class="pad-normal pad-videsec">
+
+
+    <div class="container">
+        <div class="col-md-push-1 col-md-10 large-centered columns">
+            <p></p>
+            <center>
+                <iframe style="max-width:100%" mozallowfullscreen="true" webkitallowfullscreen="true"
+                        allowfullscreen="true" id="intro-movie"
+                        src="http://alpha.artplus.com/partials/artlock-front.html"></iframe>
+            </center>
+            <div class="social-icons"></div>
+            <p></p>
+        </div>
+    </div>
+
+</section>
+<!--end of Tour section-->
+<br>
+
+
+<!--Features Section-->
+<section class="feature-styles" id="features">
+
+    <div class="container feature-container">
+        <div class="col-sm-push-6 col-sm-6 col-sm-12 col-xs-12 text-center">
+            <img alt="How it works?" src="images/body/feature1.png"></div>
+        <div class="col-sm-pull-6 col-sm-6 col-sm-12 col-xs-12">
+            <h1>Comfort & Convenience</h1>
+
+            <div class="txt">Digital media art often means dealing with technical and legal issues, which is great for
+                engineers and lawyers but hard for everyone else. ARTPLUS solved these issues and makes collecting media
+                art as easy as writing an email.
+            </div>
+            <div class="getstarted"><a href="/auth/signIn#signup">Get Started Today! <i
+                            class="fa fa-long-arrow-right"></i></a></div>
+        </div>
+
+    </div>
+    <div class="container feature-container">
+        <div class="col-sm-6 col-md-6 col-sm-12 col-xs-12 text-center">
+            <img alt="Reduce development time" src="/images/body/feature2.png"></div>
+        <div class="col-sm-6 col-md-6 col-sm-12 col-xs-12">
+            <h1>Insight & Transparency</h1>
+
+            <div class="txt">The single biggest advantage of ARTPLUS is its absolute transparency. Origin and provenance
+                of works are clear at all times. Internationally-renowned consultancy firm Deloitte monitors all
+                transactions and the issue of certificates of ownership and authenticity.
+            </div>
+            <div class="getstarted"><a href="/auth/signIn#signup">Get Started Today! <i
+                            class="fa fa-long-arrow-right"></i></a></div>
+        </div>
+
+    </div>
+    <div class="container feature-container">
+        <div class="col-sm-push-6 col-sm-6 col-sm-12 col-xs-12 text-center">
+            <img alt="Works on all devices" src="/images/body/feature3.png"></div>
+        <div class="col-sm-pull-6 col-sm-6 col-sm-12 col-xs-12">
+            <h1>Mobile & Security</h1>
+
+            <div class="txt">The ARTPLUS platform protects digital media art in the cloud. The content is streamed 24/7 on-site 
+			or directly from our secured servers to a wide range of devices, like flat panel displays, tablets and smartphones.
+            </div>
+            <div class="getstarted"><a href="/auth/signIn#signup">Get Started Today! <i
+                            class="fa fa-long-arrow-right"></i></a></div>
+        </div>
+
+    </div>
+    <div class="container feature-container">
+        <div class="col-sm-6 col-md-6 col-sm-12 col-xs-12 text-center">
+            <img alt="Reduce development time" src="/images/body/feature4.png"></div>
+        <div class="col-sm-6 col-md-6 col-sm-12 col-xs-12">
+            <h1>The full-spectrum solution </h1>
+
+            <div class="txt">Forget the canvas. Manage your media art inventory on the back-end and enjoy, share and
+                trade it on the front-end or in person.
+            </div>
+            <div class="getstarted"><a href="/auth/signIn#signup">Get Started Today! <i
+                            class="fa fa-long-arrow-right"></i></a></div>
+        </div>
+    </div>
+</section>
+</br>
+</br>
+
+<!--end of Features section-->
+
+
+<section id="testimonials" class="divider">
+    <img class="divider-bg" alt="Divider Background" src="/images/body/d3-new.jpg">
+
+    <div class="row pad-normal">
+        <div id="testimonials-slider">
+            <ul class="slides">
+                <li>
+                    <div class="col-md-9 large-centered columns">
+                        <p class="text-white">
+                            “Eliminating the technical and legal hassle, epitomizes the revolution of media art.”
+                        </p>
+                        <h5 class="text-white">
+                            - Lieven Declerck - Art Collector</h5>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="col-md-9 large-centered columns">
+                        <p class="text-white">
+                            “ARTPLUS is a gift to the artist in that it provides the opportunity for innumerable
+                            openings in one’s vision. Our ready exchange of questions and meanings doesn’t meet any
+                            walls.”
+                        </p>
+                        <h5 class="text-white">- Kristin Grey Apple - Artist</h5>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="col-md-9 large-centered columns">
+                        <p class="text-white">
+                            “You still don’t see a great deal of video art in most people’s homes, but what you do see
+                            will be on flat-screens.”
+                        </p>
+                        <h5 class="text-white">- Frank Cohen - Art Collector</h5>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="col-md-9 large-centered columns">
+                        <p class="text-white">
+                            “... a great step forward towards the harmonious union of art and technology is about to
+                            occur.”
+                        </p>
+                        <h5 class="text-white">- Rebecca Cleman - Curator</h5>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="col-md-9 large-centered columns">
+                        <p class="text-white">
+                            “...visual art is on the threshold to a digital revolution. Media art unlocked and consumed
+                            online &ndash; that’s the future and ARTPLUS is the key to that future.”
+                        </p>                        <h5 class="text-white">- Edo Dijksterhuis - Journalist</h5>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="col-md-9 large-centered columns">
+                        <p class="text-white">
+                            “Digital and online technology is the “new frontier” in the art market.”
+                        </p>
+                        <h5 class="text-white">- Anita Zabludowicz - Art Collector</h5>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--end of slider row-->
+
+    <div id="clients">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-12 columns">
+                <img alt="Press Logo" src="">
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-12 columns">
+                <img alt="Press Logo" src="">
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-12 columns">
+                <img alt="Press Logo" src="">
+            </div>
+
+            <div class="col-md-3 col-sm-3 col-xs-12 columns">
+                <img alt="Press Logo" src="">
+            </div>
+
+        </div>
+    </div>
+    <!--end of clients-->
+
+
+</section>
+<!--end of Testimonials section-->
+
+
+
+<!--Contact Section-->
+<section id="contact" ng-controller="contactMailController">
+    <div class="container">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 contact">
+            <h1>Get in touch</h1>
+
+            <h2>Have a question? Do not hesitate to contact us.</h2>
+        </div>
+    </div>
+    <div class="container contact-info">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+            <i class="fa fa-phone"></i>1-855-739-9555
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+            <i class="fa fa-envelope"></i>support@artplus.com
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+            <i class="fa fa-map-marker"></i>First Avenue 1710, 10128 NY, USA
+        </div>
+    </div>
+    <div class="container contact-form" id="contact-form">
+        <!--<form id="contactmsg" action="" method="post">-->
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <input type="text" name="name" id="form-name" placeholder="Enter Your Name">
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <input type="text" name="email" id="form-email" placeholder="Enter Your Email">
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <input type="text" name="phone" id="form-phone" placeholder="Enter Your Phone">
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <textarea placeholder="Message" rows="8" cols="" id="form-message" name="detail"></textarea>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"><input type="button" id="form-button"
+                                                                                value="Send Message"
+                                                                                class="btn-message" ng-click="contactMe()"></div>
+        <!--</form>-->
+    </div>
+    <div style="display:none" id="contact-message"></div>
+</section>
+
+<!--ABOUT POPUP-->
+<div class="white-popup mfp-hide aboutPopup">
+    <h2>About</h2>
+
+    <p><b>LAYING THE FOUNDATIONS FOR A RENAISSANCE 2.0</b></p>
+
+    <p>Between the fourteenth and seventeenth century Europe emerged out of the dark ages. The Renaissance was fueled by
+        the rediscovery of ancient texts by Aristotle, Plato and others. But even more important for the onset of the
+        modern age was the invention of the printing press in 1450, which enabled the fast and cheap reproduction and
+        distribution of knowledge.</p>
+
+    <p>The opening of the internet in 1995 is very comparable to the introduction of Johannes Gutenberg’s groundbreaking
+        machine. In the following two decades, that saw the introduction of Skype, Twitter, YouTube and other types of
+        web-based means of communication, data traffic has increased massively. In the same way the printing press was
+        the technological backbone for a broad cultural evolution, the world wide web is the driver for a new leap: the
+        Digital Renaissance. </p>
+
+    <p><b>THE RENAISSANCE BROUGHT NEW FORMS OF ART AND SO WILL THE RENAISSANCE 2.0.</b></p>
+
+    <p>Media Art &ndash; art that is shown on screens &ndash; is the art of the future. The rapidly improving hardware
+        and software enable artists to create wherever they want, whatever they need. The flat-screen is the new canvas
+        on which they can share their vision with a virtually limitless audience.</p>
+
+    <p>This being a phase of transition, some obstacles still need to be overcome. The earning capacity of media art has
+        yet to fully develop, protection of ownership and author’s rights can be problematic, and the open nature of the
+        internet towards quality control.</p>
+
+    <p>This is where ARTPLUS enters the picture. The organization with roots going back to the age of the ‘digital
+        Primitives’ promotes and facilitates the production and distribution of digital media art. After having
+        initiated virtual art fairs and the BiennaleOnline, ARTPLUS developed a unique new system to safely store and
+        view digital media art.</p>
+
+    <p>ARTPLUS enables artists to easily show and sell their work and owners to watch it anytime and anywhere. It allows
+        digital media art to truly come into its non-material self and further explore its boundaries, without
+        endangering the exclusivity of the work.</p>
+
+    <p>In the early days of the Renaissance 2.0 ARTPLUS is creating the prerequisites for art forms to come. </p>
+
+    <p><b>WHY DO WE DO IT? </b></p>
+
+    <p>Because we can’t wait to see the works of the new Da Vinci’s, Botticelli’s and Michelangelo’s.</p></br>
+    <p><b>FOUNDERS AND MANAGEMENT TEAM </b></p>
+
+    <p>The founders have more than 30 years combined experience in the art world and Internet related media, publishing
+        and e-commerce. David Dehaeck and Nathalie Haveman are collectors and Internet serial entrepreneurs. They share
+        a passion for fine arts, design, photography, architecture, social media, Internet, technology innovation and
+        social entrepreneurship. David has a degree in Marketing from the Open University Antwerp and Nathalie attended
+        the University of Chicago Laboratory Schools and studied Economics and Political Science in the United States
+        and the Netherlands.</p>
+
+    <p>In 1993, David was the first publisher of art auction data on CD-ROM and in 1994 on the Internet, based on data
+        from Mayer International Records. In 1999 he bought the totality of the publishing rights of Mayer. In 2000
+        David sold his first art related internet company to iCollector in the UK, a wholly owned subsidiary from
+        Europe@Web, the internet investment vehicle from Bernard Arnault.</p>
+
+    <p>The founders launched the BiennaleOnline, which opened on 26 April 2013. BiennaleOnline was the first virtual art
+        biennale of it's kind, featuring works by 180 of the most promising artists globally that have been selected by
+        30 leading international curators. The first edition was titled Reflection & Imagination. BiennaleOnline is a
+        biennial exhibition of contemporary art. The inaugural exhibition attracted some 150.000 visitors in it’s first
+        two months of operation. Since then the number has surpassed 400,000 and the exhibition has been covered by
+        media worldwide. </p></br>
+
+	<p><b>TEAM</b></p>
+	
+	<p><img src="/images/body/team.png" alt="artplus team"></p>
+	
+	<p><b>ADVISORY BOARD</b></p>
+	
+	<p><img src="/images/body/advisoryboard.png" alt="artplus advisory board"></p>
+
+</div>
+<!--ABOUT POPUP-->
+
+<!--TOS POPUP-->
+<div class="white-popup mfp-hide tosPopup">
+<h2>Terms & Conditions </h2>
+
+<p>This Alpha User Agreement (this “Agreement”) is made and entered into by and between ARTPLUS, INC, a Wyoming
+    corporation (“ARTPLUS”), and the “USER” who has agreed by clicking the “I Accept” button.</p>
+
+<p>This Agreement describes the terms and conditions under which User may access and use certain features,
+    technologies and services related to and including the website at http://alpha.artplus.com that are not yet
+    generally commercially available (the “Alpha Service”).</p>
+
+<p>ARTPLUS and User are sometimes referred to collectively as the “Parties” and each individually as a “Party.”</p>
+
+<p><b> 1 DEFINITIONS</b></p>
+
+<p>“Alpha Materials” means the Alpha test site at apha.artpus.com and software, specifications or other technical
+    documentation related to a specific Alpha Service that may be provided to User by ARTPLUS.</p>
+
+<p>“Alpha Use” means the testing and evaluation of a specific Alpha Service by User and certain other ARTPLUS
+    advisory users or business partners.</p>
+
+<p>“Alpha Use Information” means all information relating to User’s use, testing or evaluation of an Alpha Service
+    or any related Alpha Materials, including all observations or information regarding the performance, features
+    and functionality of an Alpha Service or any related Alpha Materials and includes UGC.</p>
+
+<p>“Feedback” means all feedback, suggestions, and ideas that User provides to ARTPLUS or its affiliates concerning
+    improvements or enhancements to the Alpha Service or any related Alpha Materials.</p>
+
+<p>“Confidential Information” means all information disclosed by ARTPLUS, its affiliates, or the agents of any of
+    the foregoing to User, its affiliates, or the agents of any of the foregoing. Confidential Information includes,
+    without limitation </p>
+
+<p>(a) nonpublic information relating to ARTPLUS’ or its affiliates’ technology, Users, business plans, promotional
+    and marketing activities, finances and other business affairs, </p>
+
+<p>(b) third-party information that ARTPLUS or its affiliates is obligated to keep confidential, </p>
+
+<p>(c) Alpha Materials, Alpha Use Information, Feedback, or any other information about or involving (including the
+    existence of) any of the Alpha Uses or Alpha Services, and </p>
+
+<p>(d) the nature, content and existence of this Agreement and any discussions or negotiations between the
+    Parties.</p> </br>
+<p>“UGC” stands for “User Generated Content” and means any and all works of art in digital format, graphics, text,
+    and all content uploaded by User through the Alpha Service.</p>
+
+<p>“Policies” means all policies and guidelines related to any Alpha Service, Alpha Materials or other web services
+    offered by ARTPLUS or its affiliates and made available to User, including privacy policies, terms of use,
+    acceptable use policies, and any additional terms and conditions for a specific Alpha Use.</p>
+
+<p><b> 2 PARTICIPATION IN ALPHA USE </b></p>
+
+<p>ARTPLUS grants User a limited, non-exclusive, non- transferable, royalty-free, revocable license to do the
+    following during the term of the applicable Alpha Use:
+
+<p>(a) access and use the Alpha Service solely for internal evaluation purposes; and</p>
+
+<p>(b) upload, transfer fictive ownership, copy, and use any related Alpha Materials solely as necessary to access
+    and use the Alpha Service in the manner permitted by this Agreement and the Policies. After the conclusion of an
+    Alpha Use, User will not have any further right to use the applicable Alpha Service, and if ARTPLUS releases a
+    generally available version of the Alpha Service, User’s use of the generally commercially available version
+    will be subject to separate terms and conditions. However, ARTPLUS does not guarantee that any Alpha Service
+    will ever be made generally commercially available, or that any generally commercially available version will
+    contain the same or similar functionality as the version made available by ARTPLUS during the Alpha
+    Use.</p></br>
+<p><b> 3 RESTRICTIONS AND LMITATIONS</b></p>
+
+<p>User will not allow access to any Alpha Service or Alpha Materials by any third party other than User’s employees
+    and contractors who </p>
+<li>(i) have a need to use or access the Alpha Service or Alpha Materials in connection with User’s internal
+    evaluation activities and
+<li>(ii) have executed written non-disclosure agreements obligating them to protect the confidentiality of the Alpha
+    Service and Alpha Materials; use any Alpha Service or Alpha Materials in violation of this Agreement and the
+    Policies; violate any usage limits for a Alpha Service that ARTPLUS may communicate to User; export or allow
+    access to any Alpha Service or Alpha Materials in any manner contrary to the export regulations of the United
+    States; or otherwise access or use any Alpha Service, or install, copy or use any Alpha Materials, in any manner
+    or for any purpose not expressly permitted by this Agreement or the Policies.
+</li>
+<p>ARTPLUS may modify the permitted use of or suspend User’s access to any Alpha Service at any time and for any
+    reason. Alpha Services also may be unavailable or their performance may be negatively affected by scheduled
+    maintenance. No service levels or other uptime guarantees apply to the Alpha Services. </p>
+
+<p>ARTPLUS will use reasonable efforts to notify User in advance of scheduled maintenance, but ARTPLUS is unable to
+    provide advance notice of unscheduled or emergency maintenance.</p>
+
+<p><b> 4 ALPHA USE INFORMATION AND FEEDBACK</b></p>
+
+<p>It is expressly understood, acknowledged and agreed that in consideration of the rights granted in this
+    Agreement, the User shall, regardless of whether or not formally requested to do, provide to ARTPLUS reasonable
+    suggestions, comments and Feedback and Alpha Use Information regarding the Alpha Services. User grants to
+    ARTPLUS the worldwide, non-exclusive, perpetual, irrevocable, royalty free, fully paid up rights:</p></br>
+<p>(A) to make, use, copy, modify, sell, distribute, sub-license, and create derivative works of, the Feedback and
+    Alpha Use Information as part of any ARTPLUS product, technology, service, specification or other documentation
+    (individually and collectively, "ARTPLUS Services"); </p>
+
+<p>(B) to publicly perform or display, import, broadcast, transmit, distribute, license, offer to sell, and sell,
+    rent, lease or lend copies of the Feedback and Alpha Use Information and (and derivative works thereof) as part
+    of any ARTPLUS Services; </p>
+
+<p>(C) solely with respect to User’s copyright and trade secret rights, to sub-license to third parties the
+    foregoing rights, including the right to sub-license to further third parties; and </p>
+
+<p>(D) User hereby assigns to ARTPLUS, User’s entire right, title and interest (including, without limitation, all
+    patent rights, design rights, copyrights and trade secrets) in any modifications or improvements to the Alpha
+    Service which User may propose or make to the Alpha Service or which User and Company may jointly make to the
+    Alpha Service during the Alpha test period. Further, User agrees that the Feedback and Alpha Use Information is
+    not subject to any license terms that would purport to require ARTPLUS to comply with any additional obligations
+    with respect to any ARTPLUS Services that incorporate any Feedback or Alpha Use Information. </p>
+
+<p><b> 5 TERM AND TERMINATION TERM </b></p>
+
+<p>The term of each individual Alpha Use will be specified by ARTPLUS, but will automatically terminate upon the
+    release of a generally commercially available version of the applicable Alpha Service. The term of this
+    Agreement will commence on the date and timestamp the User clicks on the “I agree” button. </p>
+
+<p><b> 6 TERMINATION </b></p>
+
+<p>Either Party may terminate User’s participation in an individual Alpha Use, or this Agreement entirely, at any
+    time for any reason upon notice to the other Party. Upon termination of this Agreement: </p>
+
+<p>(a) all rights and licenses granted to User in this Agreement will immediately terminate; </p>
+
+<p>(b) User will immediately return or, if instructed by ARTPLUS, destroy all Alpha Materials or any other
+    confidential or proprietary information of ARTPLUS or its affiliates related to any Alpha Service or this
+    Agreement; and </p>
+
+<p>(c) Sections 1, 2, 3, 5, 6, 7, 8, 9, 10 and 11 will survive.</p>
+
+<p><b> 7 CONFIDENTIALITY & OWNERSHIP USE AND DISCLOSURE </b></p>
+
+<p>User may not disclose any Confidential Information during the term of this Agreement or at any time during the
+    three (3) year period following the end of the Term.</p>
+
+<p><b> 8 PUBLICITY </b></p>
+
+<p>Neither Party will issue any press release or public statement regarding this Agreement or any Alpha Use, Alpha
+    Service or Alpha Materials unless the other Party has approved in writing the time, form and content of the
+    information to be disseminated to third parties or the public.</p>
+
+<p><b> 9 OWNERSHIP </b></p>
+
+<p>User agrees that nothing contained in this Agreement shall be construed as granting any ownership rights to any
+    Confidential Information, or to any invention or any patent, copyright, trademark, or other intellectual
+    property right. User shall not make, have made, use or sell for any purpose any product or other item using,
+    incorporating or derived from any Confidential Information or the Alpha Services. </p>
+
+<p>The User will not modify, reverse engineer, decompile, create other works from, or disassemble any software
+    programs contained in the Confidential Information or the Alpha Services or Alpha Materials.</p>
+
+<p>DISCLAIMER OF WARRANTIES. THE ALPHA SERVICES AND ALPHA MATERIALS ARE NOT READY FOR GENERAL COMMERCIAL RELEASE AND
+    MAY CONTAIN BUGS, ERRORS, DEFECTS OR HARMFUL COMPONENTS NOR ARE THE SERVICES OPERATIONAL AND/OR MONITORED BY
+    DELOITTE, NATURAL LE COULTRE S.A., TELINDUS LUXEMBOURG S.A., THE LUXEMBOURG FREEPORT OR ANY OF THEIR AFFILIATES,
+    SUBSIDIARIES OR PARTNERS.</p>
+
+<p>ACCORDINGLY, ARTPLUS IS PROVIDING THE ALPHA SERVICES AND ALPHA MATERIALS TO COMPANY “AS IS.” ARTPLUS MAKES NO
+    WARRANTIES OF ANY KIND WITH RESPECT TO THE ALPHA SERVICES OR ALPHA MATERIALS, WHETHER EXPRESS, IMPLIED,
+    STATUTORY OR OTHERWISE, INCLUDING ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+    OR NON-INFRINGEMENT. </p>
+
+<p>NOTWITHSTANDING ANY PUBLISHED MATERIALS THAT STATE OTHERWISE, ARTPLUS DOES NOT WARRANT THAT THE ALPHA SERVICES OR
+    ALPHA MATERIALS WILL BE ERROR-FREE OR THAT THEY WILL MEET ANY SPECIFIED SERVICE LEVEL, OR WILL OPERATE WITHOUT
+    INTERRUPTIONS OR DOWNTIME.</p>
+
+<p><b> 10 LIMITATION OF LIABILITY. </b></p>
+
+<p>NEITHER ARTPLUS NOR ANY OF ITS AFFILIATES OR LICENSORS WILL BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL OR
+    OTHER CONSEQUENTIAL DAMAGES ARISING FROM OR RELATED TO THIS AGREEMENT, WHETHER IN AN ACTION IN CONTRACT, TORT
+    (INCLUDING NEGLIGENCE) OR OTHERWISE, EVEN IF THE PARTY/USER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+    IN ANY CASE, THE AGGREGATE LIABILITY OF ARTPLUS AND ITS AFFILIATES AND LICENSORS ARISING FROM OR RELATED TO THIS
+    AGREEMENT WILL NOT EXCEED THE AMOUNTS PAID (IF ANY) BY USER TO ARTPLUS UNDER THIS AGREEMENT. </p>
+
+<p><b> 11 MISCELLANEOUS </b></p>
+
+<p>Except for those limited rights expressly granted in Section 2.1, ARTPLUS and its licensors retain all right,
+    title and interest in and to the Alpha Services and the Alpha Materials, including all related intellectual
+    property rights. The parties are independent contractors with respect to each other, and nothing in this
+    Agreement shall be construed as creating an employer-employee relationship, a partnership, agency relationship
+    or a joint venture between the parties.</p>
+
+<p>This Agreement further controls the actions of all party representatives, officers, agents, employees and
+    associated individuals. The terms of this Agreement shall be binding on the parties, and all successors to the
+    foregoing who take their rights hereunder. </p>
+
+<p>Neither party will assign, transfer or delegate its rights or obligations under this Agreement (in whole or in
+    part) without the other party’s prior written consent except that ARTPLUS may assign and delegate this Agreement
+    pursuant to a transfer of all or substantially all of ARTPLUS’s business and assets, whether by merger, sale of
+    assets, sale of stock, or otherwise. Any attempted assignment, transfer or delegation in violation of the
+    foregoing shall be null and void. All modifications to and waivers of any terms of this Agreement must be in a
+    writing that is signed by the parties hereto and expressly references this Agreement.</p>
+
+<p>This Agreement shall be governed by the laws of the State of Wyoming, without regard to Wyoming conflict of laws
+    rules. The exclusive venue and jurisdiction for any and all disputes, claims and controversies arising from or
+    relating to this Agreement shall be the state or federal courts located in Cheyenne, Wyoming, USA.</p>
+
+<p>In the event that any provision of this Agreement conflicts with governing law or if any provision is held to be
+    null, void or otherwise ineffective or invalid by a court of competent jurisdiction,</p>
+
+<p>(a) such provision shall be deemed to be restated to reflect as nearly as possible the original intentions of the
+    parties in accordance with applicable law, and</p>
+
+<p>(b) the remaining terms, provisions, covenants and restrictions of this Agreement shall remain in full force and
+    effect. No waiver of any breach of any provision of this Agreement shall constitute a waiver of any prior,
+    concurrent or subsequent breach of the same or any other provisions hereof, and no waiver shall be effective
+    unless made in writing and signed by an authorized representative of the waiving party.</p></br>
+<p>This Agreement and all expressly referenced documents constitute the entire agreement between the parties with
+    respect to the subject matter hereof and supersedes all prior and contemporaneous agreements or communications,
+    including any reseller or similar agreements previously executed by the parties. All notices, consents and
+    approvals under this Agreement must be delivered in writing by email to the other party.</p>
+
+<p>END</p>
+
+</div>
+<!--FOR GOOD POPUP-->
+
+<!--FOR GOOD POPUP-->
+<div class="white-popup mfp-hide forgoodPopup">
+    <h2>For Good </h2>
+
+    <p>ARTPLUS For Good is a new initiative aimed at supporting select non-profit art organizations with unique and
+        collaborative Digital Media Art projects.</p>
+
+    <p>Contact Nathalie Haveman at nhaveman@artplus.com for any questions regarding For Good or streaming an exhibtion
+        via artplus.com </p>
+
+</div>
+<!--FOR GOOD POPUP-->
+
+<!-- Footer Section-->
+<section id="footer">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer">
+        <div class="footer-nav text-center">
+            <ul class="navi">
+                <li><a href="#home"> Home </a></li>
+                <li><a class="roundpopup" href=".aboutPopup">About </a></li>
+                <li><a class="roundpopup" href=".tosPopup">Terms & Conditions </a></li>
+                <li><a class="roundpopup" href=".forgoodPopup">For Good </a></li>
+
+                <% if(!user) { %>
+                <li><a href="/auth/signIn#signup">Sign up </a></li>
+                <li><a href="/auth/signIn">Sign in</a></li>
+                <% } else { %>
+                <li><a href="/user/dashboard">Dashboard</a></li>
+                <% } %>
+
+            </ul>
+        </div>
+        <div class="social-icons text-center">
+            <ul>
+                <li><a href="https://twitter.com/artplusdotcom"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="http://www.linkedin.com/company/art-/"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+        </div>
+        <div class="copyright">Copyright &copy; 2014 ARTPLUS INC. All rights reserved.</div>
+    </div>
+</section>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/js/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/js/custom.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/jquery.easing.1.3_new.js"></script>
+<script src="/js/jquery.flexslider-min_new.js"></script>
+<script src="/js/jquery.stellar.js"></script>
+<script src="/js/jquery.flexslider-min_new.js"></script>
+
+
+<script src="/js/foundation.min_new.js"></script>
+<script src="/js/jquery.magnific-popup.min_new.js"></script>
+
+<script src="/js/scripts_new.js"></script>
+
+
+<script type="text/javascript" src="/js/angular.min.js"></script>
+<script type="text/javascript" src="/js/app/indexApp.js"></script>
+<script type="text/javascript" src="/js/toastr.min.js"></script>
+
+
+<script>
+    $(document).foundation();
+    $(document).ready(function () {
+        $('.roundpopup').magnificPopup({type: 'inline'});
+
+    });
+</script>
+
+
+</body>
+</html>
