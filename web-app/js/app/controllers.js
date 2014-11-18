@@ -167,6 +167,19 @@ angular.module('myApp.controllers', [])
     .controller('DashboardController', ['$scope', function () {
 
     }])
+    .controller('rightMenuController', ['$scope', '$http', function ($scope, $http) {
+        $scope.market = 'Marketplaces';
+        $scope.ismarketList = false;
+
+        $http.get('/api/user/current').success(function(userInfo) {
+            console.log(userInfo.roles);
+            if(userInfo.roles.indexOf('artist') != -1) {
+                $scope.ismarketList = true;
+            }
+        })
+
+
+    }])
     .controller('DocumentsController', ['$scope', function () {
 
     }])
@@ -1544,6 +1557,4 @@ angular.module('myApp.controllers', [])
         }
 
     }]);
-
-
 

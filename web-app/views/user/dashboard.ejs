@@ -37,7 +37,7 @@
     <![endif]-->
 
 </head>
-<body class="cbp-spmenu-push">
+<body class="cbp-spmenu-push" data-ng-controller="rightMenuController">
 <!--Left Panel Menu -->
 <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
     <div class="fnctNav"><a href="#" class="user">&nbsp;</a><a href="#" class="mail">&nbsp;</a></div>
@@ -93,10 +93,10 @@
                   <label></label>
                 </a>
               </li>
-              <li>
-                <a href="#" id="sell-work-page" class="inner_link current">
-                  <i class="transfermarket"></i>
-                  <span>Marketplaces</span>
+              <li ng-show="ismarketList">
+                <a href="#" id="maket-sell-page" class="inner_link current">
+                  <i class="fa fa-plus"></i>
+                  <span>{{market}}</span>
                   <label></label>
                 </a>
               </li>
