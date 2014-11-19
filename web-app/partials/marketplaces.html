@@ -23,35 +23,109 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; You currently do not have marketplace. Please click on ADD A NEW MARKETPLACE first. 
 		</h4> 
 	</div>
-	<div class="tableRow 1" ng-repeat="market in myMarket | filter:marketFilter" collapsible>
-		<div id="row">
+	<div ng-cloak ng-repeat="market in myMarket | filter:marketFilter" collapsible>
+		<div class="tableRow 1">
+			<div class="col-md-12">
+				<label class="col-sm-4">
+					<a href="javascript:void(0)" data-ng-click="getMarketWorks(market._id, $index)">
+						{{market.sites.name}}
+					</a>
+				</label>
+				<label class="col-sm-8" style="padding-right: 68px;">
+					<a href="javascript:void(0)" class="view media-viewer" ng-click="" ng-show="isView">
+						VIEW
+					</a>
+					<a href="javascript:void(0)" class="" style="" ng-click="" ng-hide="isView">
+						CLOSE
+					</a>
+				</label>
+			</div>
+		</div>
+		<ul class="playlist1" ng-if="$index == indexToCheck" ng-show="isClick">
+			<li class="audit-row media1 row" data-ng-repeat="work in workInCurrentMarket">
+				<div class="col-sm-2 auditThumb">
+					<img ng-src="/api/media/thumbnail/{{work._id}}" alt=""/>
+				</div>
+				
+				<div class="col-sm-10">
+					<div class="audit-rt-block">
+						<div class="auditTypeBox">
+							<label>EDITION</label>
+							<span class="audit-cloud">
+								{{ work.edition || 0 }}+{{(work.copyForArtRent + work.copyForExhibition) || '0'}}
+							</span>
+						</div>
+
+						<div class="auditTypeBox">
+							<label>AVAILABLE</label>
+							<span ng-class="{'copisold sblue':work.counts.copiesAvailable > 0,'copisold sred':work.counts.copiesAvailable <= 0}">
+								{{ work.counts.copiesAvailable || '0' }}
+							</span>
+						</div>
+						<div class="auditTypeBox">
+							<label>SOLD</label>
+							<span class="copisold sblue">
+								{{ work.counts.copiesSoldInTotal || '0' }}
+							</span>
+						</div>
+						<div class="auditTypeBox" style="float: right; padding-right: 30px;">
+							<label>&nbsp;</label>
+							<a class="viewaudit" style="background: red;" href="javascript:void(0)">
+								DELETE
+							</a>
+						</div>
+					</div>
+					<div class="col-sm-2">&nbsp;</div>
+					<div class="clearfix"></div>
+				</div>
+			</li>
+		</ul>
+	</div>
+		<!-- <div id="row">
 			<div class="col-md-12">
 				<label class="col-sm-4 purchase">
 					<a href="javascript:void(0)" data-ng-click="getMarketWorks(market._id)">{{market.sites.name}}
 					</a>
 				</label>
 				<label class="col-sm-8">
-					<a href="javascript:void(0)" class="view media-viewer" data-ng-click="$parent.addPlaylistToMediaPlayer(playlist._id)">VIEW
+					<a href="javascript:void(0)" class="view media-viewer" data-ng-click="" ng-hide="isView">
+						VIEW
+					</a>
+					<a href="javascript:void(0)" class="delete-playlist media-viewer" data-ng-click="" ng-show="isView">
+						CLOSE
 					</a>
 				</label>
-				<ul class="playlist" id="Grid">
-					<li class="mix artists artist1" thumbnail-overlay data-ng-repeat="work in workInCurrentMarket">
-						<a href="#"><img ng-src="/api/media/thumbnail/{{work._id}}" alt="" />
-						</a><a href="javascript:void(0);" class="removeItem" data-ng-click="removeWorkFromPlaylist(work._id)">&nbsp;</a>
-						<div class="shadow">
-							<h2>{{work.title}}</h2>
-							<div class="imgOpt">
-								<a href="javascript:void(0)" class="edit">&nbsp;</a>
-								<a ng-if = "work.category == 'Still Image'" href='#media-picture-popup' data-source="/api/media/stream/{{work._id}}" class='view-picture' media-popup>&nbsp;</a>
-								<a ng-if = "work.category == 'Moving Image'" href='#media-video-popup' data-source="/api/media/stream/{{work._id}}" class="view-video" media-popup>&nbsp;</a>
-								<a ng-if = "work.category == 'Sound Art'" href='#media-audio-popup' data-source="/api/media/stream/{{work._id}}" class="view-audio" media-popup>&nbsp;</a>
+				<ul class="playlist">
+					<li class="audit-row media1" data-ng-repeat="work in workInCurrentMarket">
+						<div class="col-sm-2 auditThumb"><img ng-src="/api/media/thumbnail/{{work._id}}" alt=""/></div>
+						<div class="col-sm-10">
+							<div class="audit-rt-block {{(showPlaylistCRUD && $index==currentIndex)&& 'active' || ' '}}">
+								<div class="auditTypeBox">
+									<label>EDITION</label>
+									<span class="audit-cloud">{{ work.edition || 0 }}+{{(work.copyForArtRent + work.copyForExhibition) || '0'}}</span>
+								</div>
+								<div class="auditTypeBox">
+									<label>AVAILABLE</label>
+									<span
+									ng-class="{'copisold sblue':work.counts.copiesAvailable > 0,'copisold sred':work.counts.copiesAvailable <= 0}">{{ work.counts.copiesAvailable || '0' }}</span>
+								</div>
+								<div class="auditTypeBox">
+									<label>SOLD</label>
+									<span class="copisold sblue">{{ work.counts.copiesSoldInTotal || '0' }}</span></div>
+									<div class="auditTypeBox">
+										<label>&nbsp;</label>
+										<a class="viewaudit" style="background: red;" ng-hide="" href="#/viewInfo/{{work._id}}">DELETE</a>
+									</div>
+
+								</div>
 							</div>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+							<div class="col-sm-2">&nbsp;</div>
+							<div class="clearfix"></div>
+						</li>
+					</ul>
+				</div>
+			</div> -->
+<!-- 		</div> -->
 	<!--Table -->
 </div>
 

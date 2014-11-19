@@ -5024,8 +5024,8 @@ ul.leftNav a.settings i{
 
 .mBot30{margin-bottom:30px;}
 .tableRow, .tableHead{
-    width:100%; float:left; display:block; clear:both; background-color:#f0f6fd; line-height:37px !important; padding:20px 0; margin-bottom:20px;
-    color:#797979;
+    width:99%; float:left; display:block; clear:both; background-color:#f0f6fd; line-height:37px !important; padding:20px 0; margin-bottom:20px;
+    color:#797979; margin-top: 10px;
 }
 .tableHead{
     font-size:1.8rem; /*font-family: 'montserratbold';*/ font-family: 'montserratregular';

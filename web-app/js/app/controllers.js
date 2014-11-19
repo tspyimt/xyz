@@ -514,16 +514,28 @@ angular.module('myApp.controllers', [])
         });
     }])
 
-    // MarketController
+    // Market Controller
     .controller('MarketController', ['$scope', '$http', function($scope, $http) {
         $scope.marketFilter = {_id: ""};
+        $scope.isView = true;
+        $scope.isClick = false;
+
+
         
 
         $http.get('/api/market/getMarketByUserId').success(function(market) {
             $scope.myMarket = market;
         });
-        $scope.getMarketWorks = function (marketId) {
+
+        $scope.getMarketWorks = function (marketId, index) {
             // $scope.currentPlaylistOpenedId = marketId;
+            // console.log($scope.isClick);
+
+            $scope.isClick == true ? $scope.isClick = false : $scope.isClick = true;
+            $scope.isView == true ? $scope.isView = false : $scope.isView = true;
+
+            $scope.indexToCheck = index;
+
             $http.get('/api/market/getWork/' + marketId).success(function(works) {
                 $scope.workInCurrentMarket = works;
                 // console.log(works);
