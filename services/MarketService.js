@@ -74,7 +74,7 @@ exports.getWorkByMarketId = function(marketId) {
             emitter.emit(EventName.ERROR, err);
         else
             var tasks = [];
-        console.log(market);
+        log.trace(market);
         // market.sites.works.forEach(function (workOrWorkCopyId) {
         //     tasks.push(function (callback) {
         //         var _tasks = [], work, workCopy;
