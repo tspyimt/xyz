@@ -38,9 +38,9 @@
                         <a href="javascript:void(0)" class="view media-viewer" data-ng-click="listWorkInMarket(site._id)"> List in site </a>
                     </label>
                     <ul class="playlist">
-                        <li class="playlist" data-ng-repeat="work in workInCurrentMarket">
+                        <li class="mix artists artist1" thumbnail-overlay  data-ng-repeat="work in workInCurrentMarket">
                             <a href="#"><img ng-src="/api/media/thumbnail/{{work._id}}" alt="" />
-                            </a><a href="javascript:void(0);" class="removeItem" data-ng-click="removeWorkFromPlaylist(work._id)">&nbsp;</a>
+                            </a>
                             <div class="shadow">
                                 <h2>{{work.title}}</h2>
                             </div>
