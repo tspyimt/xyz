@@ -37,7 +37,7 @@
                         <a href="javascript:void(0)" data-ng-click="listWorkInMarket(site._id)">{{site.sites.name}}</a>
                         <a href="javascript:void(0)" class="view media-viewer" data-ng-click="listWorkInMarket(site._id)"> List in site </a>
                     </label>
-                    <ul class="playlist">
+                    <ul id="Grid" class="playlist">
                         <li class="mix artists artist1" thumbnail-overlay  data-ng-repeat="work in workInCurrentMarket">
                             <a href="#"><img ng-src="/api/media/thumbnail/{{work._id}}" alt="" />
                             </a>
