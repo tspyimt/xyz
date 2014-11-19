@@ -36,6 +36,7 @@ myApp.config(['$routeProvider', '$httpProvider', function ($routeProvider, $http
         .when('/lfp', {templateUrl: '/partials/lfp.html', controller: 'LFPController'})
         .when('/manage-inventory', {templateUrl: '/partials/manage-inventory.html', controller: 'ManageInventoryController'})
         .when('/playlist', {templateUrl: '/partials/playlist.html', controller: 'PlaylistController'})
+        .when('/marketplaces', {templateUrl: '/partials/marketplaces.html', controller: 'MarketController'})
         .when('/profile', {templateUrl: '/partials/profile.html', controller: 'ProfileController'})
         .when('/reset', {templateUrl: '/partials/reset.html', controller: 'ResetController'})
         .when('/sell-work/:mediaObject/:offSet/:limit', {templateUrl: '/partials/sell-work.html', controller: 'SellWorkController'})

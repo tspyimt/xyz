@@ -188,7 +188,7 @@
         </div>
         <!-- End main-box -->
 
-        <div class="audit-rt-block mTB20">
+        <div class="audit-rt-block mTB20" ng-show="isArtist">
             <div class="col-sm-4">
                 <label class="audit-report-nm">EMBED CODE</label>
             </div>
@@ -221,7 +221,7 @@
 
 
         <!-- Market -->
-        <div class="audit-rt-block mTB20 {{showPlaylistCRUD && 'active' || ' '}}">
+        <div class="audit-rt-block mTB20 {{showPlaylistCRUD && 'active' || ' '}}" ng-show="isArtist">
             <div class="col-sm-4">
                 <label class="audit-report-nm">MARKET</label>
             </div>

@@ -4970,6 +4970,9 @@ ul.leftNav li a.current i.addwork{
 ul.leftNav li a.current i.transferwork{
     background-image:url(../../img/user/TransferWork.png) !important;
 }
+ul.leftNav li a.current i.marketplace{
+    background-image:url(../../img/user/marketplaces.png) !important;
+}
 ul.leftNav li a.current i.certificates{
     background-image:url(../../img/user/Certificates.png) !important;
 }

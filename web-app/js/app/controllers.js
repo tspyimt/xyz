@@ -334,6 +334,7 @@ angular.module('myApp.controllers', [])
 
 
         $scope.openPlaylistCRUD = function (workId, index) {
+            $scope.isArtist = false;
             $scope.workId = workId;
             $scope.flagDiv = workId;
             $scope.showPlaylistCRUD = true;
@@ -343,6 +344,12 @@ angular.module('myApp.controllers', [])
                 $rootScope.currentWork.description = $sce.trustAsHtml($rootScope.currentWork.description.replace(/\r?\n/g, '<br />'));
             });
         };
+
+        $http.get('/api/user/current').success(function(userInfo) {
+            if(userInfo.roles.indexOf('artist') != -1) {
+                $scope.isArtist = true;
+            }
+        })
 
         $scope.closePlaylistCRUD = function (workId) {
             $scope.workId = workId;
@@ -506,6 +513,57 @@ angular.module('myApp.controllers', [])
             }
         });
     }])
+
+    // MarketController
+    .controller('MarketController', ['$scope', '$http', function($scope, $http) {
+        $scope.marketFilter = {_id: ""};
+        
+
+        $http.get('/api/market/getMarketByUserId').success(function(market) {
+            $scope.myMarket = market;
+        });
+        $scope.getMarketWorks = function (marketId) {
+            // $scope.currentPlaylistOpenedId = marketId;
+            $http.get('/api/market/getWork/' + marketId).success(function(works) {
+                $scope.workInCurrentMarket = works;
+                // console.log(works);
+            })
+        };
+
+        $scope.addMarket = function() {
+            $scope.newMarketNameInput = true;
+            $scope.confirmMarketName = function() {
+                var market = $scope.newMarketName;
+                console.log(market);
+                if (market) {
+                    $http.post('/api/market/create', {name : market}).success(function (res) {
+                        $http.get('/api/market/getMarketByUserId').success(function(market) {
+                            $scope.myMarket = market;
+                            hidePlaylists();
+                            $scope.newMarketNameInput = false;
+                            $scope.newMarketName = null;
+                        });
+                    });
+                } else {
+                    $scope.newMarketNameInput = false;
+                    $scope.newMarketName = null;
+                }
+            }
+        }
+
+
+        $scope.updateMarketLayout = function () {
+            hideMarket();
+        };
+
+        function hideMarket() {
+            setTimeout(function () {
+                angular.element('ul.playlist').hide();
+            }, 10);
+        }
+    }])
+
+
 
     // Playlist Controller
     .controller('PlaylistController', ['$scope', '$http', '$rootScope', '$location', function ($scope, $http, $rootScope, $location) {
