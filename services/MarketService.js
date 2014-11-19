@@ -75,51 +75,51 @@ exports.getWorkByMarketId = function(marketId) {
         else
             var tasks = [];
         log.trace(market);
-        // market.sites.works.forEach(function (workOrWorkCopyId) {
-        //     tasks.push(function (callback) {
-        //         var _tasks = [], work, workCopy;
-        //         _tasks.push(function (callback) {
-        //             Work.findOneAndPopulateCounts({_id: Utils.convertToObjectId(workOrWorkCopyId)}, {}, function (err, _work) {
-        //                 if(err) callback(err);
-        //                 else {
-        //                     work = _work;
-        //                     callback();
-        //                 }
-        //             });
-        //         });
+        market.sites.works.forEach(function (workOrWorkCopyId) {
+            tasks.push(function (callback) {
+                var _tasks = [], work, workCopy;
+                _tasks.push(function (callback) {
+                    Work.findOneAndPopulateCounts({_id: Utils.convertToObjectId(workOrWorkCopyId)}, {}, function (err, _work) {
+                        if(err) callback(err);
+                        else {
+                            work = _work;
+                            callback();
+                        }
+                    });
+                });
 
-        //         _tasks.push(function (callback) {
-        //             if (work) {
-        //                 callback();
-        //                 return;
-        //             }
-        //             WorkCopy.findOne({_id: Utils.convertToObjectId(workOrWorkCopyId)}, function (err, _workCopy) {
-        //                 if (err) callback(err);
-        //                 else {
-        //                     if (_workCopy) {
-        //                         workCopy = _workCopy;
-        //                         Work.findOneAndPopulateCounts({_id: _workCopy.workId}, {}, function (err, _work) {
-        //                             if (err) callback(err);
-        //                             else if (_work) {
-        //                                 work = _work;
-        //                                 callback();
-        //                             } else callback(new Error("Unable to fetch work."));
-        //                         });
-        //                     } else callback(new Error("Invalid id. Does not represent work or workCopy. " + workOrWorkCopyId));
-        //                 }
-        //             });
-        //         });
+                _tasks.push(function (callback) {
+                    if (work) {
+                        callback();
+                        return;
+                    }
+                    WorkCopy.findOne({_id: Utils.convertToObjectId(workOrWorkCopyId)}, function (err, _workCopy) {
+                        if (err) callback(err);
+                        else {
+                            if (_workCopy) {
+                                workCopy = _workCopy;
+                                Work.findOneAndPopulateCounts({_id: _workCopy.workId}, {}, function (err, _work) {
+                                    if (err) callback(err);
+                                    else if (_work) {
+                                        work = _work;
+                                        callback();
+                                    } else callback(new Error("Unable to fetch work."));
+                                });
+                            } else callback(new Error("Invalid id. Does not represent work or workCopy. " + workOrWorkCopyId));
+                        }
+                    });
+                });
 
-        //         async.series(_tasks, function (err) {
-        //             if (err) {
-        //                 callback(err);
-        //             } else {
-        //                 workCopy && (work.workCopy = workCopy);
-        //                 callback(null, work);
-        //             }
-        //         });
-        //     });
-        // });
+                async.series(_tasks, function (err) {
+                    if (err) {
+                        callback(err);
+                    } else {
+                        workCopy && (work.workCopy = workCopy);
+                        callback(null, work);
+                    }
+                });
+            });
+        });
 
         async.parallel(tasks, function (err, works) {
             if (!err) {
