@@ -25,11 +25,13 @@
                 <label  class="col-sm-4 purchase">
                     <a href="javascript:void(0)" data-ng-click="listWorkInMarket(site._id)"> WATCH LIST </a>
                 </label>
-                <label class="col-sm-8"  data-ng-click="listWorkInMarket(site._id)" data-ng-show="listMarket">
-                    <a href="javascript:void(0)" class="view media-viewer">View</a>
+                <label class="col-sm-8"  data-ng-click="listWorkInMarket(site._id)" data-ng-show="site.sites.works.length != 0">
+                    <a href="javascript:void(0)" class="view media-viewer"> View </a>
                 </label>
-                <label class="col-sm-8" data-ng-hide="listMarket">
-                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; You currently do not have playlists. Please click on ADD A NEW PLAYLIST first.</h4>
+
+                
+                <label class="col-sm-8" data-ng-show="site.sites.works.length == 0">
+                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; You currently do not have work in mylisa. Please click on ADD A NEW WORK to Mylisa.co first.</h4>
                 </label>
                 <ul ng-show="isLoaded">
                     <li style="list-style: none;">
@@ -45,7 +47,17 @@
                     </li>
                 </ul>
             </div>
+
+            <!-- <div class="col-md-12" ng-if="site.sites.name != 'mylisa.co'">
+                <label  class="col-sm-4">
+                    <a href="javascript:void(0)" style="text-decoration: none;"> WATCH LIST </a>
+                </label>
+                <label class="col-sm-8">
+                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; You currently do not have work in mylisa. Please click on ADD A NEW WORK to Mylisa.co first.</h4>
+                </label>
+            </div> -->
         </div>
+        
     </div>
         <!-- <div class="col-md-12">
             <img src='/img/data/icons/ajax-loader.gif' class="ajax-loader" style="left: 178px" data-ng-show="ajaxCallInProgress">

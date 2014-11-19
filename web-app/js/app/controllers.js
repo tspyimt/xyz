@@ -569,6 +569,7 @@ angular.module('myApp.controllers', [])
     .controller('PlaylistController', ['$scope', '$http', '$rootScope', '$location', function ($scope, $http, $rootScope, $location) {
         $scope.isLoaded = false;
         $scope.ajaxProgress = false;
+        $scope.isMylisa = true;
         $scope.workInCurrentMarket = [];
 
         // Get all market sites
