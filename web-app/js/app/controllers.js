@@ -577,7 +577,6 @@ angular.module('myApp.controllers', [])
         });
 
 
-
         // Playlist default (where contain all site partner as mylisa.co, mylisa.tv)
         $scope.getListSites = function() {
             if($scope.isLoaded == true) {
@@ -588,6 +587,11 @@ angular.module('myApp.controllers', [])
         }
 
         $scope.listWorkInMarket = function(marketId) {
+            if($scope.isLoaded == true) {
+                $scope.isLoaded = false;
+            } else {
+                $scope.isLoaded = true;
+            }
             $http.get('/api/market/getWork/' + marketId).success(function(works) {
                 $scope.workInCurrentMarket = works;
                 // console.log(works);

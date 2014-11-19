@@ -20,33 +20,31 @@
 <!--Table -->
 <div class="tableRow 1" collapsible>
     <div id="row">
-        <div class="col-md-12">
-            <label  class="col-sm-4 purchase">
-                <a href="javascript:void(0)" data-ng-click="getListSites()"> WATCH LIST </a>
-            </label>
-            <label class="col-sm-8"  data-ng-click="getListSites()" data-ng-show="listMarket">
-                <a href="javascript:void(0)" class="view media-viewer">View</a>
-            </label>
-            <label class="col-sm-8" data-ng-hide="listMarket">
-                <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; You currently do not have playlists. Please click on ADD A NEW PLAYLIST first.</h4>
-            </label>
-            <ul ng-repeat='site in listMarket' ng-show="isLoaded">
-                <div ng-if="site.sites.name == 'mylisa.co'">                 
-                    <!-- <label>
-                        <a href="javascript:void(0)" data-ng-click="listWorkInMarket(site._id)">{{site.sites.name}}</a>
-                        <a href="javascript:void(0)" class="view media-viewer" data-ng-click="listWorkInMarket(site._id)"> List in site </a>
-                    </label> -->
-                    <ul id="Grid" class="playlist">
-                        <li class="mix artists artist1" thumbnail-overlay  data-ng-repeat="work in workInCurrentMarket">
-                            <a href="#"><img ng-src="/api/media/thumbnail/{{work._id}}" alt="" />
-                            </a>
-                            <div class="shadow">
-                                <h2>{{work.title}}</h2>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </ul>
+        <div class="col-md-12"  ng-repeat="site in listMarket">
+            <div ng-if="site.sites.name == 'mylisa.co'">
+                <label  class="col-sm-4 purchase">
+                    <a href="javascript:void(0)" data-ng-click="listWorkInMarket(site._id)"> WATCH LIST </a>
+                </label>
+                <label class="col-sm-8"  data-ng-click="listWorkInMarket(site._id)" data-ng-show="listMarket">
+                    <a href="javascript:void(0)" class="view media-viewer">View</a>
+                </label>
+                <label class="col-sm-8" data-ng-hide="listMarket">
+                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; You currently do not have playlists. Please click on ADD A NEW PLAYLIST first.</h4>
+                </label>
+                <ul ng-show="isLoaded">
+                    <li>
+                        <ul id="Grid" class="playlist">
+                            <li class="mix artists artist1" thumbnail-overlay  data-ng-repeat="work in workInCurrentMarket">
+                                <a href="#"><img ng-src="/api/media/thumbnail/{{work._id}}" alt="" />
+                                </a>
+                                <div class="shadow">
+                                    <h2>{{work.title}}</h2>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
         <!-- <div class="col-md-12">
@@ -67,11 +65,11 @@
                         <a href="javascript:void(0)" data-ng-click="listWorkInMarket(site._id)">{{site.sites.name}}</a>
                         <a href="javascript:void(0)" class="view media-viewer" data-ng-click="listWorkInMarket(site._id)"> List in site </a>
                     </label>
-                    <ul id="Grid" class="playlist">
+                    <ul>
                         <li class="mix artists artist1" thumbnail-overlay  data-ng-repeat="work in workInCurrentMarket">
                             <a href="#"><img ng-src="/api/media/thumbnail/{{work._id}}" alt="" />
                             </a>
-                            <div class="shadow">
+                            <div>
                                 <h2>{{work.title}}</h2>
                             </div>
                         </li>
