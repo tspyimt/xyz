@@ -542,6 +542,20 @@ angular.module('myApp.controllers', [])
             })
         };
 
+        $scope.removeWorkFromMarket = function (market, workId) {
+            console.log(workId);
+            $http.post('/api/market/removeWork', {marketId: market._id, workId: workId }).success(function (response) {
+                console.log(response);
+                // angular.forEach($scope.myMarket, function (ele) {
+                //     if (ele._id == market._id) {
+                //         var index = ele.sites.works.indexOf(workId);
+                //         if (index != -1)
+                //             ele.sites.works.splice(index, 1);
+                //     }
+                // });
+            });
+        };
+
         $scope.addMarket = function() {
             $scope.newMarketNameInput = true;
             $scope.confirmMarketName = function() {
