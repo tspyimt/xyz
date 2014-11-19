@@ -32,8 +32,8 @@
                     <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; You currently do not have playlists. Please click on ADD A NEW PLAYLIST first.</h4>
                 </label>
                 <ul ng-show="isLoaded">
-                    <li>
-                        <ul id="Grid" class="playlist">
+                    <li style="list-style: none;">
+                        <ul id="Grid">
                             <li class="mix artists artist1" thumbnail-overlay  data-ng-repeat="work in workInCurrentMarket">
                                 <a href="#"><img ng-src="/api/media/thumbnail/{{work._id}}" alt="" />
                                 </a>
