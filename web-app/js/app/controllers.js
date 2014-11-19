@@ -172,7 +172,6 @@ angular.module('myApp.controllers', [])
         $scope.ismarketList = false;
 
         $http.get('/api/user/current').success(function(userInfo) {
-            console.log(userInfo.roles);
             if(userInfo.roles.indexOf('artist') != -1) {
                 $scope.ismarketList = true;
             }
@@ -507,7 +506,44 @@ angular.module('myApp.controllers', [])
             }
         });
     }])
+
+    // Playlist Controller
     .controller('PlaylistController', ['$scope', '$http', '$rootScope', '$location', function ($scope, $http, $rootScope, $location) {
+        $scope.isLoaded = false;
+        $scope.ajaxProgress = false;
+        $scope.workInCurrentMarket = [];
+
+        // Get all market sites
+        $http.get('/api/market/getMarketByUserId').success(function(markets) {
+            $scope.listMarket = markets;
+        });
+
+
+
+        // Playlist default (where contain all site partner as mylisa.co, mylisa.tv)
+        $scope.getListSites = function() {
+            if($scope.isLoaded == true) {
+                $scope.isLoaded = false;
+            } else {
+                $scope.isLoaded = true;
+            }
+        }
+
+        $scope.listWorkInMarket = function(marketId) {
+            $http.get('/api/market/getWork/' + marketId).success(function(works) {
+                $scope.workInCurrentMarket = works;
+                // console.log(works);
+            })
+        }
+
+
+        $scope.getWorkById = function() {
+            
+        }
+
+
+
+        // Playlist interaction
         $scope.ajaxCallInProgress = false;
         $scope.worksInCurrentPlaylist = [];
         $scope.playlistFilter = {_id: ""};
@@ -617,6 +653,9 @@ angular.module('myApp.controllers', [])
             }, 10);
         }
     }])
+    // --- End Playlist Controller ----
+
+
     .controller('ProfileController', ['$rootScope', '$scope', '$http', '$window', function ($rootScope, $scope, $http, $window) {
         $scope.user = {};
         $scope.passwordStatus = false;

@@ -17,13 +17,52 @@
     </div>
 </div>
 <!--Table -->
-  <div data-ng-hide="myPlaylists"><h4 style="color: #787878; text-align: left"><br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; You currently do not have playlists. Please click on ADD A NEW PLAYLIST first. </h4> </div>
+
+<div class="tableRow 1">
+        <div class="col-md-12">
+            <img src='/img/data/icons/ajax-loader.gif' class="ajax-loader" style="left: 178px" data-ng-show="ajaxCallInProgress">
+            <label  class="col-sm-4 purchase">
+                <a href="javascript:void(0)" data-ng-click="getListSites()"> WATCH LIST </a>
+            </label>
+            <label class="col-sm-8"  data-ng-click="getListSites()">
+                <a href="javascript:void(0)" class="view media-viewer">View</a>
+            </label>
+            <div ng-show="listMarket.length == 0">
+                You do not any site to display.
+            </div>
+
+            <ul ng-repeat="site in listMarket" ng-show="isLoaded">
+                <li>
+                    <label>
+                        <a href="javascript:void(0)" data-ng-click="listWorkInMarket(site._id)">{{site.sites.name}}</a>
+                        <a href="javascript:void(0)" class="view media-viewer" data-ng-click="listWorkInMarket(site._id)"> List in site </a>
+                    </label>
+                    <ul class="playlist">
+                        <li class="playlist" data-ng-repeat="work in workInCurrentMarket">
+                            <a href="#"><img ng-src="/api/media/thumbnail/{{work._id}}" alt="" />
+                            </a><a href="javascript:void(0);" class="removeItem" data-ng-click="removeWorkFromPlaylist(work._id)">&nbsp;</a>
+                            <div class="shadow">
+                                <h2>{{work.title}}</h2>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+</div>
+
+<div data-ng-hide="myPlaylists">
+    <h4 style="color: #787878; text-align: left"><br/> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; You currently do not have playlists. Please click on ADD A NEW PLAYLIST first. 
+    </h4> 
+</div>
 <div class="tableRow 1" ng-repeat="playlist in myPlaylists | filter:playlistFilter" collapsible>
     <div id="row">
         <div class="col-md-12">
             <img src='/img/data/icons/ajax-loader.gif' class="ajax-loader" style="left: 178px" data-ng-show="ajaxCallInProgress">
             <label class="col-sm-4 purchase">
-                <a href="javascript:void(0)" data-ng-click="getPlaylistWorks(playlist._id)">{{playlist.title}}</a></label>
+                <a href="javascript:void(0)" data-ng-click="getPlaylistWorks(playlist._id)">{{playlist.title}}</a>
+            </label>
             <label class="col-sm-8">
                 <a href="javascript:void(0)" class="view media-viewer" data-ng-click="$parent.addPlaylistToMediaPlayer(playlist._id)">VIEW</a>
 

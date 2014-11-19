@@ -47,4 +47,17 @@ exports.removeWorkFromMarket = function (req, res) {
         .on(EventName.DONE, function (market) {
             res.sendSuccessAPIResponse(market);
         });
-}.secured()
+}.secured();
+
+
+exports.getWorkByMarketId = function(req, res) {
+    marketId = req.params.marketId;
+    MarketService.getWorkByMarketId(marketId)
+    .on(EventName.ERROR, function(err) {
+        log.error(err);
+        res.sendErrorAPIResponse(err);
+    })
+    .on(EventName.DONE, function(market) {
+        res.sendSuccessAPIResponse(market);
+    });
+}.secured();

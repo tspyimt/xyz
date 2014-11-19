@@ -93,6 +93,7 @@ exports.getWorksInPlaylist = function (playlistId) {
             emitter.emit(EventName.ERROR, err);
         else
             var tasks = [];
+        console.log(playlist);
         playlist.works.forEach(function (workOrWorkCopyId) {
             tasks.push(function (callback) {
                 var _tasks = [], work, workCopy;

@@ -73,7 +73,7 @@ _app.post('/user/checkValidKeyByUserRole', controllers.dashboard.checkValidKeyBy
 
 //Work routes
 _app.post('/work/create', controllers.work.saveWork);
-_app.get('/api/work/get', controllers.work.getWorkById);
+_app.get('/api/work/get', controllers.work.getWorkById);// query ?workId=work_id
 _app.get('/api/work/getWorkAndOneOwnedCopy', controllers.work.getWorkAndOneOwnedCopyById);
 _app.get('/api/workcopy/get', controllers.work.getWorkCopyById);
 _app.get('/api/work/update/:workId', controllers.work.updateWork);
@@ -107,6 +107,7 @@ _app.post('/api/key/transfer/resend/:workCopyId', controllers.work.resendTransfe
 // Market Routes
 _app.post('/api/market/create', controllers.market.saveMarket);
 _app.get('/api/market/getMarketByUserId', controllers.market.getMarketByUserId);
+_app.get('/api/market/getWork/:marketId', controllers.market.getWorkByMarketId);
 _app.post('/api/market/addwork', controllers.market.addWorkToMarket);
 _app.post('/api/market/removeWork', controllers.market.removeWorkFromMarket)
 
