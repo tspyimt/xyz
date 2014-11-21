@@ -24,6 +24,7 @@ function LocalAppCluster(workerPerCore, appFile) {
     var Table = require('cli-table');
     var cluster = require('cluster');
 
+
     //Assign the machine ID to cluster set
     var machineId = process.env["X-MACHINE-ID"] || generateMachineId();
     this.__defineGetter__("machineId", function () {

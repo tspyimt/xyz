@@ -61,6 +61,7 @@ app.set('views', path.join(__dirname, 'web-app', "views"));
 app.set('view engine', 'ejs');
 app.use(express.logger("dev"));
 app.use(express.static(path.join(__dirname, 'web-app')));
+app.use(express.static(path.join(__dirname, 'userAvt')));
 app.use(express.cookieParser());
 app.use(Util.localToBearerStrategyMiddleWare);
 app.use(express.json());

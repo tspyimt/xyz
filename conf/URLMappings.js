@@ -69,6 +69,8 @@ _app.post('/user/checkValidPrivateKey', controllers.dashboard.checkValidPrivateK
 _app.post('/user/checkValidCreatorKey', controllers.dashboard.checkValidCreatorKey);
 _app.post('/user/checkValidTradeKey', controllers.dashboard.checkValidTradeKey);
 _app.post('/user/checkValidKeyByUserRole', controllers.dashboard.checkValidKeyByUserRole);
+_app.post('/uploadAvt/:userId', controllers.user.uploadAvtController);
+
 
 
 //Work routes

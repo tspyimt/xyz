@@ -1,6 +1,9 @@
 'use strict';
 
 /* Controllers */
+var AdminApp = angular.module('myApp.controllers', []);
+
+AdminApp.exposedRootScope = {};
 
 var constants = {
     'StartYear': 1960,
@@ -8,6 +11,37 @@ var constants = {
     'CategoryDropDown': ['Still Image' , 'Moving Image', 'Sound Art']
 };
 angular.module('myApp.controllers', [])
+    .service('fileUpload', ['$http', function($http, $scope) {
+        this.uploadFileToUrl = function(file, uploadUrl) {
+            var fd = new FormData();
+            fd.append('file', file);
+            $http.post(uploadUrl, fd, {
+                transformRequest: angular.identity,
+                headers: {
+                    'Content-Type': undefined
+                }
+            }).success(function() {
+                AdminApp.exposedRootScope.fileFlag = 0;
+        })
+            .error(function() {});
+        }
+    }])
+    .directive('fileModel', ['$parse', function($parse) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+
+                var model = $parse(attrs.fileModel);
+                var modelSetter = model.assign;
+
+                element.bind('change', function() {
+                    scope.$apply(function() {
+                        modelSetter(scope, element[0].files[0]);
+                    });
+                });
+            }
+        };
+    }])
     .controller('AddWorkController', ['$scope', '$rootScope', '$http', '$location', function ($scope, $rootScope, $http, $location) {
         $scope.collect = false;
         $http.get('/api/user/current').success(function (response) {
@@ -745,7 +779,7 @@ angular.module('myApp.controllers', [])
     // --- End Playlist Controller ----
 
 
-    .controller('ProfileController', ['$rootScope', '$scope', '$http', '$window', function ($rootScope, $scope, $http, $window) {
+    .controller('ProfileController', ['$rootScope', '$scope', '$http', '$window', 'fileUpload', function ($rootScope, $scope, $http, $window, fileUpload) {
         $scope.user = {};
         $scope.passwordStatus = false;
         $http.get('/api/user/current').success(function (response) {
@@ -753,6 +787,38 @@ angular.module('myApp.controllers', [])
             $scope.userRoleCollector = $scope.currentUser.roles[$scope.currentUser.roles.indexOf('collector')];
             $scope.userRoleArtist = $scope.currentUser.roles[$scope.currentUser.roles.indexOf('artist')];
         });
+
+        // Function to set image preview
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#avt').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        };
+
+        $("#inpChangAvartar").change(function() {
+            readURL(this);
+        });
+
+        // Handler upload avartar
+        $scope.uploadAvartar = function(userId) {
+            var file = $scope.imgFile;
+            
+            if (file != null) {
+                var uploadUrl = "/uploadAvt/" + userId;
+                fileUpload.uploadFileToUrl(file, uploadUrl);
+                
+            } else {
+                alert('Please select a image to set your avartar!');
+            }
+
+        };
+
 
         $scope.viewPrivateKeyPDF = function () {
             $window.open('/api/pdf/privateKey/' + $scope.currentUser._id);

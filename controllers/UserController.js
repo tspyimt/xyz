@@ -60,3 +60,14 @@ exports.getUserEmailId = function (req, res) {
             res.sendSuccessAPIResponse(email);
         });
 }.securedAPI();
+
+exports.uploadAvtController = function (req, res) {
+    UserService.uploadingAvtService(req.files.file.path, req.files.file.name, req.param('userId'))
+        .on("error", function (err) {
+            log.error(err);
+            res.send(err);
+        })
+        .on("success", function () {
+            res.send('updated');
+        })
+}.securedAPI();

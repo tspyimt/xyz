@@ -36,6 +36,7 @@ exports.schema = {
     hashPrivateKey: String,
     hashCreatorKey: String,
     hashTradeKey: String,
+    avatar: String,
     hideName: {type: Boolean, default: false},
     virtual: {type: Boolean, default: false},
     blocked: {type: Boolean, default: false},
