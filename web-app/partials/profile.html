@@ -204,12 +204,13 @@
     <div class="second_box col-md-8 editProfile">
       <div class="profileRow mBr20 mBr20a verifyFile">
         <div class="uploadFile" style="line-height:20px;">
-          <span class="itemno line46">1</span>
-          <a id="varificationfile_view" href="#"> 
-            <span>SELECT VALID ID</span>
-            <label>&nbsp;</label>
-          </a>
-          <input type="file" id="varificationfile" data-label="File" class="chngprof required" name="file">
+          <label>
+            <span class="itemno line46">1</span>
+            <span class="inputFile">
+              <span>SELECT VALID ID <b style="color: black;">{{FileInfo.name}}</b></span>
+              <input type="file" id="varificationfile" file-model="FileInfo" class="chngprof required" name="file">
+            </span>
+          </label>
           <input type="button" class="uploadfile" value="UPLOAD">
           <div class="mspacer"></div>
           <div class="clearfix"></div>
@@ -219,7 +220,8 @@
 
       <div class="profileRow mBr20 verifyFile">
         <span class="itemno line22">2</span>
-        <span class="nolineheight">Make 2 dollar payment by Paypal (will be refunded)<br />
+        <span class="nolineheight">
+          Make 2 dollar payment by Paypal (will be refunded)<br />
           You will see a 4 digit number in your payment history 
         </span>
         <input type="button" class="profile-make-payment-btn fright" value="MAKE A 2 DOLLAR PAYMENT" />

@@ -779,6 +779,8 @@ angular.module('myApp.controllers', [])
     // --- End Playlist Controller ----
 
 
+
+    // Begin profile contronlle --- Views is profile.html
     .controller('ProfileController', ['$rootScope', '$scope', '$http', '$window', 'fileUpload', function ($rootScope, $scope, $http, $window, fileUpload) {
         $scope.user = {};
         $scope.passwordStatus = false;
