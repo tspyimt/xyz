@@ -338,21 +338,7 @@
 
 </div>
 
-<div class="profile-box-main">
-    <div class="fisrt_box col-md-2">Key Management</div>
-    <div class="second_box col-md-5 viewProfile"> 
-      <div ng-hide="isShow">
-        Share creator key?  <input type="checkbox" ng-model="currentUser.shared">
-      </div>
-    </div>
-    <div class="third_box col-md-5">
-      <input type="button" value="Update" class="btn-change-update" ng-hide="isShow" data-ng-click="updateAction(currentUser)" style="background-color: red;"/>
-      <input ng-show="isShow" type="button" value="View" class="btn-change-update"  style="margin-right: 5px" data-ng-click="updateSetting()"/>
-    </div>
-    <div class="clearfix"></div>
-</div>
-
-<div class="profile-box-main dashed-bottom" data-ng-show="userRoleArtist=='artist' ">
+<div class="profile-box-main" data-ng-show="userRoleArtist=='artist' ">
     <div class="fisrt_box col-md-2">Creator Key</div>
     <div class="second_box col-md-5 viewProfile" data-ng-hide="creatorKeyGenerated"> ************
         <br/></div>
@@ -368,8 +354,26 @@
                data-ng-click="viewCreatorKeyPDF()"/>
     </div>
     <div class="clearfix"></div>
-
 </div>
+
+<div class="profile-box-main dashed-bottom">
+    <div class="fisrt_box col-md-2">Key Management</div>
+    <div class="second_box col-md-5 viewProfile"> 
+      <div ng-hide="isShow">
+        Share creator key?  <input type="checkbox" ng-model="currentUser.shared">
+      </div>
+    </div>
+    <div class="third_box col-md-5">
+      <input type="button" value="Update" class="btn-change-update" ng-hide="isShow" data-ng-click="updateAction(currentUser)" style="background-color: red;"/>
+      <input ng-show="isShow" type="button" value="View" class="btn-change-update"  style="margin-right: 5px" data-ng-click="updateSetting()"/>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+
+
+
+
 
 <h4 ng-hide="userRoleArtist=='artist' && (currentUser.creatorKey && currentUser.privateKey) || currentUser.privateKey" style="color: #787878;">
   Kindly generate your keys by clicking on "Create" button.
