@@ -30,8 +30,8 @@ exports.getUser = function (req, res) {
 
 
 exports.updateUser = function (req, res) {
-    log.trace(req.body);
-    log.trace(req.checkLoggedIn());
+    // log.trace(req.body);
+    // log.trace(req.checkLoggedIn());
     UserService.updateUser(req.checkLoggedIn(), req.body)
         .on(EventName.ERROR, function (err) {
             log.error(err);

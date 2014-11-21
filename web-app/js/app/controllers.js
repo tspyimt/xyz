@@ -783,12 +783,31 @@ angular.module('myApp.controllers', [])
     // Begin profile contronlle --- Views is profile.html
     .controller('ProfileController', ['$rootScope', '$scope', '$http', '$window', 'fileUpload', function ($rootScope, $scope, $http, $window, fileUpload) {
         $scope.user = {};
+
+        $scope.isShow = true;
         $scope.passwordStatus = false;
         $http.get('/api/user/current').success(function (response) {
             $scope.currentUser = response;
             $scope.userRoleCollector = $scope.currentUser.roles[$scope.currentUser.roles.indexOf('collector')];
             $scope.userRoleArtist = $scope.currentUser.roles[$scope.currentUser.roles.indexOf('artist')];
         });
+
+        $scope.updateSetting = function() {
+            $scope.isShow = false;
+        }
+
+        $scope.updateAction = function(us) {
+            $scope.isShow = true;
+
+            $http.post('/api/user/update', { shared: us.shared }).success(function(res) {
+                alert('Change setting successeful!');
+            })
+            .error(function(err) {
+                alert('Error Occurred!');
+            });
+
+        }
+
 
         // Function to set image preview
         function readURL(input) {

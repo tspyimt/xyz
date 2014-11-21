@@ -37,6 +37,7 @@ exports.schema = {
     hashCreatorKey: String,
     hashTradeKey: String,
     avatar: String,
+    shared: {type: Boolean, default: true}, // Default artist must enter their key.
     hideName: {type: Boolean, default: false},
     virtual: {type: Boolean, default: false},
     blocked: {type: Boolean, default: false},
