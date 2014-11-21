@@ -6534,4 +6534,6 @@ span.itemno {
     opacity: 0;
 }
 
-#varificationfile{ display:block; }
+#varificationfile { 
+    display:block; 
+}
