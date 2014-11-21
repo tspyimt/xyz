@@ -6496,3 +6496,42 @@ a.disabled-anchor {
     margin-top: 15px;
     width: initial;
 }
+
+/* Style for verified task.*/
+.red {
+    background-color:  red;
+}
+
+.profile-make-payment-btn {
+    background-color: rgb(96, 195, 193);
+    color: rgb(255, 255, 255);
+    border: medium none;
+    display: inline-block;
+    font-size: 14px;
+    height: 39px;
+    line-height: 34px;
+    margin: 6px 0px 0px 6px;
+    padding: 0px 10px;
+}
+
+span.itemno {
+    width: 25px;
+    display: inline-block;
+    color: rgb(120, 120, 120);
+    float: left;
+}
+
+.line46 {
+    line-height: 46px !important;
+}
+
+.uploadFile #file, .uploadFile #varificationfile {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 0;
+    width: 68%;
+    opacity: 0;
+}
+
+#varificationfile{ display:block; }
