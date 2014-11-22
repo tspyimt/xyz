@@ -373,11 +373,11 @@
       <div ng-hide="isShow"> 
         <p>Indicate if you do not share the following key with another persion.</p>
         <div id="keyM">
-          <div class="ckManKey" ng-hide="currentUser.sharedKey.creatorKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.creatorKey"/><span id="cKey">CREATOR KEY IS DEACTIVATED</span></label></div>
-          <div class="ckManKey" ng-show="currentUser.sharedKey.creatorKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.creatorKey"/><span id="cKey">CREATOR KEY IS ACTIVATED</span></label></div>
+          <div class="ckManKey" ng-hide="currentUser.sharedKey.creatorKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.creatorKey"/><span id="cKey">CREATOR KEY DEACTIVATED</span></label></div>
+          <div class="ckManKey" ng-show="currentUser.sharedKey.creatorKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.creatorKey"/><span id="cKey">CREATOR KEY ACTIVATED</span></label></div>
 
-          <div class="ckManKey" ng-hide="currentUser.sharedKey.tradeKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.tradeKey"/><span id="tKey">TRADE KEY IS DEACTIVATED</span></label></div>
-          <div class="ckManKey"  ng-show="currentUser.sharedKey.tradeKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.tradeKey"/><span id="tKey">TRADE KEY IS ACTIVATED</span></label></div>
+          <div class="ckManKey" ng-hide="currentUser.sharedKey.tradeKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.tradeKey"/><span id="tKey">TRADE KEY DEACTIVATED</span></label></div>
+          <div class="ckManKey"  ng-show="currentUser.sharedKey.tradeKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.tradeKey"/><span id="tKey">TRADE KEY ACTIVATED</span></label></div>
         </div>
       </div>
     </div>
