@@ -373,16 +373,16 @@
       <div ng-hide="isShow"> 
         <p>Indicate if you do not share the following key with another persion.</p>
         <div id="keyM">
-          <div class="ckManKey" ng-hide="currentUser.sharedKey.creatorKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.creatorKey"/><span id="cKey">CREATOR KEY IS CURRENTLY DEACTIVATED</span></label></div>
-          <div class="ckManKey" ng-show="currentUser.sharedKey.creatorKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.creatorKey"/><span id="cKey">CREATOR KEY IS CURRENTLY ACTIVATED</span></label></div>
+          <div class="ckManKey" ng-hide="currentUser.sharedKey.creatorKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.creatorKey"/><span id="cKey">CREATOR KEY IS DEACTIVATED</span></label></div>
+          <div class="ckManKey" ng-show="currentUser.sharedKey.creatorKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.creatorKey"/><span id="cKey">CREATOR KEY IS ACTIVATED</span></label></div>
 
-          <div class="ckManKey" ng-hide="currentUser.sharedKey.tradeKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.tradeKey"/><span id="tKey">TRADE KEY IS CURRENTLY DEACTIVATED</span></label></div>
-          <div class="ckManKey"  ng-show="currentUser.sharedKey.tradeKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.tradeKey"/><span id="tKey">TRADE KEY IS CURRENTLY ACTIVATED</span></label></div>
+          <div class="ckManKey" ng-hide="currentUser.sharedKey.tradeKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.tradeKey"/><span id="tKey">TRADE KEY IS DEACTIVATED</span></label></div>
+          <div class="ckManKey"  ng-show="currentUser.sharedKey.tradeKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.tradeKey"/><span id="tKey">TRADE KEY IS ACTIVATED</span></label></div>
         </div>
       </div>
     </div>
     <div class="third_box col-md-2">
-      <input type="button" value="DONE" class="btn-change-update" ng-hide="isShow" data-ng-click="updateAction(currentUser)" style="background-color: red;"/>
+      <input type="button" value="DONE" class="btn-change-update" ng-hide="isShow" data-ng-click="updateAction(currentUser)">
       <input ng-show="isShow" type="button" value="VIEW" class="btn-change-update"  style="margin-right: 5px" data-ng-click="updateSetting()"/>
     </div>
     <div class="clearfix"></div>
