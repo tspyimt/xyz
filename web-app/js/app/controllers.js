@@ -796,10 +796,14 @@ angular.module('myApp.controllers', [])
             $scope.isShow = false;
         }
 
+
+
         $scope.updateAction = function(us) {
             $scope.isShow = true;
 
-            $http.post('/api/user/update', { shared: us.shared }).success(function(res) {
+//            console.log(us);
+
+            $http.post('/api/user/update', { sharedKey: us.sharedKey }).success(function(res) {
                 alert('Change setting successeful!');
             })
             .error(function(err) {

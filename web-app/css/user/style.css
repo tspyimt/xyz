@@ -6555,3 +6555,33 @@ span.itemno {
     display: inline-block;
     padding: 10px;
 }
+
+.ckManKey {
+    margin:4px;
+    background-color:#FF0000;
+    border-radius:5px;
+    border:1px solid #D0D0D0;
+    overflow:auto;
+    float:left;
+}
+
+.ckManKey label {
+    float:left;
+}
+
+.ckManKey label span {
+    text-align:center;
+    padding:3px 0px;
+    display:block;
+    color: #FFFFFF;
+}
+
+.ckManKey label input {
+    display: none;
+}
+
+.ckManKey input:checked + span {
+    background-color:#60C3C1;
+    color:#fff;
+    margin-bottom: -5px;
+}
