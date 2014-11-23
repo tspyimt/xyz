@@ -373,7 +373,7 @@
       <div ng-hide="isShow"> 
         <p>Indicate if you do not share the following key with another persion.</p>
         <div id="keyM">
-          <label class="ckManKey" ng-show="currentUser.sharedKey.creatorKey"  style="background-color: red;">
+          <label class="ckManKey" ng-hide="currentUser.sharedKey.creatorKey"  style="background-color: red;">
             <label>
               <input type="checkbox" ng-model="currentUser.sharedKey.creatorKey" style="display: none;" />
               <span id="cKey">
@@ -381,7 +381,7 @@
               </span>
             </label>
           </label>
-          <label class="ckManKey" ng-hide="currentUser.sharedKey.creatorKey">
+          <label class="ckManKey" ng-show="currentUser.sharedKey.creatorKey">
             <label>
               <input type="checkbox" ng-model="currentUser.sharedKey.creatorKey" style="display:none" />
               <span id="cKey">
@@ -391,7 +391,7 @@
           </label>
 
 
-          <label class="ckManKey" ng-show="currentUser.sharedKey.tradeKey" style="margin-left: 20px; background-color: red;">
+          <label class="ckManKey" ng-hide="currentUser.sharedKey.tradeKey" style="margin-left: 20px; background-color: red;">
             <label>
               <input type="checkbox" ng-model="currentUser.sharedKey.tradeKey" style="display: none;" />
               <span id="tKey">
@@ -399,7 +399,7 @@
               </span>
             </label>
           </label>
-          <label class="ckManKey"  ng-hide="currentUser.sharedKey.tradeKey"  style="margin-left:20px;">
+          <label class="ckManKey"  ng-show="currentUser.sharedKey.tradeKey"  style="margin-left:20px;">
             <label>
               <input type="checkbox" ng-model="currentUser.sharedKey.tradeKey" style="display: none;" />
               <span id="tKey">
