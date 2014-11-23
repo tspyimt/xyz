@@ -798,6 +798,9 @@ angular.module('myApp.controllers', [])
 
 
 
+
+
+
         $scope.updateAction = function(us) {
             $scope.isShow = true;
 

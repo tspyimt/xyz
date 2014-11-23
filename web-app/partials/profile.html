@@ -373,11 +373,40 @@
       <div ng-hide="isShow"> 
         <p>Indicate if you do not share the following key with another persion.</p>
         <div id="keyM">
-          <div class="ckManKey" ng-hide="currentUser.sharedKey.creatorKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.creatorKey"/><span id="cKey">CREATOR KEY DEACTIVATED</span></label></div>
-          <div class="ckManKey" ng-show="currentUser.sharedKey.creatorKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.creatorKey"/><span id="cKey">CREATOR KEY ACTIVATED</span></label></div>
+          <label class="ckManKey" ng-show="currentUser.sharedKey.creatorKey"  style="background-color: red;">
+            <label>
+              <input type="checkbox" ng-model="currentUser.sharedKey.creatorKey" style="display: none;" />
+              <span id="cKey">
+                CREATOR KEY DEACTIVATED
+              </span>
+            </label>
+          </label>
+          <label class="ckManKey" ng-hide="currentUser.sharedKey.creatorKey">
+            <label>
+              <input type="checkbox" ng-model="currentUser.sharedKey.creatorKey" style="display:none" />
+              <span id="cKey">
+                CREATOR KEY ACTIVATED
+              </span>
+            </label>
+          </label>
 
-          <div class="ckManKey" ng-hide="currentUser.sharedKey.tradeKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.tradeKey"/><span id="tKey">TRADE KEY DEACTIVATED</span></label></div>
-          <div class="ckManKey"  ng-show="currentUser.sharedKey.tradeKey"><label><input type="checkbox" ng-model="currentUser.sharedKey.tradeKey"/><span id="tKey">TRADE KEY ACTIVATED</span></label></div>
+
+          <label class="ckManKey" ng-show="currentUser.sharedKey.tradeKey" style="margin-left: 20px; background-color: red;">
+            <label>
+              <input type="checkbox" ng-model="currentUser.sharedKey.tradeKey" style="display: none;" />
+              <span id="tKey">
+                TRADE KEY DEACTIVATED
+              </span>
+            </label>
+          </label>
+          <label class="ckManKey"  ng-hide="currentUser.sharedKey.tradeKey"  style="margin-left:20px;">
+            <label>
+              <input type="checkbox" ng-model="currentUser.sharedKey.tradeKey" style="display: none;" />
+              <span id="tKey">
+                TRADE KEY ACTIVATED
+              </span>
+            </label>
+          </label>
         </div>
       </div>
     </div>
