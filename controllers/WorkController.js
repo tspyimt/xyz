@@ -296,7 +296,7 @@ exports.transferOwnership = function (req, res) {
 }.securedAPI();
 
 exports.claimOwnership = function (req, res) {
-    WorkService.claimOwnership(req.body.loginPassword, req.body.key, req.user)
+    WorkService.claimOwnership(req.body.key, req.user)
         .on(EventName.ERROR, function (err) {
             log.error(err);
             res.sendErrorAPIResponse(err);

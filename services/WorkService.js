@@ -1397,13 +1397,12 @@ exports.transferOwnership = function (buyerEmail, workCopyId, artFairAgreement, 
     });
 }.toEmitter();
 
-exports.claimOwnership = function (buyerPassword, key, user) {
+exports.claimOwnership = function (key, user) {
 
     var emitter = this;
 
     var tasks = [],
         hashedTransferKey = (key.replace(/[^0-9a-zA-Z]+/g, '')),
-        hashedBuyerPassword = buyerPassword,
         buyer,
         seller,
         work,

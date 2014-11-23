@@ -171,7 +171,6 @@ angular.module('myApp.controllers', [])
         $scope.transfer = function () {
             $scope.transferError = null;
             $http.post('/api/ownership/claim', {
-                loginPassword: $scope.loginPassword,
                 key: $scope.transferKey
             }).success(function (response) {
                     if (response && response.error) {
