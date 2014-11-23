@@ -1400,6 +1400,9 @@ angular.module('myApp.controllers', [])
         });
 
     }])
+
+
+
     .controller('transferWorkStep3', ['$scope', '$location', '$rootScope', '$http', '$routeParams', '$sce', function ($scope, $location, $rootScope, $http, $routeParams, $sce) {
         $scope.toLink = function (link) {
             $location.path(link);
@@ -1454,6 +1457,7 @@ angular.module('myApp.controllers', [])
         //Verifications
         $scope.checkValidTradeKey = function (key) {
             $http.post('/user/checkValidTradeKey', {key: key}).success(function (response) {
+                console.log(response);
                 if (response && response._id) {
                     $scope.keyMatch = true;
                     $('#tradeIcon').removeClass('chkRed').addClass('chkGreen');
@@ -1473,6 +1477,7 @@ angular.module('myApp.controllers', [])
         };
 
     }])
+
     .controller('transferWorkStep4', ['$scope', '$location', '$rootScope', '$http', '$routeParams', '$sce', function ($scope, $location, $rootScope, $http, $routeParams, $sce) {
         $scope.toLink = function (link) {
             $location.path(link);

@@ -89,6 +89,7 @@ angular.module('myApp.directives', []).
             }
         };
     }]).
+
     directive('transferKey', ['$parse', function ($parse) {
         return {
             restrict: 'A',
