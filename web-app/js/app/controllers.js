@@ -787,40 +787,48 @@ angular.module('myApp.controllers', [])
         $scope.isShow = true;
         $scope.passwordStatus = false;
 
-
-        $scope.getVery = false;
-
+        $scope.isVery = false;
 
 
-        $scope.showVery = function() {
-            $scope.getVery = true;
+
+        $scope.getVery = function() {
+            $scope.isVery ? $scope.isVery = false : $scope.isVery = true;
         }
 
 
+
         $scope.addWorkProfile = function(evt) {
-            $scope.uploadProgressPercentage = 0;
-            $scope.ajaxCallInProgress = true;
+            console.log($scope.imgFile);
 
-            var xhr = new XMLHttpRequest;
+            // if(!file === undefined) {
+            //     $scope.uploadProgressPercentage = 0;
+            //     $scope.ajaxCallInProgress = true;
 
-            xhr.upload.onprogress = function (e) {
-                $scope.uploadProgressPercentage = (e.loaded / e.total) * 100;
-                $scope.$apply();
-            };
+            //     var xhr = new XMLHttpRequest;
 
-            xhr.upload.onload = function (e) {
-                $rootScope.newWorkAdded = true;
-                $location.path('/inventory/all/0/25');
-                $scope.$apply();
-            };
+            //     xhr.upload.onprogress = function (e) {
+            //         $scope.uploadProgressPercentage = (e.loaded / e.total) * 100;
+            //         $scope.$apply();
+            //     };
 
-            xhr.upload.onerror = function (e) {
-                $scope.errorAddingWork = true;
-                $scope.$apply();
-            };
+            //     xhr.upload.onload = function (e) {
+            //         $rootScope.newWorkAdded = true;
+            //         $location.path('/inventory/all/0/25');
+            //         $scope.$apply();
+            //     };
 
-            // xhr.open("POST", "/work/create");
-            // xhr.send(fd);
+            //     xhr.upload.onerror = function (e) {
+            //         $scope.errorAddingWork = true;
+            //         $scope.$apply();
+            //     };
+
+            // // xhr.open("POST", "/work/create");
+            // // xhr.send(fd);
+
+            // } else {
+            //     alert('Please provide your file valid');
+            // }
+
 
             // console.log(evt);
 

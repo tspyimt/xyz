@@ -196,21 +196,22 @@
 
 
 <div class="profile-box-main" ng-if="currentUser.userState == 'pending complete profile'">
-  <div class="fisrt_box col-md-2">
-    Verified Member<br>
+    <div class="fisrt_box col-md-2">
+      Verified Member<br>
+    </div>
+
+  <div class="second_box col-md-8 viewProfile" ng-hide="isVery">
+    <label class="pass-resp">Not yet verified.</label>
+
   </div>
 
-<!--   <div class="second_box col-md-8 viewProfile" ng-hide="GetVery">
-    <label class="pass-resp">Not yet verified.</label>
-  </div> -->
-
-  <div class="second_box col-md-8">
+  <div class="second_box col-md-8" ng-show="isVery">
     <div class="row">
       <span class="col-md-1">1</span>
       <label class="col-md-6" style="background-color: #EEF6FD;">
         <span class="inputFile">
-          <span>SELECT VALID ID </span> <b style="color: black;">{{FileInfo.name}}</b>
-          <input type="file" id="varificationfile" file-model="FileInfo" class="chngprof required" name="file" style="display: none;">
+          <span>SELECT VALID ID </span> <b style="color: black;">{{fileInfo.name}}</b>
+          <input type="file" id="file" file-model="fileInfo" name="file" style="display: none;" />
         </span>
       </label>
       <label class="col-md-1" style="padding-left: 20px;">
@@ -222,7 +223,8 @@
       </label>
       <label class="col-md-1 col-md-offset-3">
         <input type="button" class="uploadfile addWork" ng-class="{'ajax-disabled': ajaxCallInProgress}" value="UPLOAD" ng-click="addWorkProfile($event)">
-        <!-- <div class="mspacer"></div> -->
+
+        <div class="mspacer"></div>
         <div class="clearfix"></div>
       </label>
     </div>
@@ -242,8 +244,12 @@
       <div class="clearfix"></div>
     </div>
   </div>
-  <div class="third_box col-md-2" ng-hide="GetVery"  ng-click="showVery()">
-    <input type="button" class="chng-change btn-change-update red get-varified"  value="Get Verified"/>
+  <div class="third_box col-md-2" ng-hide="isVery">
+    <input type="button" ng-click="getVery()"  value="Get Verified" style="background-color: red; color: white;" />
+  </div>
+
+  <div class="third_box col-md-2" ng-show="isVery">
+    <input type="button" ng-click="getVery()" value="Update" style="background-color: #60C3C1; color: white;" />
   </div>
 
   <div class="clearfix"></div>
