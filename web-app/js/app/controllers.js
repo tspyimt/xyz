@@ -327,6 +327,7 @@ angular.module('myApp.controllers', [])
         };
 
         $http.get('/api/inventoryWorksCount/' + $scope.mediaObject).success(function (response) {
+
             $scope.pageCount = (response.count / $scope.limit) - 1;
             $scope.count = response.count;
             if (parseInt($scope.offSet) < 0 || parseInt($scope.offSet) > $scope.count) {
@@ -336,6 +337,7 @@ angular.module('myApp.controllers', [])
         });
 
         $http.get('/api/inventoryWorks/' + $scope.mediaObject + '/' + $scope.offSet + '/' + $scope.limit).success(function (response) {
+            // console.log(response);
             $scope.works = response;
         });
 

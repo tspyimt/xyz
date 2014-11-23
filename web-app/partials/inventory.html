@@ -48,10 +48,47 @@
                 <div class="col-sm-2 auditThumb">
                     <img ng-src="/api/media/thumbnail/{{work.workId || work._id}}" alt=""/>
                 </div>
-                
+ 
+                <div class="col-sm-10">
+                    <div class="audit-rt-block {{(showPlaylistCRUD && $index==currentIndex)&& 'active' || ' '}}">
+                        <div class="auditTypeBox">
+                            <label>EDITION</label>
+                            <span class="audit-cloud">{{ work.edition || '0' }}+{{(work.copyForArtRent + work.copyForExhibition) || '0'}}</span>
+                        </div>
+                        <div class="auditTypeBox">
+                            <label>&nbsp</label>
+                            <span class="last-audit">&nbsp;</span>
+                        </div>
+                        <div class="auditTypeBox">
+                            <label>LAST AUDIT</label>
+                            <span ng-class="{'last-audit':work.copyTypeLFP,'last-audit-red':!work.copyTypeLFP}">&nbsp;</span>
+                        </div>
+                        <div class="auditTypeBox">
+                            <label>&nbsp;</label>
+                            <a class="viewaudit" href="javascript:void(0);" ng-click="openViewInfo(work._id, copy)">DETAILS</a>
+                        </div>
+                        <div class="auditTypeBox">
+                            <label>&nbsp;</label>
+                            <a class="viewaudit view-audit-report show-next-panel" data-label="UPDATE"
+                               data-ng-model="workId" data-ng-init="workId=work._id"
+                               data-ng-click="changeFlag(workId)"
+                               href="javascript:void(0)" ng-click="openPlaylistCRUD(workId, $index)"
+                               ng-hide="(flagDiv==workId) && showPlaylistCRUD">PLAYLIST</a>
+                            <a class="viewaudit view-audit-report show-next-panel" data-label="UPDATE"
+                               href="javascript:void(0)"
+                               ng-click="closePlaylistCRUD(workId)"
+                               ng-show="(flagDiv==workId) && showPlaylistCRUD">Done</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
                 <div class="col-sm-2">&nbsp;</div>
                 <div class="col-sm-10"
                      data-ng-show="flagDiv==workId && showPlaylistCRUD">
+
                     <div class="audit-rt-block mTB20 audit-rt" ng-show='myPlaylists.length == 0'>
                         <div class="col-sm-4">
                             <label class="audit-report-nm text">You don't have any playlist yet. Click on Playlist
@@ -59,6 +96,7 @@
                         </div>
                         <div class="clearfix"></div>
                     </div>
+
                     <div class="audit-rt-block mTB20 audit-rt" ng-repeat="playlist in myPlaylists">
                         <div class="col-sm-4">
                             <label class="audit-report-nm text">{{playlist.title}}</label>
