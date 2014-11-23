@@ -784,9 +784,50 @@ angular.module('myApp.controllers', [])
     // Begin profile contronlle --- Views is profile.html
     .controller('ProfileController', ['$rootScope', '$scope', '$http', '$window', 'fileUpload', function ($rootScope, $scope, $http, $window, fileUpload) {
         $scope.user = {};
-
         $scope.isShow = true;
         $scope.passwordStatus = false;
+
+
+        $scope.getVery = false;
+
+
+
+        $scope.showVery = function() {
+            $scope.getVery = true;
+        }
+
+
+        $scope.addWorkProfile = function(evt) {
+            $scope.uploadProgressPercentage = 0;
+            $scope.ajaxCallInProgress = true;
+
+            var xhr = new XMLHttpRequest;
+
+            xhr.upload.onprogress = function (e) {
+                $scope.uploadProgressPercentage = (e.loaded / e.total) * 100;
+                $scope.$apply();
+            };
+
+            xhr.upload.onload = function (e) {
+                $rootScope.newWorkAdded = true;
+                $location.path('/inventory/all/0/25');
+                $scope.$apply();
+            };
+
+            xhr.upload.onerror = function (e) {
+                $scope.errorAddingWork = true;
+                $scope.$apply();
+            };
+
+            // xhr.open("POST", "/work/create");
+            // xhr.send(fd);
+
+            // console.log(evt);
+
+        }
+
+
+
         $http.get('/api/user/current').success(function (response) {
             $scope.currentUser = response;
             $scope.userRoleCollector = $scope.currentUser.roles[$scope.currentUser.roles.indexOf('collector')];
@@ -804,8 +845,6 @@ angular.module('myApp.controllers', [])
 
         $scope.updateAction = function(us) {
             $scope.isShow = true;
-
-//            console.log(us);
 
             $http.post('/api/user/update', { sharedKey: us.sharedKey }).success(function(res) {
                 alert('Change setting successeful!');
@@ -1457,7 +1496,7 @@ angular.module('myApp.controllers', [])
         //Verifications
         $scope.checkValidTradeKey = function (key) {
             $http.post('/user/checkValidTradeKey', {key: key}).success(function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response && response._id) {
                     $scope.keyMatch = true;
                     $('#tradeIcon').removeClass('chkRed').addClass('chkGreen');

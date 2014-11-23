@@ -194,8 +194,60 @@
     </div>
 </div>
 
+
 <div class="profile-box-main" ng-if="currentUser.userState == 'pending complete profile'">
-    <div class="fisrt_box col-md-2">Verified Member<br>
+  <div class="fisrt_box col-md-2">
+    Verified Member<br>
+  </div>
+
+<!--   <div class="second_box col-md-8 viewProfile" ng-hide="GetVery">
+    <label class="pass-resp">Not yet verified.</label>
+  </div> -->
+
+  <div class="second_box col-md-8">
+    <div class="row">
+      <span class="col-md-1">1</span>
+      <label class="col-md-6" style="background-color: #EEF6FD;">
+        <span class="inputFile">
+          <span>SELECT VALID ID </span> <b style="color: black;">{{FileInfo.name}}</b>
+          <input type="file" id="varificationfile" file-model="FileInfo" class="chngprof required" name="file" style="display: none;">
+        </span>
+      </label>
+      <label class="col-md-1" style="padding-left: 20px;">
+        <div class="progress-wrap" data-ng-show="ajaxCallInProgress" style="height: 52px">
+          <div class="progress-bar" style="width: {{uploadProgressPercentage || 0}}%"></div>
+          <div class="progress-text1">{{(uploadProgressPercentage || 0) | number : 0}}%</div>
+        </div>
+        <img src='/img/data/icons/ajax-loader.gif' style="height: 16px;position: absolute;left: 330px;top: 10px" ng-show='ajaxCallInProgress'>
+      </label>
+      <label class="col-md-1 col-md-offset-3">
+        <input type="button" class="uploadfile addWork" ng-class="{'ajax-disabled': ajaxCallInProgress}" value="UPLOAD" ng-click="addWorkProfile($event)">
+        <!-- <div class="mspacer"></div> -->
+        <div class="clearfix"></div>
+      </label>
+    </div>
+    <div class="row">
+      <span class="col-md-1">2</span>
+      <span class="col-md-6" style="line-height: 22px; font-size: 15px;">
+        Make 2 dollar payment by Paypal (will be refunded)<br />
+        You will see a 4 digit number in your payment history 
+      </span>
+    </div>
+    <div class="row">
+      <input id="valifiedCode" type="text" maxlength="4" data-label="Member Verication Code" placeholder="Enter the 4 digits here (XXXX)" data-length="4" class="col-md-offset-1 col-md-6 required numeric length" value="" style="border: 2px solid black" />
+      <label class="col-md-3" style="padding-left: 20px;">
+        <input type="button" class="profile-make-payment-btn" value="MAKE A 2 DOLLAR PAYMENT" />        
+      </label>
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  <div class="third_box col-md-2" ng-hide="GetVery"  ng-click="showVery()">
+    <input type="button" class="chng-change btn-change-update red get-varified"  value="Get Verified"/>
+  </div>
+
+  <div class="clearfix"></div>
+    <!-- <div class="fisrt_box col-md-2">Verified Member<br>
     </div>
     <div class="second_box col-md-8 viewProfile">
       <label class="pass-resp">Not yet verified.</label>
@@ -239,8 +291,10 @@
       <input type="button" class="chng-change btn-change-update red get-varified" value="Get Verified" />
     </div>
 
-    <div class="clearfix"></div>
+    <div class="clearfix"></div> -->
 </div>
+
+
 
 <div class="profile-box-main">
     <div class="fisrt_box col-md-2">Business information</div>
