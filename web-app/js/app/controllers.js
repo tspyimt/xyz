@@ -798,6 +798,9 @@ angular.module('myApp.controllers', [])
 
 
         $scope.addWorkProfile = function(evt) {
+            $scope.uploadProgressPercentage = 0;
+            $scope.ajaxCallInProgress = true;
+
             console.log($scope.imgFile);
 
             // if(!file === undefined) {
