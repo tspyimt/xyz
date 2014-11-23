@@ -1446,7 +1446,7 @@ exports.claimOwnership = function (key, user) {
 
     //Verify buyer
     tasks.push(function (callback) {
-        if (user._id.toString() == buyer._id.toString() && buyer.password == hashedBuyerPassword) {
+        if (user._id.toString() == buyer._id.toString()) {
             callback();
         } else callback(new Error("Unable to verify buyer! Make sure you are the buyer of the artwork."));
     });
